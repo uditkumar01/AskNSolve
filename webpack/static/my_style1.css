@@ -19,7 +19,7 @@
     scroll-behavior: smooth;
 }
 .my_container{
-    background: white;
+    background: rgba(255,255,255,0.8);
     margin-top: 100px;
     margin-bottom: 100px;
     width: 50%;
