@@ -1,0 +1,199 @@
+{% extends "layout.html" %}
+{% block files %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='home_page.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/fontawesome.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.lite.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.lite.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/modules/animations-extended.min.css') }}">
+
+{% endblock files %}
+{% block content %}
+
+    <div class="__container">
+        {% with messages = get_flashed_messages(with_categories = true) %}
+            {% if messages %}
+                {% for category,message in messages%}
+                    <div>
+                        {% if category == "info" %}
+                            <div class = "alert alert-info" ><i class="fas fa-bell fl-fw icon_bell"></i>{{ message }}</div>
+                        {% elif category == "success" %}
+                            <div class = "alert alert-success" ><i class="fas fa-check-circle fl-fw icon_tick"></i>{{ message }}</div>
+                        {% elif category == "danger" %}
+                            <div class = "alert alert-danger" ><i class="fas fa-times-circle fl-fw icon_danger"></i>{{ message }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div class="sub-container">
+            <div class="headerr">
+                <div class="menuu">
+                    {% if current_user.is_authenticated: %}
+                        <header class="header">
+                            <a href="{{ url_for('users.account') }}" class="logo"><div class="hello"><img src = "{{url_for('static',filename = 'images/'+user.profile_pic)}}" alt = "Profile Picture" class = "profile-pic"><div style="display: block;"><p class="user1">{{ username_menu }}</p><br><p class="user1" style="font-size: 9px; margin-top: -60px;">{{ present_time.strftime('%H hr  %M min  %S sec') }}</p><p class="user1" style="font-size: 9px; margin-top: -10px;">{{ present_time.strftime('%a %B %Y') }}</p></div></div></a>
+                            <input class="menu-btn" type="checkbox" id="menu-btn" />
+                            <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                            <ul class="menu">
+                                <li class="account_btn"><a href="{{url_for('users.account')}}">Account</a></li>
+                                <li class="ask_btn"><a href="{{url_for('posts.create_post')}}">Ask</a></li>
+                                <li class="logout_btn"><a href="{{url_for('users.logout')}}">Logout</a></li>
+                            </ul>
+                        </header>
+                    {% else %}
+                        <header class="header">
+                            <a href="{{ url_for('users.login') }}" class="logo"><div class="hello"><img src = "{{ url_for('static',filename = 'images'+ profile_pic) }}" alt = "Profile Picture" class = "profile-pic"><p class="user1">{{ username_menu }}</p></div></a>
+                            <input class="menu-btn" type="checkbox" id="menu-btn" />
+                            <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                            <ul class="menu">
+                                <p class="login_btn"><a href="{{url_for('users.login')}}">Login</a></p>
+                                <p class="register_btn"><a href="{{url_for('users.register')}}">Register</a></p>
+                            </ul>
+                        </header>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="question-box">
+                <div class="questions">
+                        {% for comment in _comments.items %}
+                            <div class = "post">
+                                <div class="question">
+
+                                    <div class="post_info">
+                                        <div class = "post_pic"><img src="{{url_for('static',filename = 'images/'+comment.profile_pic)}}" alt = "Profile Picture" class = "profile-pic-1"></div>
+                                        <div class="user_post_info">
+                                            <a href="{{url_for('users.all_user_post', username = comment.commentor)}}"><p class="post_author">{{ comment.commentor }}</p></a>
+                                            <p class="post_date">{{ comment.timestamp.strftime('%d-%m-%Y') }}</p>
+                                            <p class="post_time">{{ comment.timestamp.strftime('%H:%M:%S') }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="whole_post_content">
+                                        <p class="text-primary-sm" style="font-size: 15px;">{{ comment.commentor }} commented :</p>
+                                        <p class="text-info" id = "truncated_content">{{ comment.comment }}</p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div style="width: 100%; text-align: center;">
+                            <div class="btn-group" style=" margin-top: 30px;">
+                                {% for no in _comments.iter_pages(right_edge = 1, left_edge = 1, left_current = 1, right_current = 2)%}
+                                    {% if no %}
+                                        {% if _comments.page == no %}
+                                            <a href="{{url_for('posts.view_comments', page = no)}}" class="btn btn-dark btn-sm mb-4">{{ no }}</a>
+                                        {% else %}
+                                            <a href="{{url_for('posts.view_comments', page = no)}}" class="btn btn-light btn-sm mb-4">{{ no }}</a>
+                                        {% endif %}
+                                    {% else %}
+                                        <a href="#" class="btn btn-success btn-sm mb-4" style="font-size: 12px;">...</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="text-right pt-20 pr-2">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Comment
+        </button>
+    </div>
+    
+
+
+        
+    
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Comment</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                
+                <div class = "form-group">
+                    <form action = "" method = "POST">
+                      {{ form.hidden_tag() }}
+                        <fieldset class = "">
+                        
+                          
+                                                    
+                            <div class="form-group">
+                                {{ form.commentor(class = "form-control",placeholder = "Username") }}
+                                {% if form.commentor.errors %}
+                                    {% for error in form.commentor.errors%}
+                                        <div style = "color: #e84118;font-size: small; margin-top:4px;margin-left: 50px;">
+                                        {{ error }}
+                                        </div>
+                                {% endfor %}
+                                {% endif %}
+                            
+                            </div>
+                        
+                          
+                            
+                            <div class="form-group purple-border">
+                                
+                                {{ form.comment(class="form-control", id="exampleFormControlTextarea4", rows="3",placeholder = "Type you comment/answer here...") }}
+                                {% if form.comment.errors %}
+                                  {% for error in form.comment.errors%}
+                                    <div style = "color: #e84118;font-size: small; margin-top:4px;margin-left: 50px;" >
+                                      {{ error }}
+                                    </div>
+                                  {% endfor %}
+                                {% endif %}
+                            </div>
+                            
+                           
+                          
+                        </fieldset>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btnlight" data-dismiss="modal">Close</button>
+                            <div class = "submit_btn">
+                                {{ form.submit(class = "btn btn-primary") }}
+                              </div>
+                        </div>
+                    </form>
+                  </div>
+                  
+
+            </div>
+            
+        </div>
+        </div>
+    </div>
+
+
+    
+    
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/jquery.min.js')}}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/popper.min.js')}}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/bootstrap.min.js')}}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/mdb.min.js')}}"></script>
+  <!-- Your custom scripts (optional) -->
+  <script type="text/javascript"></script>
+{% endblock content %}

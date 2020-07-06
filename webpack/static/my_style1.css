@@ -1,0 +1,59 @@
+.__container{
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    background: url(images/login11.jpg);
+    /* filter: blur(8px);
+    -webkit-filter: blur(8px); */
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    -webkit-background-size:cover;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-color: rgba(0,0,0,0.6) rgba(255,255,255,0);
+    scroll-behavior: smooth;
+}
+.my_container{
+    background: white;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    width: 50%;
+    padding: 30px;
+    transform: translate(50%,0%);
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 48em) {
+    .my_container{
+        background: white;
+        margin-top: 100px;
+        margin-bottom: 100px;
+        width: 95%;
+        padding: 30px;
+        transform: translate(3%,0%);
+        border-radius: 5px;
+    }
+    
+    
+}

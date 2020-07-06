@@ -1,0 +1,188 @@
+body{
+    background: url(images/login20.jpg);
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    -webkit-background-size:cover;
+    overflow-x: scroll;
+    scrollbar-color: rgba(0,0,0,0.6) rgba(255,255,255,0);
+    scroll-behavior: smooth;
+}
+.post_form{
+    height: auto;
+    width: 80wh;
+    background: white;
+    margin: 40px;
+    margin-top: 60px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+.title{
+    color: rgba(50,50,50,0.6);  /* fallback for old browsers */
+    font-size: 200%;
+    font-family: Aldrich,sans-serif,Arial, Helvetica;
+    font-weight: 500;
+}
+.headerr{
+    width: 60vw;
+    height: 40px;
+    background: rgba(0,0,0,0);
+    border: 2px solid #48dbfb;
+    margin: 20px;
+    text-align: left;
+    border-radius: 10px;    
+    color: seashell;
+    padding: 10px;
+    transition: 0.5s ease;
+    font-family: Aldrich,sans-serif,Arial, Helvetica;
+}
+.contentt{
+    padding:10px;
+    width: 60vw;
+    height: 180px;
+    background: rgba(0,0,0,0);
+    border: 2px solid #48dbfb;
+    margin: 20px;
+    text-align: left;
+    overflow-y: scroll;
+    scrollbar-color: rgba(0,0,0,0.6) rgba(255,255,255,0);
+    scroll-behavior: smooth;
+    border-radius: 10px;
+    color: seashell;
+    transition: 0.5s ease;
+    font-family: Aldrich,sans-serif,Arial, Helvetica;
+}
+.headerr:focus,.contentt:focus{
+
+    border: 2px solid #48db48;
+}
+.submit_field{
+    margin: 20px;
+    margin-top: 30px;
+}
+.submit:hover{
+    background: #48dbfb;
+    color: aliceblue;
+    border: 3px solid rgba(255,255,255,0.6)
+}
+.submit:focus{
+    background: #48db48;
+    color: aliceblue;
+    border: 3px solid rgba(255,255,255,0.6)
+}
+.error_placeholder{
+
+    color: tomato;
+    font-size: small;
+    margin-top:2px;
+    margin-left: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 48em){
+    
+    .post_form{
+        height: auto;
+        width: 100%;
+        background: white;
+        margin: 0px;
+        margin-top: 60px;
+        text-align: center;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .title{
+        color: aliceblue;
+        font-size: 200%;
+        font-family: Aldrich,sans-serif,Arial, Helvetica;
+        font-weight: 500;
+    }
+    .headerr{
+        width: 60vw;
+        height: 40px;
+        background: rgba(0,0,0,0);
+        border: 2px solid #48dbfb;
+        margin: 20px;
+        text-align: left;
+        border-radius: 10px;    
+        color: seashell;
+        padding: 10px;
+        transition: 0.5s ease;
+        font-family: Aldrich,sans-serif,Arial, Helvetica;
+    }
+    .contentt{
+        padding:10px;
+        width: 60vw;
+        height: 180px;
+        background: rgba(0,0,0,0);
+        border: 2px solid #48dbfb;
+        margin: 20px;
+        text-align: left;
+        overflow-y: scroll;
+        scrollbar-color: rgba(0,0,0,0.6) rgba(255,255,255,0);
+        scroll-behavior: smooth;
+        border-radius: 10px;
+        color: seashell;
+        transition: 0.5s ease;
+        font-family: Aldrich,sans-serif,Arial, Helvetica;
+    }
+    .headerr:focus,.contentt:focus{
+
+        border: 2px solid #48db48;
+    }
+    .submit{
+        height: 40px;
+        width: 80px;
+        border: 2px solid #48dbfb;
+        border-radius: 10px;
+        background: seashell;
+        color: #48dbfb;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 20px;
+        transition: 0.5s ease;
+    }
+    .submit:hover{
+        background: #48dbfb;
+        color: aliceblue;
+        border: 3px solid rgba(255,255,255,0.6)
+    }
+    .submit:focus{
+        background: #48db48;
+        color: aliceblue;
+        border: 3px solid rgba(255,255,255,0.6)
+    }
+    .error_placeholder{
+
+        color: tomato;
+        font-size: small;
+        margin-top:2px;
+        margin-left: 25px;
+    }
+
+}

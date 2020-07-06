@@ -1,0 +1,158 @@
+{% extends "layout.html" %}
+{% block files %}
+  <link rel="stylesheet" href="{{ url_for('static',filename='my_style.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/fontawesome.min.css')}}">
+{% endblock files %}
+{% block content %}
+    <div class = "container">
+      {% with messages = get_flashed_messages(with_categories = true) %}
+            {% if messages %}
+                {% for category,message in messages%}
+                    <div>
+                        {% if category == "info" %}
+                            <div class = "alert alert-info" ><i class="fas fa-bell fl-fw icon_bell"></i>{{ message }}</div>
+                        {% elif category == "success" %}
+                            <div class = "alert alert-success" ><i class="fas fa-check-circle fl-fw icon_tick"></i>{{ message }}</div>
+                        {% elif category == "danger" %}
+                            <div class = "alert alert-danger" ><i class="fas fa-times-circle fl-fw icon_danger"></i>{{ message }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+      <div class = "reg_login_box">
+        <h1 class = title>REGISTER</h1>
+        <div class = "login_form">
+            <form action = "" method = "POST">
+              {{ form.hidden_tag() }}
+                <fieldset class = "fields_reg">
+                  <div class = "username_field">
+                    <i class="fas fa-user icon_username_reg fl-fw"></i>
+                    <!-- {{ form.username.label(class = "username_label") }} -->
+                    {{ form.username(class = "username_reg",placeholder = "Username")}}
+
+                    {% if form.username.errors %}
+                      {% for error in form.username.errors%}
+                        <span style = "color: #e84118;font-size: small; margin-top: 4px;margin-left: 50px;" >
+                          {{ error }}
+                        </span>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                  <div class = "email_field">
+                    
+                    
+                    <i class="fas fa-envelope icon_email_reg fl-fw"></i>
+                  
+                  <!-- {{ form.email.label(class = "email_label") }} -->
+                    {{ form.email(class = "email_reg",placeholder = "Email") }}
+                    {% if form.email.errors %}
+                      {% for error in form.email.errors%}
+                        <div style = "color: #e84118;font-size: small; margin-top:4px;margin-left: 50px;" >
+                          {{ error }}
+                        </div>
+                      {% endfor %}
+                    {% endif %}
+                  
+                  </div>
+                  <div class = "password_field">
+                    <i class="fas fa-lock icon_password_reg fl-fw"></i>
+                    <!-- {{ form.password.label(class = "password_label") }} -->
+                    {{ form.password(class = "password_reg",placeholder = "Password")}}
+
+                    {% if form.password.errors %}
+                      {% for error in form.password.errors%}
+                        <div style = "color: #e84118;font-size: small; margin-top:4px;margin-left: 50px;" >
+                          {{ error }}
+                        </div>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                  <div class = "confirm_password_field">
+                    <i class="fas fa-key icon_confirm_password_reg fl-fw"></i>
+                    <!-- {{ form.password.label(class = "password_label") }} -->
+                    {{ form.confirm_password(class = "confirm_password_reg",placeholder = "Confirm Password")}}
+                    
+                    {% if form.confirm_password.errors %}
+                      {% for error in form.confirm_password.errors%}
+                        <div style = "color: #e84118;font-size: small; margin-top:4px;margin-left: 50px;" >
+                          {{ error }}
+                        </div>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </fieldset>
+                <div class="tm">
+                  
+                  {{ form.checkbox(class = "tm_reg") }}<div class="tnm_reg">I agree to the terms & conditions.</div>
+                  
+                    {% if form.checkbox.errors %}
+                      {% for error in form.checkbox.errors%}
+                        <div style = "color: #e84118;font-size: small;margin-top:4px;margin-left: 50px;" >
+                          {{ error }}
+                        </div>
+                      {% endfor %}
+                    {% endif %}
+                </div>
+                <div class = "submit_btn">
+                  {{ form.submit(class = "submit_reg") }}
+                </div>
+                
+                <a href="{{ url_for('login') }}"><div class = "link_ahaa">Already Have An Account?</div></a>
+            </form>
+          </div>
+          <hr class="hr_style">
+          <div class="social_icon">
+            <a href="https://www.google.com"><i class="fab fa-google-plus-g  fl-fw sicon-g"></i></a>
+            <a href="https://www.facebook.com"><i class="fab fa-facebook-f  fl-fw sicon-f"></i></a>
+            <a href="https://www.twitter.com"><i class="fab fa-twitter fl-fw sicon-t"></i></a>
+          </div>
+      </div>
+      <div class="typing">
+        <p>Thanks for joining.</p>
+      </div>
+      <div class="animate">
+        <div class = "Q ">Q</div>
+        <div class = "Q press-w">W</div>
+        <div class = "Q press-e">E</div>
+        <div class = "Q">R</div>
+        <div class = "Q press-t">T</div>
+        <div class = "Q">Y</div>
+        <div class = "Q">U</div>
+        <div class = "Q">I</div>
+        <div class = "Q press-o">O</div>
+        <div class = "Q">P</div>
+        <div class = "invisible_key">;</div>
+        <div class = "Q">A</div>
+        <div class = "Q">S</div>
+        <div class = "Q press-d">D</div>
+        <div class = "Q">F</div>
+        <div class = "Q">G</div>
+        <div class = "Q">H</div>
+        <div class = "Q">J</div>
+        <div class = "Q">K</div>
+        <div class = "Q press-l">L</div>
+        <div class = "invisible_key">;</div>
+        <div class = "invisible_key-1">;</div>
+        <div class = "Q">Z</div>
+        <div class = "Q">X</div>
+        <div class = "Q press-c">C</div>
+        <div class = "Q press-v">V</div>
+        <div class = "Q">B</div>
+        <div class = "Q">N</div>
+        <div class = "Q press-m">M</div>
+        <div class = "invisible_key">;</div>
+        <div class = "invisible_key">;</div>
+        <div class = "invisible_key">;</div>
+        <div class = "invisible_key">;</div>
+        <div class = "invisible_key">;</div>
+        <div class = "invisible_key">;</div>
+        <div class = "invisible_key">;</div>
+        <div class = "invisible_key-1">;</div>
+        <div class="space press-space">
+          <div class = "space_icon">]</div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}

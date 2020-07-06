@@ -1,0 +1,47 @@
+.message{
+
+    position: top;
+    align-items: center;
+    margin: 6%;
+    border: 2px solid coral;
+    margin-bottom: 20px;
+    border-width: 2px;
+    border-radius: 10px;
+    width: 60%;
+    padding: 1%;
+}
+
+.neutral{
+    
+    padding : 20px;
+    transform: translate(25%,-50%);
+    border-color: transparent;
+    background-color: #cbfcff;
+    border-bottom: 3px solid #0fbcf9;
+    color: #11aae2;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.success{
+
+    padding : 20px;
+    transform: translate(25%,-50%);
+    border-color: transparent;
+    border-bottom: 3px solid #00cf4c;
+    background-color: #cbffdb;
+    color: #00cf4c;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.danger{
+
+    padding: 20px;
+    border: transparent;
+    transform: translate(25%,-50%);
+    border-bottom: 3px solid rgb(226, 0, 0);
+    border-color: rgba(238, 101, 38, 0.945);
+    background-color: #ffc9bd;
+    color: rgb(226, 0, 0);
+}
+.icon_bell,.icon_tick,.icon_danger{
+    margin: 10px;
+    margin-right: 30px;
+}

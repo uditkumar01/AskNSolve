@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block files %}
+  <link rel="stylesheet" href="{{ url_for('static',filename='create_post.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/all.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/fontawesome.min.css')}}">
+      
+  <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.lite.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.lite.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/modules/animations-extended.min.css') }}">
+{% endblock files %}
+{% block content %}
+    <div class = "container">
+      {% with messages = get_flashed_messages(with_categories = true) %}
+            {% if messages %}
+                {% for category,message in messages%}
+                    <div>
+                        {% if category == "info" %}
+                            <div class = "alert alert-info" ><i class="fas fa-bell fl-fw icon_bell"></i>{{ message }}</div>
+                        {% elif category == "success" %}
+                            <div class = "alert alert-success" ><i class="fas fa-check-circle fl-fw icon_tick"></i>{{ message }}</div>
+                        {% elif category == "danger" %}
+                            <div class = "alert alert-danger" ><i class="fas fa-times-circle fl-fw icon_danger"></i>{{ message }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+      <form action="" method = "POST">
+        {{ form.hidden_tag() }}
+        <fieldset class="post_form">
+          <p class="title">{{ form_title_webpage }}</p>
+          <div class="post_title" style="margin: 10px; margin-top: 30px;">
+            {{ form.post_title(class = "form-control",placeholder = "Title should be clear and specific ") }}
+            {% if form.post_title.errors %}
+              {%for error in form.post_title.errors%}
+                <p class="error_placeholder">{{ error }}</p>
+              {%endfor%}
+            {% endif %}
+          </div>
+          <div class="post_content" style="margin: 10px; margin-top: 30px;">
+            {{ form.content(class="form-control", id="exampleFormControlTextarea4", rows="3", placeholder = "Explain your doubt ") }}
+            {% if form.content.errors %}
+              {%for error in form.content.errors%}
+                <p class="error_placeholder">{{ error }}</p>
+              {%endfor%}
+            {% endif %}
+          </div>
+          <div class="submit_field">
+            {{ form.submit(class = "btn btn-primary btn-rounded") }}
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/jquery.min.js')}}"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/popper.min.js')}}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/bootstrap.min.js')}}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/mdb.min.js')}}"></script>
+    <!-- Your custom scripts (optional) -->
+    <script type="text/javascript"></script>
+{% endblock content %}
