@@ -49,14 +49,14 @@
                             <a href="{{ url_for('users.account') }}" class="logo"><div class="hello"><img src = "{{ profile_pic }}" alt = "{{ username_menu }}" class = "profile-pic"><div style="display: block;"><p class="user1">{{ username_menu }}</p><br><p class="user1" style="font-size: 9px; margin-top: -60px;">{{ present_time.strftime('%H hr  %M min  %S sec') }}</p><p class="user1" style="font-size: 9px; margin-top: -10px;">{{ present_time.strftime('%a %B %Y') }}</p></div></div></a>
                             <input class="menu-btn" type="checkbox" id="menu-btn" />
                             <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-                            <ul class="menu">
+                            <ul class="menu" style="background: rgba(255,255,255,0.9);">
                                 <li class="account_btn"><a href="{{url_for('users.account')}}">Account</a></li>
                                 <li class="ask_btn"><a href="{{url_for('posts.create_post')}}">Ask</a></li>
                                 <li class="logout_btn"><a href="{{url_for('users.logout')}}">Logout</a></li>
                             </ul>
                         </header>
                     {% else %}
-                        <header class="header">
+                        <header class="header" style="background: rgba(255,255,255,0.9);">
                             <a href="{{ url_for('users.login') }}" class="logo"><div class="hello"><img src = "{{ profile_pic }}" alt = username_menu class = "profile-pic"><p class="user1">{{ username_menu }}</p></div></a>
                             <input class="menu-btn" type="checkbox" id="menu-btn" />
                             <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>

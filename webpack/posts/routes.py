@@ -101,8 +101,11 @@ def update_post(post_id):
 @posts.route("/ask/<int:post_id>/delete" , methods = ['POST'])
 def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
+    post_comments = Comment.query.filter_by(post__id = post_id).all()
     if post.author != current_user:
         abort(403)
+    for comment in post_comments:
+        db.session.delete(comment)
     db.session.delete(post)
     db.session.commit()
     flash('Your question is deleted successfully!','success')

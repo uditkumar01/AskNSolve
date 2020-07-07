@@ -27,7 +27,7 @@ def send_request_email(user):
 
     subject = 'Reset Your Password'
 
-    msg = f"Subject: {subject}\n\n\n\n Hi { user.username },\n\nYou requested to reset the password for your AskNSolve account with the e-mail address ({ user.email }).\nPlease click this link to reset your password.\n\n{url_for('request_token', token = token, _external = True)}\n\nPlease ignore it if you haven't made any request.\n\nThanks,\nAskNSolve Team\n"
+    msg = f"Subject: {subject}\n\n\n\n Hi { user.username },\n\nYou requested to reset the password for your AskNSolve account with the e-mail address ({ user.email }).\nPlease click this link to reset your password.\n\n{url_for('users.request_token', token = token, _external = True)}\n\nPlease ignore it if you haven't made any request.\n\nThanks,\nAskNSolve Team\n"
 
     server.sendmail(
         'abhixuditxpiyushcompany@gmail.com',
