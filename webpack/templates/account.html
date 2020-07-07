@@ -96,32 +96,60 @@
                   <img src="{{ profile_picture }}" alt="Profile Picture" class="pic-pic">
                 </div>
               </div>
-                <div class = "info-user" style="color:rgba(0,0,0,0.7);text-align: left; width: 400px; border: 2px solid transparent; padding: 40px; margin-top: 70px;">
-                    <div style="display: flex;"><p style="font-weight: bold;">Name :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>{{ current_user.first_name }} {{ current_user.last_name }}</p></div>
-                    <div style="display: flex;"><p style="font-weight: bold;">Username :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>{{ current_user.username }}</p></div>
-                    <div style="display: flex;"><p style="font-weight: bold;">Email : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>{{ current_user.email }}</p></div>
-                    <div style="display: flex;"><p style="font-weight: bold;">Skills : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>{{ current_user.skills[:15] }}...</p></div>
+                <div class = "info-user"  style="color:rgba(0,0,0,0.7);text-align: left; width: 400px; border: 2px solid transparent; padding: 40px; margin-top: 70px;">
+                  
+                    <div data-toggle="popover" data-placement="top" title="Full Name" data-content="{{current_user.first_name}} {{current_user.last_name}}" style="display: flex;cursor: pointer;"><p style="font-weight: bold;">Name :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>
+                      {% if current_user.first_name|length < 15 %}
+                        {{ current_user.first_name }}
+                      {% elif (current_user.first_name|length + current_user.last_name|length) < 15 %}
+                        {{ current_user.first_name }} {{ current_user.last_name }}
+                      {% elif current_user.first_name|length > 15 %}
+                        {{ current_user.first_name[:14] }}
+                      {% endif %}
+                    </p></div>
+                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Full Username"
+                    data-content="{{ current_user.username }}"><p style="font-weight: bold;">Username :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>
+                      
+                      {% if current_user.username|length < 15 %}
+                        {{ current_user.username }}
+                      {% elif current_user.username|length > 15 %}
+                        {{ current_user.username[:14] }}
+                      {% endif %}
+                    </p></div>
+                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="E-mail"
+                    data-content="{{current_user.email}}"><p style="font-weight: bold;">Email : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>{{ current_user.email[:14] }}...</p></div>
+                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Skills"
+                    data-content="{{current_user.skills}}"><p style="font-weight: bold;">Skills : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>{{ current_user.skills[:15] }}...</p></div>
+                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Country"
+                    data-content="{{current_user.country}}"><p style="font-weight: bold;">Country : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>{{ current_user.country }}</p></div>
                     <div class="skill_icon">
                       {% for i in MY_SKILLS_LIST[:8] %}
                           {% if ((i|upper)[:6] == 'PYTHON') %}
-                            <i style="color: #1abc9c;margin: 4px;" class="fab fa-python skill_icon-1"></i>
+                            <i style="color: #1abc9c;margin: 4px; font-size: 20px;" class="devicon-python-plain"></i>
                           {% elif ((i|upper)[:10] == 'JAVASCRIPT') %}
-                            <i style="color: #e67e22;margin: 4px;" class="fab fa-js-square skill_icon-1"></i>
+                            <i style="color: #e67e22;margin: 4px; font-size: 20px;" class="fab fa-js-square skill_icon-1"></i>
                           {% elif ((i|upper)[:4] == 'JAVA') %}
-                            <i style="color: #3498db;margin: 4px;" class="fab fa-java skill_icon-1" ></i>
+                            <i style="color: #3498db;margin: 4px; font-size: 20px;" class="devicon-java-plain" ></i>
                           {% elif ((i|upper)[:3] == 'CSS') %}
-                            <i style="color: #e74c3c;margin: 4px;" class="fab fa-css3-alt skill_icon-1" ></i>
+                            <i style="color: #e74c3c;margin: 4px; font-size: 20px;" class="devicon-javascript-plain" ></i>
                           {% elif ((i|upper)[:3] == 'C++') %}
-                            <i style="color: #f1c40f;margin: 4px;" class="devicon-cplusplus-plain skill_icon-1" ></i>
+                            <i style="color: #f1c40f;margin: 4px; font-size: 20px;" class="devicon-cplusplus-plain skill_icon-1" ></i>
                           {% elif ((i|upper)[:1] == 'C') %}
-                            <i style="color: #27ae60;margin: 4px;" class="devicon-c-plain skill_icon-1" ></i>
+                            <i style="color: #27ae60;margin: 4px; font-size: 20px;" class="devicon-c-plain skill_icon-1" ></i>
                           {% elif ((i|upper)[:7] == 'ANDROID') %}
-                            <i style="color: #34495e;margin: 4px;" class="devicon-android-plain skill_icon-1" ></i>
+                            <i style="color: #34495e;margin: 4px; font-size: 20px;" class="devicon-android-plain skill_icon-1" ></i>
                           {% elif ((i|upper)[:7] == 'ANGULAR') %}
-                            <i style="color: #8e44ad;margin: 4px;" class="devicon-angularjs-plain skill_icon-1" ></i>
+                            <i style="color: #8e44ad;margin: 4px; font-size: 20px;" class="devicon-angularjs-plain skill_icon-1" ></i>
                           {% elif ((i|upper)[:4] == 'HTML') %}
-                            <i style="color: #0652DD;margin: 4px;" class="fab fa-html5 skill_icon-1" ></i>
-                          
+                            <i style="color: #0652DD;margin: 4px; font-size: 20px;" class="devicon-html5-plain" ></i>
+                          {% elif ((i|upper)[:10] == 'POSTGRESQL') %}
+                            <i style="color: #92dd06;margin: 4px; font-size: 20px;"class="devicon-postgresql-plain"></i>
+                          {% elif ((i|upper)[:4] == 'RUBY') %}
+                            <i style="color: #58b8f0;margin: 4px; font-size: 20px;" class="devicon-ruby-plain"></i>
+                          {% elif ((i|upper)[:4] == 'SASS') %}
+                            <i style="color: #2d6915;margin: 4px; font-size: 20px;" class="devicon-sass-original"></i>
+                          {% elif ((i|upper)[:5] == 'SWIFT') %}
+                            <i style="color: #d3a409;margin: 4px; font-size: 20px;" class="devicon-swift-plain"></i>
                           {% endif %}
                       {% endfor %}
                     </div>
@@ -446,8 +474,11 @@
               
           <!-- end -->
 
-
+          
     <!-- jQuery -->
+  <script type="text/javascript" src="{{ url_for('static',filename = 'MDB/js/popper.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static',filename = 'MDB/js/popper.js') }}"></script>
+    
   <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/jquery.min.js')}}"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/popper.min.js')}}"></script>
@@ -456,7 +487,12 @@
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/mdb.min.js')}}"></script>
   <!-- Your custom scripts (optional) -->
-  <script type="text/javascript"></script>
+
+  <script type="text/javascript">
+    $(function () {
+    $('[data-toggle="popover"]').popover()
+    })
+  </script>
 
   <script>
       $(document).ready(function() {

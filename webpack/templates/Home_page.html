@@ -18,92 +18,93 @@
 
 {% endblock files %}
 {% block content %}
-
+    
     <div class="__container">
-        {% with messages = get_flashed_messages(with_categories = true) %}
-            {% if messages %}
-                {% for category,message in messages%}
-                    <div>
-                        {% if category == "info" %}
-                            <div class = "alert alert-info" ><i class="fas fa-bell fl-fw icon_bell"></i>{{ message }}</div>
-                        {% elif category == "success" %}
-                            <div class = "alert alert-success" ><i class="fas fa-check-circle fl-fw icon_tick"></i>{{ message }}</div>
-                        {% elif category == "danger" %}
-                            <div class = "alert alert-danger" ><i class="fas fa-times-circle fl-fw icon_danger"></i>{{ message }}</div>
+            
+            {% with messages = get_flashed_messages(with_categories = true) %}
+                {% if messages %}
+                    {% for category,message in messages%}
+                        <div>
+                            {% if category == "info" %}
+                                <div class = "alert alert-info" ><i class="fas fa-bell fl-fw icon_bell"></i>{{ message }}</div>
+                            {% elif category == "success" %}
+                                <div class = "alert alert-success" ><i class="fas fa-check-circle fl-fw icon_tick"></i>{{ message }}</div>
+                            {% elif category == "danger" %}
+                                <div class = "alert alert-danger" ><i class="fas fa-times-circle fl-fw icon_danger"></i>{{ message }}</div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <div class="sub-container">
+                <div class="headerr">
+                    <div class="menuu">
+                        {% if current_user.is_authenticated: %}
+                            <header class="header"  style="background: rgba(255,255,255,0.9);">
+                                <a href="{{ url_for('users.account') }}" class="logo"><div class="hello"><img src = "{{ profile_pic }}" alt = "{{ username_menu }}" class = "profile-pic"><div style="display: block;"><p class="user1">{{ username_menu }}</p><br><p class="user1" style="font-size: 9px; margin-top: -60px;">{{ present_time.strftime('%H hr  %M min  %S sec') }}</p><p class="user1" style="font-size: 9px; margin-top: -10px;">{{ present_time.strftime('%a %B %Y') }}</p></div></div></a>
+                                <input class="menu-btn" type="checkbox" id="menu-btn" />
+                                <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                                <ul class="menu"  style="background: rgba(255,255,255,0);">
+                                    <li class="account_btn"><a href="{{url_for('users.account')}}">Account</a></li>
+                                    <li class="ask_btn"><a href="{{url_for('posts.create_post')}}">Ask</a></li>
+                                    <li class="logout_btn"><a href="{{url_for('users.logout')}}">Logout</a></li>
+                                </ul>
+                            </header>
+                        {% else %}
+                            <header class="header"  style="background: rgba(255,255,255,0.9);">
+                                <a href="{{ url_for('users.login') }}" class="logo"><div class="hello"><img src = "{{ profile_pic }}" alt = "Profile Picture" class = "profile-pic"><p class="user1">{{ username_menu }}</p></div></a>
+                                <input class="menu-btn" type="checkbox" id="menu-btn" />
+                                <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                                <ul class="menu">
+                                    <p class="login_btn"><a href="{{url_for('users.login')}}">Login</a></p>
+                                    <p class="register_btn"><a href="{{url_for('users.register')}}">Register</a></p>
+                                </ul>
+                            </header>
                         {% endif %}
                     </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-        <div class="sub-container">
-            <div class="headerr">
-                <div class="menuu">
-                    {% if current_user.is_authenticated: %}
-                        <header class="header"  style="background: rgba(255,255,255,0.9);">
-                            <a href="{{ url_for('users.account') }}" class="logo"><div class="hello"><img src = "{{ profile_pic }}" alt = "{{ username_menu }}" class = "profile-pic"><div style="display: block;"><p class="user1">{{ username_menu }}</p><br><p class="user1" style="font-size: 9px; margin-top: -60px;">{{ present_time.strftime('%H hr  %M min  %S sec') }}</p><p class="user1" style="font-size: 9px; margin-top: -10px;">{{ present_time.strftime('%a %B %Y') }}</p></div></div></a>
-                            <input class="menu-btn" type="checkbox" id="menu-btn" />
-                            <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-                            <ul class="menu"  style="background: rgba(255,255,255,0);">
-                                <li class="account_btn"><a href="{{url_for('users.account')}}">Account</a></li>
-                                <li class="ask_btn"><a href="{{url_for('posts.create_post')}}">Ask</a></li>
-                                <li class="logout_btn"><a href="{{url_for('users.logout')}}">Logout</a></li>
-                            </ul>
-                        </header>
-                    {% else %}
-                        <header class="header"  style="background: rgba(255,255,255,0.9);">
-                            <a href="{{ url_for('users.login') }}" class="logo"><div class="hello"><img src = "{{ profile_pic }}" alt = "Profile Picture" class = "profile-pic"><p class="user1">{{ username_menu }}</p></div></a>
-                            <input class="menu-btn" type="checkbox" id="menu-btn" />
-                            <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-                            <ul class="menu">
-                                <p class="login_btn"><a href="{{url_for('users.login')}}">Login</a></p>
-                                <p class="register_btn"><a href="{{url_for('users.register')}}">Register</a></p>
-                            </ul>
-                        </header>
-                    {% endif %}
                 </div>
-            </div>
-            <div class="question-box">
-                <div class="questions">
-                        {% for post in posts.items %}
-                            <div class = "post">
-                                <div class="question">
+                <div class="question-box">
+                    <div class="questions">
+                            {% for post in posts.items %}
+                                <div class = "post">
+                                    <div class="question">
 
-                                    <div class="post_info">
-                                        <div class = "post_pic"><img src="{{url_for('static',filename = 'images/'+post.author.profile_pic)}}" alt = "{{ post.author.profile_pic }}" class = "profile-pic-1"></div>
-                                        <div class="user_post_info">
-                                            <a href="{{url_for('users.all_user_post', username = post.author.username)}}"><p class="post_author">{{ post.author.username }}</p></a>
-                                            <p class="post_date">{{ post.date_posted.strftime('%d-%m-%Y') }}</p>
-                                            <p class="post_time">{{ post.date_posted.strftime('%H:%M:%S') }}</p>
+                                        <div class="post_info">
+                                            <div class = "post_pic"><img src="{{url_for('static',filename = 'images/'+post.author.profile_pic)}}" alt = "{{ post.author.profile_pic }}" class = "profile-pic-1"></div>
+                                            <div class="user_post_info">
+                                                <a href="{{url_for('users.all_user_post', username = post.author.username)}}"><p class="post_author">{{ post.author.username }}</p></a>
+                                                <p class="post_date">{{ post.date_posted.strftime('%d-%m-%Y') }}</p>
+                                                <p class="post_time">{{ post.date_posted.strftime('%H:%M:%S') }}</p>
+                                            </div>
                                         </div>
+                                        
+                                        <div class="whole_post_content">
+                                            <u><a href="{{url_for('posts.post',post_id = post.id)}}"><p class="post_title" id = "truncated_title">{{ post.title }}</p></a></u>
+                                            <p class="post_content" id = "truncated_content">{{ post.content }}</p>
+                                        </div>
+                                        
                                     </div>
-                                    
-                                    <div class="whole_post_content">
-                                        <u><a href="{{url_for('posts.post',post_id = post.id)}}"><p class="post_title" id = "truncated_title">{{ post.title }}</p></a></u>
-                                        <p class="post_content" id = "truncated_content">{{ post.content }}</p>
-                                    </div>
-                                    
+                                </div>
+                            {% endfor %}
+                            <div style="width: 100%; text-align: center;">
+                                <div class="btn-group" style=" margin-top: 30px;">
+                                    {% for no in posts.iter_pages(right_edge = 1, left_edge = 1, left_current = 1, right_current = 2)%}
+                                        {% if no %}
+                                            {% if posts.page == no %}
+                                                <a href="{{url_for('main.home', page = no)}}" class="btn btn-dark btn-sm mb-4">{{ no }}</a>
+                                            {% else %}
+                                                <a href="{{url_for('main.home', page = no)}}" class="btn btn-light btn-sm mb-4">{{ no }}</a>
+                                            {% endif %}
+                                        {% else %}
+                                            <a href="#" class="btn btn-success btn-sm mb-4" style="font-size: 12px;">...</a>
+                                        {% endif %}
+                                    {% endfor %}
                                 </div>
                             </div>
-                        {% endfor %}
-                        <div style="width: 100%; text-align: center;">
-                            <div class="btn-group" style=" margin-top: 30px;">
-                                {% for no in posts.iter_pages(right_edge = 1, left_edge = 1, left_current = 1, right_current = 2)%}
-                                    {% if no %}
-                                        {% if posts.page == no %}
-                                            <a href="{{url_for('main.home', page = no)}}" class="btn btn-dark btn-sm mb-4">{{ no }}</a>
-                                        {% else %}
-                                            <a href="{{url_for('main.home', page = no)}}" class="btn btn-light btn-sm mb-4">{{ no }}</a>
-                                        {% endif %}
-                                    {% else %}
-                                        <a href="#" class="btn btn-success btn-sm mb-4" style="font-size: 12px;">...</a>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                        </div>
-    
+        
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 
 
