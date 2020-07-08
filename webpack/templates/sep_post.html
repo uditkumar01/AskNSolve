@@ -46,7 +46,7 @@
                 <div class="menuu">
                     {% if current_user.is_authenticated: %}
                         <header class="header" style="background: rgba(0,0,0,0.8);">
-                            <a href="{{ url_for('users.account') }}" class="logo"><div class="hello"><img src = "{{ url_for('static',filename = 'images/' + current_user.profile_pic) }}" alt = "{{ username_menu }}" class = "profile-pic"><div style="display: block; color: #FA0509;"><p class="user1">{{ username_menu }}</p><br><p class="user1" style="font-size: 9px; margin-top: -60px; color: white;">{{ present_time.strftime('%H hr  %M min  %S sec') }}</p><p class="user1" style="font-size: 9px; margin-top: -10px; color: white;">{{ present_time.strftime('%a %B %Y') }}</p></div></div></a>
+                            <a href="{{ url_for('users.account') }}" class="logo"><div class="hello"><img src = "{{ url_for('static',filename = 'images/' + current_user.profile_pic) }}" alt = "{{ username_menu }}" class = "profile-pic"><div style="display: block;"><p class="user1">{{ username_menu }}</p><br><p class="user1" style="font-size: 9px; margin-top: -60px; color: white;">{{ present_time.strftime('%H hr  %M min  %S sec') }}</p><p class="user1" style="font-size: 9px; margin-top: -10px; color: white;">{{ present_time.strftime('%a %B %Y') }}</p></div></div></a>
                             <input class="menu-btn" type="checkbox" id="menu-btn" />
                             <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
                             <ul class="menu" style="margin-left: -10px; margin-top: 20px; background: rgba(0,0,0,0.4);">
@@ -57,12 +57,12 @@
                         </header>
                     {% else %}
                         <header class="header" style="background: rgba(0,0,0,0.8);">
-                            <a href="{{ url_for('users.login') }}" class="logo"><div class="hello"><img src = "{{ profile_pic }}" alt = "{{ username_menu }}" class = "profile-pic"><p class="user1">{{ "{{ username_menu }}" }}</p></div></a>
+                            <a href="{{ url_for('users.login') }}" class="logo"><div class="hello"><img src = "{{ profile_pic }}" alt = "{{ username_menu }}" class = "profile-pic"><p class="user1">{{ username_menu }}</p></div></a>
                             <input class="menu-btn" type="checkbox" id="menu-btn" />
                             <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-                            <ul class="menu" style="background: rgba(0,0,0,0.8);">
-                                <li class="login_btn" class="all_tabs"><a href="{{url_for('users.login')}}" style="color: #FA0509;">Login</a></li>
-                                <li class="register_btn" class="all_tabs"><a href="{{url_for('users.register')}}" style="color: #FA0509;">Register</a></li>
+                            <ul class="menu" style="margin-left: -10px; margin-top: 20px; background: rgba(0,0,0,0.4);">
+                                <li class="login_btn" style="padding-left: 10px;"><a href="{{url_for('users.login')}}" style="color: #FA0509;">Login</a></li>
+                                <li class="register_btn" style="padding-left: 10px;"><a href="{{url_for('users.register')}}" style="color: #FA0509;">Register</a></li>
                             </ul>
                         </header>
                     {% endif %}
