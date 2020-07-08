@@ -45,24 +45,24 @@
             <div class="headerr">
                 <div class="menuu">
                     {% if current_user.is_authenticated: %}
-                        <header class="header" style="background: rgba(255,255,255,0.9);">
-                            <a href="{{ url_for('users.account') }}" class="logo"><div class="hello"><img src = "{{ profile_pic }}" alt = "{{ username_menu }}" class = "profile-pic"><div style="display: block;"><p class="user1">{{ username_menu }}</p><br><p class="user1" style="font-size: 9px; margin-top: -60px;">{{ present_time.strftime('%H hr  %M min  %S sec') }}</p><p class="user1" style="font-size: 9px; margin-top: -10px;">{{ present_time.strftime('%a %B %Y') }}</p></div></div></a>
+                        <header class="header" style="background: rgba(0,0,0,0.8);">
+                            <a href="{{ url_for('users.account') }}" class="logo"><div class="hello"><img src = "{{ url_for('static',filename = 'images/' + current_user.profile_pic) }}" alt = "{{ username_menu }}" class = "profile-pic"><div style="display: block; color: #FA0509;"><p class="user1">{{ username_menu }}</p><br><p class="user1" style="font-size: 9px; margin-top: -60px; color: white;">{{ present_time.strftime('%H hr  %M min  %S sec') }}</p><p class="user1" style="font-size: 9px; margin-top: -10px; color: white;">{{ present_time.strftime('%a %B %Y') }}</p></div></div></a>
                             <input class="menu-btn" type="checkbox" id="menu-btn" />
                             <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-                            <ul class="menu" style="background: rgba(255,255,255,0);">
-                                <li class="account_btn"><a href="{{url_for('users.account')}}">Account</a></li>
-                                <li class="ask_btn"><a href="{{url_for('posts.create_post')}}">Ask</a></li>
-                                <li class="logout_btn"><a href="{{url_for('users.logout')}}">Logout</a></li>
+                            <ul class="menu" style="margin-left: -10px; margin-top: 20px; background: rgba(0,0,0,0.4);">
+                                <li class="account_btn" style="padding-left: 10px;"><a href="{{url_for('users.account')}}" style="color: #FA0509;">Account</a></li>
+                                <li class="ask_btn" style="padding-left: 10px;"><a href="{{url_for('posts.create_post')}}" style="color: #FA0509;">Ask</a></li>
+                                <li class="logout_btn" style="padding-left: 10px;"><a href="{{url_for('users.logout')}}" style="color: #FA0509;">Logout</a></li>
                             </ul>
                         </header>
                     {% else %}
-                        <header class="header" style="background: rgba(255,255,255,0.9);">
-                            <a href="{{ url_for('users.login') }}" class="logo"><div class="hello"><img src = "{{ profile_pic }}" alt = username_menu class = "profile-pic"><p class="user1">{{ username_menu }}</p></div></a>
+                        <header class="header" style="background: rgba(0,0,0,0.8);">
+                            <a href="{{ url_for('users.login') }}" class="logo"><div class="hello"><img src = "{{ profile_pic }}" alt = "{{ username_menu }}" class = "profile-pic"><p class="user1">{{ "{{ username_menu }}" }}</p></div></a>
                             <input class="menu-btn" type="checkbox" id="menu-btn" />
                             <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-                            <ul class="menu" style="background: rgba(255,255,255,0);">
-                                <p class="login_btn"><a href="{{url_for('users.login')}}">Login</a></p>
-                                <p class="register_btn"><a href="{{url_for('users.register')}}">Register</a></p>
+                            <ul class="menu" style="background: rgba(0,0,0,0.8);">
+                                <li class="login_btn" class="all_tabs"><a href="{{url_for('users.login')}}" style="color: #FA0509;">Login</a></li>
+                                <li class="register_btn" class="all_tabs"><a href="{{url_for('users.register')}}" style="color: #FA0509;">Register</a></li>
                             </ul>
                         </header>
                     {% endif %}
@@ -75,40 +75,63 @@
                                     <div class="post_info">
                                         <div class = "post_pic"><img src="{{url_for('static',filename = 'images/'+post.author.profile_pic)}}" alt = "{{ post.author.profile_pic }}" class = "profile-pic-1"></div>
                                         <div class="user_post_info">
-                                            <a href="{{url_for('users.all_user_post', username = post.author.username)}}"><p class="post_author" style="color: rgba(255, 255, 255, 0.8);">{{ post.author.username[:13] }}</p></a>
-                                            <p class="post_date mt-2">{{ post.date_posted.strftime('%d-%m-%Y') }}</p>
-                                            <p class="post_time">{{ post.date_posted.strftime('%H:%M:%S') }}</p>
+                                            <a href="{{url_for('users.all_user_post', username = post.author.username)}}"><p class="post_author">{{ post.author.username[:13] }}</p></a>
+                                            <div class="" style="margin-top: 5px; display: flex;"><p class="post_date mr-2" style="font-size: 8px;">{{ post.date_posted.strftime('%d-%m-%Y') }}</p>
+                                            <p class="post_time" style="font-size: 8px;">{{ post.date_posted.strftime('%H:%M:%S') }}</p></div>
+                                            <div style="display: flex;">
+                                                <p class="mr-2 pr-2 pl-2" style="border-radius: 2px; background: white; color: rgba(0,0,0,0.6); font-size: 11px;">{{ no_of_likes }} <i class="far fa-thumbs-up"></i></p>
+                                                <p class="mr-2 pr-2 pl-2" style="height: 16px; border-radius: 2px; background: white; color: rgba(0,0,0,0.6); font-size: 11px;">{{ _comments|length }} <i class="far fa-comment"></i></p>
+                                            </div>
                                             
                                             <form action="{{ url_for('posts.update_post', post_id = post.id) }}" method="POST">
                                             <div style="display: block;" class="mt-2 ml-n3">
+                                                
+                                                    
+                                                    
+                                                    
                                                 <div style="display: flex;">
-                                                    {% if post.author.username == current_user.username %}
-                                                    <button type="button" style="background: rgb(163, 45, 24);padding: 2px; height: 18px; width: auto; font-size: 9px;" class="btn button" data-toggle="modal" data-target="#DELETE">
-                                                        Delete
-                                                    </button>
-                                                    {% endif %}
+                                                        {% if post_like_name == "like" %}
+                                                            <a class="btn btn-primary btn-sm text-center pt-1.5 mr-3" style="padding: 6px; height: 25px; width: 27px; font-size: 0px;border-radius: 50%;"  href="{{url_for('posts.like',post_id = post.id)}}"><i class="fas fa-thumbs-up" style="color: white; font-size: 13px; margin-top: -1px;"></i></a>
+                                                        {% elif post_like_name == "unlike" %}
+                                                            <a class="btn btn-danger btn-sm text-center pt-2 mr-3" style="padding: 6px; height: 25px; width: 27px; font-size: 0px;border-radius: 50%;"  href="{{url_for('posts.like',post_id = post.id)}}"><i class="fas fa-thumbs-down" style="background: ; color: white; font-size: 13px; margin-top: -1px;"></i></a>
+                                                        {% endif %}
                                                     
-                                                    <button type="button" class="btn btn-primary" style="padding: 2px; height: 18px; font-size: 9px;" data-toggle="modal" data-target="#exampleModalCenter">
-                                                        Comment
-                                                    </button>
                                                     
+                                                    
+                                                
+                                                
+                                                
+                                                    <div class="dropdown">
+                                                        
+                                                        <button class="waves-effect light-effect dropdown-toggle" style="padding: 2px; padding-left: 4px; padding-right: 3px; border-radius: 2px; border: 1px solid transparent; font-size: 11px; background: rgb(66,133,244);" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">OPTIONS</button>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            
+                                                            <button type="button" class="btn btn-primary btn-sm" style="width: 93%;"  data-toggle="modal" data-target="#exampleModal">
+                                                                View Comments
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary btn-sm" style="width: 93%;"  data-toggle="modal" data-target="#exampleModalCenter">
+                                                                Comment
+                                                            </button>
+                                                            {% if post.author.username == current_user.username %}
+                                                                <button type="button"  class="btn btn-danger btn-sm" style="width: 93%;" data-toggle="modal" data-target="#DELETE">
+                                                                    Delete
+                                                                </button>
+                                                            {% endif %}
+                                                            {% if post.author.username == current_user.username %}
+                                                                <button type="submit" class="btn btn-primary btn-sm" style="width: 93%;" >Edit it</button></form>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div style="display: flex;">
-                                                    {% if post.author.username == current_user.username %}
-                                                        <button type="submit" class="btn btn-primary" style="padding: 2px; height: 18px; width: auto; font-size: 9px;">Edit it</button></form>
-                                                    {% endif %}
-                                                 
-                                                <button type="button" class="btn btn-primary" style="padding: 2px; height: 18px; width: auto; font-size: 9px;" data-toggle="modal" data-target="#exampleModal">
-                                                    Comments
-                                                </button>
+                                                
                                                     
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
                                     
                                     <div class="whole_post_content">
-                                        <u><a href="{{url_for('posts.post',post_id = post.id)}}"><p class="post_title">{{ post.title }}</p></a></u>
+                                        <a href="{{url_for('posts.post',post_id = post.id)}}"><p class="post_title">{{ post.title }}</p></a>
                                         <p class="post_content">{{ post.content }}</p>
                                     </div>
                                     
@@ -286,4 +309,18 @@
   <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/mdb.min.js')}}"></script>
   <!-- Your custom scripts (optional) -->
   <script type="text/javascript"></script>
+  <script>
+        var buttonclicked = false;
+    $("#likebtn").click(function(){
+    if( buttonclicked!= true) {
+        buttonclicked= true;
+        if (post.post_like == "NULL")
+            post.post_likes = 0;
+        post.post_likes = post.post_likes + 1;
+        alert("Button is clicked for first time");
+    }else{
+        alert("You can like only once");
+    }
+    });
+  </script>
 {% endblock content %}

@@ -22,6 +22,7 @@ class User(db.Model,UserMixin):
     email = db.Column(db.String(150), unique = True, nullable = False)
     password = db.Column(db.String(60), nullable = False)
     profile_pic = db.Column(db.String(100), nullable = False, default = "default_profile_pic.jpg")
+    no_of_followers = db.Column(db.Integer, default  = "NULL")
     posts = db.relationship('Post', backref = 'author', lazy = True)
 
 
@@ -50,7 +51,7 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
 
     def __repr__(self):
-        return f"Post('{self.title}','{self.content}','{self.date_posted}','{self.comments}')"
+        return f"Post('{self.title}','{self.content}','{self.date_posted}')"
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -62,3 +63,12 @@ class Comment(db.Model):
 
     def __repr__(self):
         return f"Comment('{self.comment}','{self.commentor}',{self.post__id},'{self.timestamp}')"
+    
+class Post_like(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    post__id = db.Column(db.Integer, nullable = False)
+    user__id = db.Column(db.Integer, nullable = False)
+
+
+    def __repr__(self):
+        return f"Post_like('{self.post__id}','{self.user__id}')"

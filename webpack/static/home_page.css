@@ -18,10 +18,7 @@
     scroll-behavior: smooth;
 }
 
-.post_title:hover{
-    color: chartreuse;
-    font-size: 15px;
-}
+
 .profile-pic-1:hover{
     border: 6px solid rgba(0,0,0,0);
 
@@ -66,6 +63,7 @@ float: left;
 font-size: 2em;
 padding: 10px 20px;
 text-decoration: none;
+color: white;
 }
 
 .header .menu {
@@ -74,6 +72,7 @@ max-height: 0;
 transition: max-height .2s ease-out;
 margin-left: 20px;
 margin-bottom: 20px;
+
 }
 
 .header .menu-icon {
@@ -119,6 +118,7 @@ display: none;
 
 .header .menu-btn:checked ~ .menu {
 max-height: 240px;
+color: white;
 }
 
 .header .menu-btn:checked ~ .menu-icon .navicon {
@@ -179,6 +179,7 @@ top: 0;
     display: flex;
     margin-top: 5px;
     margin-left: 10px;
+    color: #FA0509;
 }
 .profile-pic{
     width: 100px;
@@ -229,7 +230,7 @@ top: 0;
     font-size: 20px;
 }
 .user_post_info .post_date,.post_time{
-    margin-top: 6px;
+    margin-top: 4px;
     font-size: x-small;
 }
 .whole_post_content{
@@ -240,7 +241,7 @@ top: 0;
     padding-right: 20px;
 }
 .post_title {
-
+    height: 48px;
     padding-top: 20px;
     width: 210px;
     padding: 20px;
@@ -248,12 +249,12 @@ top: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-size: 12px;
+    font-size: 15px;
     margin-top: -20px;
     margin-left: -8px;
+    color: #FA0509;
 }
 .post_content {
-
     padding-top: 20px;
     width: 250px;
     padding: 20px;
@@ -265,16 +266,27 @@ top: 0;
     margin-top: -20px;
     margin-left: -8px;
 }
-
-u{
-    text-underline-offset: 0.5em;
-    color: #48dbfb;
+.post_title:hover{
+    color: #B92C01;
+    font-size: 15px;
+}
+.post_author{
+    color: #FA0509;
+    font-size: 50px;
 }
 
+.post_author:hover{
+    color: #B92C01;
+    font-size: 20px;
+}
 
-
-
-
+.all_tabs{
+    background: rgba(255,255,255,0);
+}
+.all_tabs:hover,.all_tabs:focus{
+    background: transparent;
+    color: white;
+}
 
 
 
@@ -367,7 +379,7 @@ u{
         margin-bottom: 10px;
     }
     .user_post_info .post_date,.post_time{
-        margin-top: -6px;
+        margin-top: -4px;
         font-size: x-small;
     }
     .whole_post_content{
@@ -572,7 +584,7 @@ u{
         font-size: 20px;
     }
     .user_post_info .post_date,.post_time{
-        margin-top: -6px;
+        margin-top: 0px;
         font-size: x-small;
     }
     .whole_post_content{
@@ -719,3 +731,7 @@ u{
     }
 
     }
+
+.account_btn,.ask_btn,.login_btn,.logout_btn,.register_btn{
+    color: #FA0509;
+}

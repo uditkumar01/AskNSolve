@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for, abort, flash
 from flask_login import current_user, login_required
 from webpack import db
-from webpack.models import Post,Comment,User
+from webpack.models import Post,Comment,User,Post_like
 from webpack.posts.forms import Post_form, Comment_form
 from datetime import datetime
 
@@ -20,9 +20,32 @@ def create_post():
     return render_template('create_post.html', title = "Ask", form = form, form_title_webpage = "Ask Here" , button_name = "Ask")
 
 @login_required
+@posts.route("/like/<int:post_id>", methods = ['POST','GET'])
+def like(post_id):
+    post = Post.query.get_or_404(post_id)
+    user_exist = Post_like.query.filter_by(post__id = post_id,user__id = current_user.id).first()
+    if post and (not user_exist):
+        like = Post_like(post__id = post_id, user__id = current_user.id)
+        db.session.add(like)
+        db.session.commit()
+    elif post and user_exist:
+        db.session.delete(user_exist)
+        db.session.commit()
+
+    return redirect(url_for('posts.post', post_id = post_id))
+
+@login_required
 @posts.route("/ask/<int:post_id>", methods = ['POST','GET'])
 def post(post_id):
     post = Post.query.get_or_404(post_id)
+    user_exist = Post_like.query.filter_by(post__id = post_id,user__id = current_user.id).first()
+    no_of_likes = len(Post_like.query.all())
+    post_like_name = "like"
+    if post and (not user_exist):
+        post_like_name = "like"
+    elif post and user_exist:
+        post_like_name = "unlike"
+    
     form = Comment_form()
     page_no = request.args.get('page',1,type = int)
     _comments = Comment.query.order_by(Comment.timestamp.desc()).filter_by(post__id = post_id).all()
@@ -47,10 +70,10 @@ def post(post_id):
         else:
             profile_image = url_for('static',filename = 'images/' + 'default_profile_pic.jpg')
 
-        return render_template('sep_post.html' , title = post.title ,post = post, profile_pic = profile_image ,_comments = _comments , username_menu = current_user.username,form = form,present_time = datetime.utcnow())
+        return render_template('sep_post.html' , title = post.title ,post = post, profile_pic = profile_image ,_comments = _comments ,no_of_likes = no_of_likes ,username_menu = current_user.username,form = form,post_like_name = post_like_name ,present_time = datetime.utcnow())
     else:
         profile_image = url_for('static',filename = 'images/' + 'default_profile_pic.jpg')
-        return render_template('sep_post.html' , title = post.title ,post = post, profile_pic = profile_image ,_comments = _comments , username_menu = 'Unknown User' , form = form, present_time = datetime.utcnow())
+        return render_template('sep_post.html' , title = post.title ,post = post, profile_pic = profile_image ,_comments = _comments ,no_of_likes = no_of_likes , username_menu = 'Unknown User' , form = form,post_like_name = post_like_name , present_time = datetime.utcnow())
 
 # @login_required
 # @posts.route("/post_id=<int:post_id>/viewcomments", methods = ['POST','GET'])
