@@ -63,7 +63,6 @@ float: left;
 font-size: 2em;
 padding: 10px 20px;
 text-decoration: none;
-color: white;
 }
 
 .header .menu {
@@ -189,6 +188,10 @@ top: 0;
 .user1{
     margin-top: 6px;
     margin-left: 40px;
+    color: #FA0509;
+}
+.user1:hover{
+    color: #B92C01;
 }
 .questions{
     margin-top: 180px;
@@ -285,7 +288,7 @@ top: 0;
 }
 .all_tabs:hover,.all_tabs:focus{
     background: transparent;
-    color: white;
+    
 }
 
 

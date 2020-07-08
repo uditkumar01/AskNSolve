@@ -52,7 +52,7 @@
                             </header>
                         {% else %}
                             <header class="header" style="background: rgba(0,0,0,0.8);">
-                                <a href="{{ url_for('users.login') }}" class="logo"><div class="hello"><img src = "{{ profile_pic }}" alt = "{{ username_menu }}" class = "profile-pic"><p class="user1">{{ "{{ username_menu }}" }}</p></div></a>
+                                <a href="{{ url_for('users.login') }}" class="logo"><div class="hello"><img src = "{{ profile_pic }}" alt = "{{ username_menu }}" class = "profile-pic"><p class="user1">{{ username_menu }}</p></div></a>
                                 <input class="menu-btn" type="checkbox" id="menu-btn" />
                                 <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
                                 <ul class="menu" style="background: rgba(0,0,0,0.8);">
