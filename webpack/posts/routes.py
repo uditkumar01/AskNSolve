@@ -39,7 +39,7 @@ def like(post_id):
 def post(post_id):
     post = Post.query.get_or_404(post_id)
     user_exist = Post_like.query.filter_by(post__id = post_id,user__id = current_user.id).first()
-    no_of_likes = len(Post_like.query.all())
+    no_of_likes = len(Post_like.query.filter_by(post__id = post_id).all())
     post_like_name = "like"
     if post and (not user_exist):
         post_like_name = "like"
