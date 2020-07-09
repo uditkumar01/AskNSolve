@@ -47,7 +47,6 @@ def post(post_id):
         post_like_name = "unlike"
     
     form = Comment_form()
-    page_no = request.args.get('page',1,type = int)
     _comments = Comment.query.order_by(Comment.timestamp.desc()).filter_by(post__id = post_id).all()
     if current_user.is_authenticated:
         form.commentor.data = current_user.username

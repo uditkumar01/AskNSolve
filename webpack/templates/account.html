@@ -39,13 +39,13 @@
             {% endif %}
         {% endwith %}
           <header>
-            <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" style="background: rgba(0,0,0,0.7); padding: 10px;">
+            <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" style="background: rgba(255,255,255,0.3); color: rgba(0,0,0,0.7); padding: 10px;">
                 <a class="navbar-brand" href="#" style="margin-right: 30px;"><strong>AskNSolve</strong></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto" style="margin-left: 10px;">
+                    <ul class="navbar-nav mr-auto" style="margin-left: 10px; ">
                       {% if current_user.is_authenticated: %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('main.home') }}">Home </a>
@@ -87,7 +87,7 @@
 
           <!-- from -->
           <div class="text-center col-md-4 col-lg-2" style=" transform: translate(0%,0%); margin-top: 80px; float: right;">
-            <a href="" class="btn btn-default btn-rounded" data-toggle="modal" style="font-size: 11px;" data-target="#modalLoginAvatar">Update Details</a>
+            <button class="btn purple-gradient btn-rounded" data-toggle="modal" style="font-size: 11px;" data-target="#modalLoginAvatar" >Update Details</button>
           </div>
 
           <div class="my container-1">

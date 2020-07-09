@@ -2,11 +2,7 @@
 {% block files %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static',filename='sep_post.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/all.min.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/fontawesome.min.css')}}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -45,22 +41,22 @@
             <div class="headerr">
                 <div class="menuu">
                     {% if current_user.is_authenticated: %}
-                        <header class="header" style="background: rgba(0,0,0,0.8);">
-                            <a href="{{ url_for('users.account') }}" class="logo"><div class="hello"><img src = "{{ url_for('static',filename = 'images/' + current_user.profile_pic) }}" alt = "{{ username_menu }}" class = "profile-pic"><div style="display: block;"><p class="user1">{{ username_menu }}</p><br><p class="user1" style="font-size: 9px; margin-top: -60px; color: white;">{{ present_time.strftime('%H hr  %M min  %S sec') }}</p><p class="user1" style="font-size: 9px; margin-top: -10px; color: white;">{{ present_time.strftime('%a %B %Y') }}</p></div></div></a>
+                        <header class="header" style="background: rgba(255,255,255,0.8);">
+                            <a href="{{ url_for('users.account') }}" class="logo"><div class="hello" style="display: flex;"><img src = "{{ url_for('static',filename = 'images/' + current_user.profile_pic) }}" alt = "{{ username_menu }}" class = "profile-pic" style="border-radius: 5px;"><div style="display: flex;"><p class="user1">{{ username_menu }}</p><br><p style="margin-left: 15px; margin-top: 5px; font-size: 7px;color: rgb(204, 117, 58)">{{ present_time.strftime('%H hr  %M min  %S sec') }}<br>{{ present_time.strftime('%a %B %Y') }}</p></div></div></a>
                             <input class="menu-btn" type="checkbox" id="menu-btn" />
                             <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-                            <ul class="menu" style="margin-left: -10px; margin-top: 20px; background: rgba(0,0,0,0.4);">
+                            <ul class="menu" style="margin-left: -10px; margin-top: 20px; background: rgba(255,255,255,0.4);">
                                 <li class="account_btn" style="padding-left: 10px;"><a href="{{url_for('users.account')}}" style="color: #FA0509;">Account</a></li>
                                 <li class="ask_btn" style="padding-left: 10px;"><a href="{{url_for('posts.create_post')}}" style="color: #FA0509;">Ask</a></li>
                                 <li class="logout_btn" style="padding-left: 10px;"><a href="{{url_for('users.logout')}}" style="color: #FA0509;">Logout</a></li>
                             </ul>
                         </header>
                     {% else %}
-                        <header class="header" style="background: rgba(0,0,0,0.8);">
+                        <header class="header" style="background: rgba(255,255,255,0.8);">
                             <a href="{{ url_for('users.login') }}" class="logo"><div class="hello"><img src = "{{ profile_pic }}" alt = "{{ username_menu }}" class = "profile-pic"><p class="user1">{{ username_menu }}</p></div></a>
                             <input class="menu-btn" type="checkbox" id="menu-btn" />
                             <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-                            <ul class="menu" style="margin-left: -10px; margin-top: 20px; background: rgba(0,0,0,0.4);">
+                            <ul class="menu" style="margin-left: -10px; margin-top: 20px; background: rgba(255,255,255,0.4);">
                                 <li class="login_btn" style="padding-left: 10px;"><a href="{{url_for('users.login')}}" style="color: #FA0509;">Login</a></li>
                                 <li class="register_btn" style="padding-left: 10px;"><a href="{{url_for('users.register')}}" style="color: #FA0509;">Register</a></li>
                             </ul>
@@ -68,77 +64,76 @@
                     {% endif %}
                 </div>
             </div>
+
             <div class="question-box">
                 <div class="questions">
-                            <div class = "post">
-                                <div class="question">
-                                    <div class="post_info">
-                                        <div class = "post_pic"><img src="{{url_for('static',filename = 'images/'+post.author.profile_pic)}}" alt = "{{ post.author.profile_pic }}" class = "profile-pic-1"></div>
-                                        <div class="user_post_info">
-                                            <a href="{{url_for('users.all_user_post', username = post.author.username)}}"><p class="post_author">{{ post.author.username[:13] }}</p></a>
-                                            <div class="" style="margin-top: 5px; display: flex;"><p class="post_date mr-2" style="font-size: 8px;">{{ post.date_posted.strftime('%d-%m-%Y') }}</p>
-                                            <p class="post_time" style="font-size: 8px;">{{ post.date_posted.strftime('%H:%M:%S') }}</p></div>
-                                            <div style="display: flex;">
-                                                <p class="mr-2 pr-2 pl-2" style="border-radius: 2px; background: white; color: rgba(0,0,0,0.6); font-size: 11px;">{{ no_of_likes }} <i class="far fa-thumbs-up"></i></p>
-                                                <p class="mr-2 pr-2 pl-2" style="height: 16px; border-radius: 2px; background: white; color: rgba(0,0,0,0.6); font-size: 11px;">{{ _comments|length }} <i class="far fa-comment"></i></p>
-                                            </div>
-                                            
-                                            <form action="{{ url_for('posts.update_post', post_id = post.id) }}" method="POST">
-                                            <div style="display: block;" class="mt-2 ml-n3">
-                                                
-                                                    
-                                                    
-                                                    
-                                                <div style="display: flex;">
-                                                        {% if post_like_name == "like" %}
-                                                            <a class="btn btn-primary btn-sm text-center pt-1.5 mr-3" style="padding: 6px; height: 25px; width: 27px; font-size: 0px;border-radius: 50%;"  href="{{url_for('posts.like',post_id = post.id)}}"><i class="fas fa-thumbs-up" style="color: white; font-size: 13px; margin-top: -1px;"></i></a>
-                                                        {% elif post_like_name == "unlike" %}
-                                                            <a class="btn btn-danger btn-sm text-center pt-2 mr-3" style="padding: 6px; height: 25px; width: 27px; font-size: 0px;border-radius: 50%;"  href="{{url_for('posts.like',post_id = post.id)}}"><i class="fas fa-thumbs-down" style="background: ; color: white; font-size: 13px; margin-top: -1px;"></i></a>
-                                                        {% endif %}
-                                                    
-                                                    
-                                                    
-                                                
-                                                
-                                                
-                                                    <div class="dropdown">
-                                                        
-                                                        <button class="waves-effect light-effect dropdown-toggle" style="padding: 2px; padding-left: 4px; padding-right: 3px; border-radius: 2px; border: 1px solid transparent; font-size: 11px; background: rgb(66,133,244);" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">OPTIONS</button>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            
-                                                            <button type="button" class="btn btn-primary btn-sm" style="width: 93%;"  data-toggle="modal" data-target="#exampleModal">
-                                                                View Comments
-                                                            </button>
-                                                            <button type="button" class="btn btn-primary btn-sm" style="width: 93%;"  data-toggle="modal" data-target="#exampleModalCenter">
-                                                                Comment
-                                                            </button>
-                                                            {% if post.author.username == current_user.username %}
-                                                                <button type="button"  class="btn btn-danger btn-sm" style="width: 93%;" data-toggle="modal" data-target="#DELETE">
-                                                                    Delete
-                                                                </button>
-                                                            {% endif %}
-                                                            {% if post.author.username == current_user.username %}
-                                                                <button type="submit" class="btn btn-primary btn-sm" style="width: 93%;" >Edit it</button></form>
-                                                            {% endif %}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                    
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="col-md-14 mb-4" style="color: rgba(0,0,0,0.6); opacity: 0.9;">
+
+                            
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <div style="display: flex;"><img src="{{ url_for('static',filename = 'images/'+post.author.profile_pic)}}" class="profile-pic-1" style="width: 50px; height: 50px; margin-right: 15px;">
+                                    <p style="margin-top: 5px; font-size: 20px; font-weight: 600;">{{ post.author.username }}</p></div>
                                     
-                                    <div class="whole_post_content">
-                                        <a href="{{url_for('posts.post',post_id = post.id)}}"><p class="post_title">{{ post.title }}</p></a>
-                                        <p class="post_content">{{ post.content }}</p>
-                                    </div>
-                                    
+                                    <div style="border: 2px solid transparent; float: right; margin-top: -50px;"><div style="border: 2px solid transparent; width: 100%;"><div class="text-right mb-2" style="font-size: 12px;">{{ no_of_likes }} <i class="fas fa-thumbs-up"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ _comments|length }} <i class="fas fa-comment-dots"></i></div>
+                                    <div class="text-right" style="font-size: 10px;">{{ post.date_posted.strftime('%H:%M:%S') }} &nbsp;&nbsp;&nbsp;{{ post.date_posted.strftime('%d/%m/%Y') }}</div></div></div>
                                 </div>
+
+                                <div class="card-body">
+                                <div class="text-right mt-n2 mb-n4">
+                                    {% if post_like_name == "like" %}
+                                    <a class="btn btn-primary btn-sm text-center pt-1.5 mr-3" style="padding: 6px; height: 25px; width: 27px; font-size: 0px;border-radius: 50%;"  href="{{url_for('posts.like',post_id = post.id)}}"><i class="fas fa-thumbs-up" style="color: white; font-size: 13px; margin-top: -1px;"></i></a>
+                                    {% elif post_like_name == "unlike" %}
+                                        <a class="btn btn-danger btn-sm text-center pt-2 mr-3" style="padding: 6px; height: 25px; width: 27px; font-size: 0px;border-radius: 50%;"  href="{{url_for('posts.like',post_id = post.id)}}"><i class="fas fa-thumbs-down" style="background: ; color: white; font-size: 13px; margin-top: -1px;"></i></a>
+                                    {% endif %}
+                                </div>
+                                <div href="#" ><p class="post_title" style="margin-left: -7px; margin-top: -10px; height: 30px; border: 2px solid transparent; font-size: 20px; color: #516169;">
+                                    
+                                    <div class="overlay" style="font-size: 18px; color: #3a454b;">{{ post.title }}</div>
+                                    
+                                </p></div>
+
+                                <div href="#" ><p class="" style="margin-left: 2px; margin-top: -10px; height: 30px; border: 2px solid transparent; font-size: 15px; color: #788e99;">
+                                    
+                                    <div class="overlay">{{ post.content }}</div>
+                                </p></div>
+                                
+                                </div>
+                                
                             </div>
+
+
+                            <div class="text-center" style="padding-top: 5px; padding-bottom: 5px;background-color: rgb(233, 230, 230);margin-left:auto;margin-right:auto;display:block;margin-top:5%;margin-bottom:0%; margin-bottom: 10px;border-radius: 5px;">
+
+                                    
+                                <div style="border: 1px solid transparent; margin-right: 6px;">
+                                    
+                                    <button type="button" class="wave-effect light-effect" style="margin-left: 1%; margin-right: 1%; border: 2px solid transparent; height: 18px; font-size: 10px; background: rgb(66,133,244); color: white; border-radius: 2px;" data-toggle="modal" data-target="#exampleModal">
+                                        View Comments
+                                    </button>
+                                    <button type="button" class="wave-effect light-effect" style="margin-left: 1%; margin-right: 1%; border: 2px solid transparent; height: 18px; font-size: 10px; background: rgb(66,133,244); color: white; border-radius: 2px;" data-toggle="modal" data-target="#exampleModalCenter">
+                                        Comment
+                                    </button>
+                                    {% if post.author.username == current_user.username %}
+                                        <button type="button"  class="wave-effect light-effect" style="margin-left: 1%; margin-right: 1%; border: 2px solid transparent; height: 18px; font-size: 10px; background: rgb(214, 5, 5); color: white; border-radius: 2px;" data-toggle="modal" data-target="#DELETE">
+                                            Delete
+                                        </button>
+                                    {% endif %}
+                                    {% if post.author.username == current_user.username %}
+                                        <a href="{{ url_for('posts.update_post', post_id = post.id) }}" style="margin-left: 1%; margin-right: 1%; padding-right: 4px; padding-left: 4px; padding-top: 2.6px; border: 2px solid transparent; height: 18px; font-size: 10px; background: rgb(66,133,244); color: white; border-radius: 2px;" type="submit" class="wave-effect light-effect" >Edit it</a>
+                                    {% endif %}
+                                </div>
+                            
+                            </div>
+
+
+                        </div>
                 </div>
             </div>
+
+
+
         </div>
     </div>
     
@@ -183,7 +178,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Comment</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle"></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -251,16 +246,14 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="background: transparent;">
                 
-                <div class="modal-body">
+                <div class="modal-body" style="overflow-x: hidden;scrollbar-color: rgba(0,0,0,0.6) rgba(255,255,255,0);scroll-behavior: smooth;">
                     <div class="nav flex-sm-column flex-row">
                                    <!--Grid row-->
                         <div class="row">
                         
                             <!--Grid column-->
-                            <div class="col-md-15 mb-4 mr-2">
-                                <div class="text-center">
-                                    <button class="">Comments</button>
-                                </div>
+                            <div class="col-md-15 mb-4">
+                                
                                 
                                 {% for comment in _comments %}
                                     <div class="card mb-4 ml-2" style="width: 335px;">
@@ -307,6 +300,8 @@
   <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/bootstrap.min.js')}}"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/mdb.min.js')}}"></script>
+
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
   <!-- Your custom scripts (optional) -->
   <script type="text/javascript"></script>
   <script>

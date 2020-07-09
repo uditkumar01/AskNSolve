@@ -7,7 +7,9 @@ body{
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background: url(images/login20.jpg);
+    background: #cb2d3e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ef473a, #cb2d3e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     opacity: 1;
     background-repeat: no-repeat;
     background-size: cover;
@@ -16,7 +18,7 @@ body{
     -webkit-background-size: cover;
     overflow-y: scroll;
     overflow-x: hidden;
-    scrollbar-color: rgba(0,0,0,0.6) rgba(255,255,255,0);
+    scrollbar-color: rgba(255,255,255,0.6) rgba(255,255,255,0);
     scroll-behavior: smooth;
     color: transparent;
 }
@@ -33,6 +35,17 @@ body{
     text-align: center;
     background: white;
     border-radius: 5px;
+    -webkit-box-shadow: 0px -3px 6px 4px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px -3px 6px 4px rgba(0,0,0,0.2);
+    box-shadow: 0px -3px 6px 4px rgba(0,0,0,0.2);
+}
+.my_btn-1{
+    background: #e52d27;
+    background: -webkit-linear-gradient(to right, #b31217, #e52d27);
+    background: linear-gradient(to right, #b31217, #e52d27);
+    width: 150px;
+    height: 50px;
+    font-size: large;
     -webkit-box-shadow: 0px -3px 6px 4px rgba(0,0,0,0.2);
     -moz-box-shadow: 0px -3px 6px 4px rgba(0,0,0,0.2);
     box-shadow: 0px -3px 6px 4px rgba(0,0,0,0.2);
@@ -57,8 +70,9 @@ body{
 }
 
 .pic-pic{
-    height: 135px;
-    width: 135px;
+    margin-top: 5px;
+    height: 125px;
+    width: 125px;
     border-radius: 50%;
 }
 .container-1{
@@ -69,7 +83,10 @@ body{
     width: auto;
     border-top-left-radius: 5px ;
     border-top-right-radius:5px ;
-    background: linear-gradient(#00c6ff,#0072ff);
+    background: #a73737;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #7a2828, #a73737);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #7a2828, #a73737); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 
 }
 .info-user{
@@ -140,9 +157,9 @@ body{
         box-shadow: 0px -2px 5px 6px rgba(0,0,0,0.2);
     }
     .profile-pic-2{
-        height: 100px;
-        width: 100px;
-        transform: translate(120%,80%);
+        height: 103px;
+        width: 103px;
+        transform: translate(120%,73%);
         background: transparent;
         border-radius: 50%;
         -webkit-box-shadow: 0px -2px 5px 6px rgba(0,0,0,0.2);
@@ -151,10 +168,10 @@ body{
     }
     
     .pic-pic{
-        height: 100px;
-        width: 100px;
+        height: 95px;
+        width: 95px;
         border-radius: 50%;
-        transform: translate(0%,-125%);
+        transform: translate(0%,-133%);
     }
     .container-1{
         margin-bottom: 20%;
@@ -174,7 +191,9 @@ body{
         width: auto;
         border-top-left-radius: 5px ;
         border-top-right-radius:5px ;
-        background: linear-gradient(#00c6ff,#0072ff);
+        background: #a73737;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #7a2828, #a73737);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #7a2828, #a73737); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     
     }
     .info-user{
@@ -210,9 +229,9 @@ body{
         box-shadow: 0px -2px 5px 6px rgba(0,0,0,0.2);
     }
     .profile-pic-2{
-        height: 100px;
-        width: 100px;
-        transform: translate(120%,80%);
+        height: 103px;
+        width: 103px;
+        transform: translate(120%,70%);
         background: transparent;
         border-radius: 50%;
         -webkit-box-shadow: 0px -2px 5px 6px rgba(0,0,0,0.2);
@@ -221,8 +240,8 @@ body{
     }
     
     .pic-pic{
-        height: 100px;
-        width: 100px;
+        height: 95px;
+        width: 95px;
         border-radius: 50%;
         transform: translate(0%,0%);
     }
@@ -234,7 +253,9 @@ body{
         width: auto;
         border-top-left-radius: 5px ;
         border-top-right-radius:5px ;
-        background: linear-gradient(#00c6ff,#0072ff);
+        background: #a73737;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #7a2828, #a73737);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #7a2828, #a73737); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     
     }
     .info-user{
@@ -270,9 +291,9 @@ body{
         box-shadow: 0px -2px 5px 6px rgba(0,0,0,0.2);
     }
     .profile-pic-2{
-        height: 100px;
-        width: 100px;
-        transform: translate(120%,80%);
+        height: 103px;
+        width: 103px;
+        transform: translate(120%,70%);
         background: transparent;
         border-radius: 50%;
         -webkit-box-shadow: 0px -2px 5px 6px rgba(0,0,0,0.2);
@@ -281,8 +302,8 @@ body{
     }
     
     .pic-pic{
-        height: 100px;
-        width: 100px;
+        height: 95px;
+        width: 95px;
         border-radius: 50%;
     }
     .container-1{
@@ -293,7 +314,9 @@ body{
         width: auto;
         border-top-left-radius: 5px ;
         border-top-right-radius:5px ;
-        background: linear-gradient(#00c6ff,#0072ff);
+        background: #a73737;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #7a2828, #a73737);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #7a2828, #a73737); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     
     }
     .info-user{
@@ -301,7 +324,16 @@ body{
         font-family:  Aldrich ,sans-serif,Arial, Helvetica;
     }
     
-        
+    .skill_icon{
+        text-align: center;
+        margin-top: 25px;
+        font-size: 20px;
+        margin-left: -50px;
+    }
+    .skill_icon-1{
+        font-size: 25px;
+        margin: 4px;
+    }
 
 }
 

@@ -1,5 +1,8 @@
 .__container{
-    background: url(images/login20.jpg);
+    background: #cb2d3e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ef473a, #cb2d3e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     background-size: cover;
     height: 100vh;
     width: 100vw;
@@ -289,23 +292,25 @@ body {
     margin-left: 10px;
 }
 .profile-pic{
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
 .user1{
-    margin-top: 6px;
+    font-size: 22px;
+    margin-top: 0px;
     margin-left: 40px;
     color: #FA0509;
 }
 .user1:hover,.user1:focus{
     color: #B92C01;
 }
+
 .questions{
     margin-top: 180px;
     height: auto;
     width: 63vw;
-    background: rgba(0,0,0,0.6);
+    background: rgba(255,255,255,0.4);
     margin-left: 20%;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -313,26 +318,14 @@ body {
     font-family: san-serif,sans-serif,Arial, Helvetica;
     padding:30px;
 }
-.question{
-    margin-top: 10px;
-    height: auto;
-    width: 88%;
-    background: rgba(0,0,0,0.6);
-    margin-left: 6%;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    color: white;
-    font-family: san-serif,sans-serif,Arial, Helvetica;
-    padding:30px;
-    display: flex;
-}
 .profile-pic-1{
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    -webkit-box-shadow: 0px -2px 5px 6px rgba(0,0,0,0.3);
-    -moz-box-shadow: 0px -2px 5px 6px rgba(0,0,0,0.3);
-    box-shadow: 0px -2px 5px 6px rgba(0,0,0,0.3);
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+    border-radius: 50%;
+    -webkit-box-shadow: 0px -2px 5px 3px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px -2px 5px 3px rgba(0,0,0,0.3);
+    box-shadow: 0px -2px 5px 3px rgba(0,0,0,0.3);
     cursor: pointer;
 }
 .post_info{
@@ -369,15 +362,13 @@ body {
 }
 
 .post_title {
-    padding-top: 20px;
-    width: 210px;
-    padding: 20px;
+    padding-left: 5px;
     border: 2px solid transparent;
     font-size: 15px;
     margin-top: -20px;
     margin-left: -8px;
     cursor: pointer;
-    color: #FA0509;
+    color: #78909c;
     height: 48px;
 }
 .post_author{
@@ -388,7 +379,7 @@ body {
     font-size: 20px;
 }
 .post_title:hover{
-    color: #B92C01;
+    color: #516169;
 }
 .post_content {
 
@@ -400,11 +391,19 @@ body {
     margin-top: -20px;
     margin-left: -8px;
     cursor: pointer;
+    color: #516169;
 }
 
 
-.profile-pic-1:hover{
-    border: 6px solid rgba(0,0,0,0);
+.profile-pic-1:hover,.profile-pic-1:focus{
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+    border-radius: 50%;
+    -webkit-box-shadow: 0px -2px 5px 3px rgba(255,255,255,0.3);
+    -moz-box-shadow: 0px -2px 5px 3px rgba(255,255,255,0.3);
+    box-shadow: 0px -2px 5px 3px rgba(255,255,255,0.3);
+    cursor: pointer;
 
 }
 a:hover{
@@ -463,17 +462,12 @@ a:hover{
 @media (max-width: 48em) {
 
     .profile-pic{
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-    }
-    .profile-pic-1{
         width: 40px;
         height: 40px;
-        border-radius: 10px;
+        border-radius: 50%;
     }
     .user1{
-        margin-top: 6px;
+        margin-top: 0px;
         margin-left: 30px;
         font-size: 20px;
         color: #FA0509;
@@ -485,31 +479,13 @@ a:hover{
         margin-top: 180px;
         height: auto;
         width: 100vw;
-        background: rgba(0,0,0,0.6);
+        background: rgba(255,255,255,0.4);
         margin-left: 0%;
         border-radius: 10px;
         margin-bottom: 10px;
         color: white;
         font-family: san-serif,sans-serif,Arial, Helvetica;
         padding:30px;
-    }
-    .question{
-        margin-top: 10px;
-        height: auto;
-        width: 96%;
-        background: rgba(0,0,0,0.6);
-        margin-left: 2%;
-        border-radius: 10px;
-        margin-bottom: 10px;
-        color: white;
-        font-family: san-serif,sans-serif,Arial, Helvetica;
-        padding:30px;
-        display: block;
-    }
-    .profile-pic-1{
-        width: 80px;
-        height: 80px;
-        border-radius: 10px;
     }
     .post_info{
         display: flex;
@@ -553,6 +529,7 @@ a:hover{
         margin-right: 50px;
         padding: 10px;
         margin-top: -10px;
+        color: #516169;
     }
 
     a:hover,a.focus{
@@ -673,20 +650,29 @@ a:hover{
         border-radius: 50%;
     }
     .profile-pic-1{
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
+        width: 30px;
+        height: 30px;
+        margin-right: 8px;
+        border-radius: 50%;
+        -webkit-box-shadow: 0px -2px 5px 3px rgba(0,0,0,0.3);
+        -moz-box-shadow: 0px -2px 5px 3px rgba(0,0,0,0.3);
+        box-shadow: 0px -2px 5px 3px rgba(0,0,0,0.3);
+        cursor: pointer;
     }
     .user1{
-        margin-top: 6px;
+        margin-top: 0px;
         margin-left: 30px;
         font-size: 20px;
+        color: #FA0509;
+    }
+    .user1:hover,.user1:focus{
+        color: #B92C01;
     }
     .questions{
         margin-top: 180px;
         height: auto;
         width: 100vw;
-        background: rgba(0,0,0,0.6);
+        background: rgba(255,255,255,0.4);
         margin-left: 0%;
         border-radius: 10px;
         margin-bottom: 10px;
@@ -694,23 +680,15 @@ a:hover{
         font-family: san-serif,sans-serif,Arial, Helvetica;
         padding:30px;
     }
-    .question{
-        margin-top: 10px;
-        height: auto;
-        width: 96%;
-        background: rgba(0,0,0,0.6);
-        margin-left: 2%;
-        border-radius: 10px;
-        margin-bottom: 10px;
-        color: white;
-        font-family: san-serif,sans-serif,Arial, Helvetica;
-        padding:30px;
-        display: block;
-    }
     .profile-pic-1{
-        width: 80px;
-        height: 80px;
-        border-radius: 10px;
+        width: 30px;
+        height: 30px;
+        margin-right: 8px;
+        border-radius: 50%;
+        -webkit-box-shadow: 0px -2px 5px 3px rgba(0,0,0,0.3);
+        -moz-box-shadow: 0px -2px 5px 3px rgba(0,0,0,0.3);
+        box-shadow: 0px -2px 5px 3px rgba(0,0,0,0.3);
+        cursor: pointer;
     }
     .post_info{
         display: flex;
@@ -752,6 +730,7 @@ a:hover{
         width: auto;
         padding: 10px;
         margin-top: -10px;
+        color: #516169;
     }
 
     a:hover,a.focus{

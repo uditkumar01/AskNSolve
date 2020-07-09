@@ -9,7 +9,7 @@ main = Blueprint('main',__name__)
 @main.route("/home")
 def home():
     page_no = request.args.get('page',1,type = int)
-    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page = page_no,per_page = 5)
+    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page = page_no,per_page = 4)
     if current_user.is_authenticated:
         if current_user.profile_pic:
             profile_image = url_for('static',filename = 'images/' + current_user.profile_pic)

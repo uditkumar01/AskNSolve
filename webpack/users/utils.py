@@ -7,13 +7,12 @@ import os
 def add_profile_pic(pic):
     name = secrets.token_hex(16)
     NAME,EXT = os.path.splitext(pic.filename)
-    picture_name = name + EXT
+    picture_name = name + '.webp'
     profile_pic_path = os.path.join(current_app.root_path,'static/images', picture_name)
-    size = (155,155)
+    size = (50,50)
     img1 = Image.open(pic)
     img1.thumbnail(size)
     img1.save(profile_pic_path)
-    print(img1.size)
     return picture_name
 
 def send_request_email(user):
