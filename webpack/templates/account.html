@@ -86,11 +86,25 @@
           </header>
 
           <!-- from -->
-          {% if form != "NULL" %}
-            <div class="text-center col-md-4 col-lg-2" style=" transform: translate(0%,0%); margin-top: 80px; float: right;">
-              <button class="btn purple-gradient btn-rounded" data-toggle="modal" style="font-size: 11px;" data-target="#modalLoginAvatar" >Update Details</button>
+          <div class="dropdown" style=" margin-top: 80px; float: right; margin-right: 10px;">
+            
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-dropup-auto="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More
+              </button>
+            
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {% if form != "NULL" %}
+                
+                <button class="btn purple-gradient btn-rounded" data-toggle="modal" style="font-size: 11px; width: 92%;" data-target="#modalLoginAvatar" >Update account</button>
+                
+              {% endif %}
+              
+                <a href="{{ url_for('users.all_user_post', username = _user.username) }}" class="btn purple-gradient btn-rounded" style="font-size: 11px; width: 92%;">My Posts</a>
+          
+              
             </div>
-          {% endif %}
+          </div>
+          
 
           <div class="my container-1">
               <div class="container-2">
@@ -156,8 +170,9 @@
                       {% endfor %}
                     </div>
                 </div>
+                
             </div>
-
+            
           <!-- end -->
 
 
@@ -490,7 +505,13 @@
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/mdb.min.js')}}"></script>
   <!-- Your custom scripts (optional) -->
-
+  <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+  <script type="text/javascript" src="Scripts/jquery-2.1.1.min.js"></script>
+  <script>
+    $(document).ready(function(){
+       $('.dropdown-toggle').dropdown()
+   });
+</script>
   <script type="text/javascript">
     $(function () {
     $('[data-toggle="popover"]').popover()

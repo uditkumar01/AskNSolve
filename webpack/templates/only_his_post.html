@@ -40,11 +40,11 @@
                     <div class="menuu">
                         {% if current_user.is_authenticated: %}
                             <header class="header" style="background: rgba(255,255,255,0.8);">
-                                <a href="{{ url_for('users.account') }}" class="logo"><div class="hello" style="display: flex;"><img src = "{{ url_for('static',filename = 'images/' + current_user.profile_pic) }}" alt = "{{ username_menu }}" class = "profile-pic" style="border-radius: 5px;"><div style="display: flex;"><p class="user1">{{ username_menu }}</p><br><p style="margin-left: 15px; margin-top: 5px; font-size: 7px;color: rgb(204, 117, 58)">{{ present_time.strftime('%H hr  %M min  %S sec') }}<br>{{ present_time.strftime('%a %B %Y') }}</p></div></div></a>
+                                <a href="{{ url_for('users.account', user_id = current_user.id) }}" class="logo"><div class="hello" style="display: flex;"><img src = "{{ url_for('static',filename = 'images/' + current_user.profile_pic) }}" alt = "{{ username_menu }}" class = "profile-pic" style="border-radius: 5px;"><div style="display: flex;"><p class="user1">{{ username_menu }}</p><br><p style="margin-left: 15px; margin-top: 5px; font-size: 7px;color: rgb(204, 117, 58)">{{ present_time.strftime('%H hr  %M min  %S sec') }}<br>{{ present_time.strftime('%a %B %Y') }}</p></div></div></a>
                                 <input class="menu-btn" type="checkbox" id="menu-btn" />
                                 <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
                                 <ul class="menu" style="margin-left: -10px; margin-top: 20px; background: rgba(255,255,255,0.4);">
-                                    <li class="account_btn" style="padding-left: 10px;"><a href="{{url_for('users.account')}}" style="color: #FA0509;">Account</a></li>
+                                    <li class="account_btn" style="padding-left: 10px;"><a href="{{url_for('users.account', user_id = current_user.id)}}" style="color: #FA0509;">Account</a></li>
                                     <li class="ask_btn" style="padding-left: 10px;"><a href="{{url_for('posts.create_post')}}" style="color: #FA0509;">Ask</a></li>
                                     <li class="logout_btn" style="padding-left: 10px;"><a href="{{url_for('users.logout')}}" style="color: #FA0509;">Logout</a></li>
                                 </ul>
@@ -69,8 +69,19 @@
                         
                                 <div class="card">
                                     <div class="card-header">
-                                        <img src="{{ url_for('static',filename = 'images/'+post.author.profile_pic)}}" class="profile-pic-1">
-                                        {{ post.author.username }}
+                                        {% if current_user.is_authenticated %}
+                                            <a href="{{ url_for('users.account',user_id = post.author.id) }}"><img src="{{ url_for('static',filename = 'images/'+post.author.profile_pic)}}" class="profile-pic-1" alt="Profile Picture"></a>
+                                        {% else %}
+                                            <a href="{{ url_for('users.login',user_id = post.author.id) }}"><img src="{{ url_for('static',filename = 'images/'+post.author.profile_pic)}}" class="profile-pic-1" alt="Profile Picture"></a>
+                                        {% endif %}
+                                        {% if current_user.is_authenticated %}
+                                            <a href="{{ url_for('users.account',user_id = post.author.id) }}" style="font-size: 16px; margin-left: -1px; font-weight: 510; color: dimgray;">
+                                        {% else %}
+                                            <a href="{{ url_for('users.login') }}" style="font-size: 16px; margin-left: -1px; font-weight: 510; color: dimgray;">
+                                        {% endif %}
+                                            {{ post.author.username }}</a>
+
+                                        
                                         <div class="text-right mt-n4" style="font-size: 10px;">{{ post.date_posted.strftime('%H:%M:%S') }} &nbsp;&nbsp;&nbsp;{{ post.date_posted.strftime('%d/%m/%Y') }}</div>
                                     </div>
                                     <div class="card-body">
