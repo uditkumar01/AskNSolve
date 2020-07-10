@@ -122,7 +122,7 @@
                                     {% endif %}
                                     {% if post.author.username == current_user.username %}
                                         <form action="{{ url_for('posts.update_post', post_id = post.id) }}" method="POST">
-                                        <button type="submit" class="wave-effect light-effect" style="margin-left: 1%; margin-right: 1%; border: 2px solid transparent; height: 20px; font-size: 10px; background: rgb(66,133,244); color: white; border-radius: 2px;">Edit it</button></form>
+                                        <button type="submit" class="wave-effect light-effect" style="margin-left: 1%; margin-right: 1%; border: 2px solid transparent; height: 20px; font-size: 10px; background: rgb(66,133,244); color: white; border-radius: 2px;">Edit</button></form>
                                     {% endif %}
                                 </div>
                             

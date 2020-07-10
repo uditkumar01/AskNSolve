@@ -39,17 +39,7 @@ body{
     -moz-box-shadow: 0px -3px 6px 4px rgba(0,0,0,0.2);
     box-shadow: 0px -3px 6px 4px rgba(0,0,0,0.2);
 }
-.my_btn-1{
-    background: #e52d27;
-    background: -webkit-linear-gradient(to right, #b31217, #e52d27);
-    background: linear-gradient(to right, #b31217, #e52d27);
-    width: 150px;
-    height: 50px;
-    font-size: large;
-    -webkit-box-shadow: 0px -3px 6px 4px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0px -3px 6px 4px rgba(0,0,0,0.2);
-    box-shadow: 0px -3px 6px 4px rgba(0,0,0,0.2);
-}
+
 .size-111{
     height: 180px;
     width: 180px;
