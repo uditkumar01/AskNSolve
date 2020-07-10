@@ -39,7 +39,7 @@
               <div class="my_container">
                 <form action="" method="POST">
                   {{ form.hidden_tag() }}
-                  <p class="text-center mb-10" style="font-size: 180%;">LOGIN</p>
+                  <p class="text-center mb-10" style="font-size: 180%; color: firebrick;">LOGIN</p>
                   <div class="form-group mb-4 mt-4">
                     {{ form.email(class = "form-control",placeholder = "Email") }}
                     {% if form.email.errors %}
@@ -58,6 +58,7 @@
                       {% endfor %}
                     {% endif %}
                   </div>
+                  
                   <div class="custom-control custom-checkbox mb-4 mt-3">
                     {{ form.checkbox(class = "custom-control-input",  id="defaultUnchecked") }}
                     {% if form.checkbox.errors %}
@@ -68,13 +69,13 @@
                     <label class="custom-control-label" for="defaultUnchecked">Remember Me</label>
                   </div>
                   <div class="text-center">
-                    {{ form.submit(class="btn btn-primary", placeholder = "Login") }}
+                    {{ form.submit(class="btn purple-gradient btn-primary", placeholder = "Login") }}
                   </div>
                   <div class="text-center mt-4">
-                    <a href="{{ url_for('users.request_reset') }}" class="stretched link">Forgot Password ?</a><br>
+                    <a href="{{ url_for('users.request_reset') }}" class="link_">Forgot Password ?</a><br>
                   </div>
                   <div class="text-center mt-3">
-                    <a href="{{ url_for('users.register') }}" class="stretched link">Need An Account ?</a>
+                    <a href="{{ url_for('users.register') }}" class="link_">Need An Account ?</a>
                   </div>
                 </form>
               </div>

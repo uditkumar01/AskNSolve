@@ -194,15 +194,7 @@ top: 0;
 .user1:hover{
     color: #B92C01;
 }
-.user-1{
-    margin-top: 6px;
-    margin-left: 40px;
-    color: rgb(104, 99, 99);
-    border: 2px solid red;
-}
-.user-1:hover{
-    color: rgb(77, 74, 74);
-}
+
 .questions{
     margin-top: 180px;
     height: auto;

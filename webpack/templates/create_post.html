@@ -33,7 +33,7 @@
       <form action="" method = "POST">
         {{ form.hidden_tag() }}
         <fieldset class="post_form">
-          <p class="title" style="color: rgba(0,0,0,0.6); background-color: rgba(212, 211, 211, 0.6); border-radius: 5px;">{{ form_title_webpage }}</p>
+          <p class="title" style="color: rgba(255,255,255,0.8); background: #a73737; background: -webkit-linear-gradient(to right, #7a2828, #a73737); background: linear-gradient(to right, #7a2828, #a73737); border-radius: 5px;">{{ form_title_webpage }}</p>
           <div class="post_title" style="margin: 10px; margin-top: 30px;">
             {{ form.post_title(class = "form-control",placeholder = "Title should be clear and specific ") }}
             {% if form.post_title.errors %}
@@ -51,7 +51,7 @@
             {% endif %}
           </div>
           <div class="submit_field">
-            {{ form.submit(class = "btn btn-primary btn-rounded") }}
+            {{ form.submit(class = "btn purple-gradient btn-primary btn-rounded") }}
           </div>
         </fieldset>
       </form>

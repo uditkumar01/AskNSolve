@@ -39,7 +39,7 @@
               <div class="my_container">
                 <form action="" method="POST">
                   {{ form.hidden_tag() }}
-                  <p class="text-center mb-10" style="font-size: 180%;">REGISTER</p>
+                  <p class="text-center mb-10" style="font-size: 180%; color: firebrick;">REGISTER</p>
                   <div class="form-group mb-4 mt-4">
                     {{ form.username(class = "form-control",placeholder = "Username") }}
                     {% if form.username.errors %}
@@ -86,10 +86,10 @@
                     <label class="custom-control-label" for="defaultUnchecked">I agree to all terms & conditions.</label>
                   </div>
                   <div class="text-center">
-                    {{ form.submit(class="btn btn-primary", placeholder = "Login") }}
+                    {{ form.submit(class="purple-gradient btn btn-primary", placeholder = "Login") }}
                   </div>
                   <div class="text-center mt-4 mb-3">
-                    <a href="{{ url_for('users.login') }}" class="stretched link">Have An Account ?</a>
+                    <a href="{{ url_for('users.login') }}" class="link_">Have An Account ?</a>
                   </div>
                 </form>
               </div>
