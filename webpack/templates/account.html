@@ -46,7 +46,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto" style="margin-left: 10px; ">
-                      {% if current_user.is_authenticated: %}
+                      {% if _user.is_authenticated: %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('main.home') }}">Home </a>
                         </li>
@@ -54,7 +54,7 @@
                             <a class="nav-link" href="{{ url_for('posts.create_post') }}">Ask</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link"  style="font-size: 16px;" href="{{ url_for('users.account') }}">Account <span class="sr-only">(current)</span></a>
+                            <a class="nav-link"  style="font-size: 16px;" href="{{ url_for('users.account',user_id = _user.id) }}">Account <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">About Us</a>
@@ -73,7 +73,7 @@
                           <a class="nav-link" href="#">About Us</a>
                       {% endif %}
                     </ul>
-                    {% if current_user.is_authenticated: %}
+                    {% if _user.is_authenticated: %}
                       <ul class="navbar-nav nav-flex-icons" style="margin-left: 10px;">
                         <li class="nav-item">
                           <a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a>
@@ -86,9 +86,11 @@
           </header>
 
           <!-- from -->
-          <div class="text-center col-md-4 col-lg-2" style=" transform: translate(0%,0%); margin-top: 80px; float: right;">
-            <button class="btn purple-gradient btn-rounded" data-toggle="modal" style="font-size: 11px;" data-target="#modalLoginAvatar" >Update Details</button>
-          </div>
+          {% if form != "NULL" %}
+            <div class="text-center col-md-4 col-lg-2" style=" transform: translate(0%,0%); margin-top: 80px; float: right;">
+              <button class="btn purple-gradient btn-rounded" data-toggle="modal" style="font-size: 11px;" data-target="#modalLoginAvatar" >Update Details</button>
+            </div>
+          {% endif %}
 
           <div class="my container-1">
               <div class="container-2">
@@ -98,30 +100,30 @@
               </div>
                 <div class = "info-user"  style="color:rgba(0,0,0,0.7);text-align: left; width: 400px; border: 2px solid transparent; padding: 40px; margin-top: 70px;">
                   
-                    <div data-toggle="popover" data-placement="top" title="Full Name" data-content="{{current_user.first_name}} {{current_user.last_name}}" style="display: flex;cursor: pointer;"><p style="font-weight: bold;">Name :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>
-                      {% if current_user.first_name|length < 15 %}
-                        {{ current_user.first_name }}
-                      {% elif (current_user.first_name|length + current_user.last_name|length) < 15 %}
-                        {{ current_user.first_name }} {{ current_user.last_name }}
-                      {% elif current_user.first_name|length > 15 %}
-                        {{ current_user.first_name[:14] }}
+                    <div data-toggle="popover" data-placement="top" title="Full Name" data-content="{{_user.first_name}} {{_user.last_name}}" style="display: flex;cursor: pointer;"><p style="font-weight: bold;">Name :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>
+                      {% if _user.first_name|length < 15 %}
+                        {{ _user.first_name }}
+                      {% elif (_user.first_name|length + _user.last_name|length) < 15 %}
+                        {{ _user.first_name }} {{ _user.last_name }}
+                      {% elif _user.first_name|length > 15 %}
+                        {{ _user.first_name[:14] }}
                       {% endif %}
                     </p></div>
                     <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Full Username"
-                    data-content="{{ current_user.username }}"><p style="font-weight: bold;">Username :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>
+                    data-content="{{ _user.username }}"><p style="font-weight: bold;">Username :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>
                       
-                      {% if current_user.username|length < 15 %}
-                        {{ current_user.username }}
-                      {% elif current_user.username|length > 15 %}
-                        {{ current_user.username[:14] }}
+                      {% if _user.username|length < 15 %}
+                        {{ _user.username }}
+                      {% elif _user.username|length > 15 %}
+                        {{ _user.username[:14] }}
                       {% endif %}
                     </p></div>
                     <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="E-mail"
-                    data-content="{{current_user.email}}"><p style="font-weight: bold;">Email : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>{{ current_user.email[:14] }}...</p></div>
+                    data-content="{{_user.email}}"><p style="font-weight: bold;">Email : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>{{ _user.email[:14] }}...</p></div>
                     <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Skills"
-                    data-content="{{current_user.skills}}"><p style="font-weight: bold;">Skills : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>{{ current_user.skills[:15] }}...</p></div>
+                    data-content="{{_user.skills}}"><p style="font-weight: bold;">Skills : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>{{ _user.skills[:15] }}...</p></div>
                     <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Country"
-                    data-content="{{current_user.country}}"><p style="font-weight: bold;">Country : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>{{ current_user.country }}</p></div>
+                    data-content="{{_user.country}}"><p style="font-weight: bold;">Country : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>{{ _user.country }}</p></div>
                     <div class="skill_icon">
                       {% for i in MY_SKILLS_LIST[:8] %}
                           {% if ((i|upper)[:6] == 'PYTHON') %}
@@ -160,7 +162,7 @@
 
 
       </div>
-
+      {% if form != "NULL" %}
           <!--Modal: update Form-->
           <div class="modal fade" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
           aria-hidden="true">
@@ -177,7 +179,7 @@
                 {{ form.hidden_tag() }}
                   <fieldset class="modal-body text-center mb-1">
 
-                    <h5 class="mt-1 mb-2">{{ current_user.username }}</h5>
+                    <h5 class="mt-1 mb-2">{{ _user.username }}</h5>
 
                     <div class="md-form ml-0 mr-0">
                       {{ form.first_name(class="form-control form-control-sm validate ml-0", id = "form29") }}
@@ -468,6 +470,7 @@
             <!--/.Content-->
           </div>
           </div>
+      {% endif %}
           <!--Modal: Login with Avatar Form-->
 
           

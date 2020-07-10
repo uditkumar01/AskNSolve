@@ -55,7 +55,13 @@
                     {{ form.submit(class="btn btn-primary", placeholder = "Login") }}
                   </div>
                   
-                  
+                  {% if form.email.errors %}
+                      {% for error in form.email.errors%}
+                        <div class="text-center mt-3">
+                          <a href="{{ url_for('users.register') }}" class="stretched link">Need An Account ?</a>
+                        </div>
+                      {% endfor %}
+                    {% endif %}
                 </form>
               </div>
         <!-- end -->

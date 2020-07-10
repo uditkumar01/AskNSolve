@@ -42,47 +42,51 @@ def register():
 
 
 @login_required
-@users.route("/account", methods = ['POST','GET'])
-def account():
+@users.route("/account/<int:user_id>", methods = ['POST','GET'])
+def account(user_id):
     form = Update_Form()
     MY_SKILLS_LIST = []
-    if current_user.skills != 'Unknown':
-            MY_SKILLS_LIST = (current_user.skills).split(',')
-    if form.validate_on_submit():
-        flash(f'Congratulations!!!','success')
-        if form.profile_pic.data:
-            pic_name = add_profile_pic(form.profile_pic.data)
-            current_user.profile_pic = pic_name
-        if form.username.data:
-            current_user.username = form.username.data
-        if form.email.data:
-            current_user.email = form.email.data
-        if form.country.data:
-            current_user.country = form.country.data
-        if form.skills.data:
-            current_user.skills = form.skills.data
-            MY_SKILLS_LIST = (form.skills.data).split(',')
-        current_user.first_name = form.first_name.data.title()
-        current_user.last_name = form.last_name.data.title()
-        current_user.country = form.country.data.title()
-
-        db.session.commit()
-        flash('Your account info is Updated !!!','success')
-        return redirect(url_for('users.account'))
-    elif request.method == 'GET':
-        if current_user.first_name != 'Unknown':
-            form.first_name.data = current_user.first_name
-        if current_user.last_name != 'Unknown':
-            form.last_name.data = current_user.last_name
-        if current_user.skills != 'Unknown':
-            form.skills.data = current_user.skills
-        form.username.data = current_user.username
-        form.email.data = current_user.email
-    if current_user.profile_pic:
-        profile_image = url_for('static',filename = 'images/' + current_user.profile_pic)
+    _user = User.query.get_or_404(user_id)
+    if current_user.id != _user.id:
+        MY_SKILLS_LIST = (_user.skills).split(',')
+        profile_image = url_for('static',filename = 'images/' + _user.profile_pic)
+        return render_template('account.html',title = _user.username + '\'s Account Info', profile_picture = profile_image, form = "NULL", MY_SKILLS_LIST = MY_SKILLS_LIST, _user = _user)
     else:
-        profile_image = url_for('static',filename = 'images/' + 'default_profile_pic.jpg')
-    return render_template('account.html',title = 'Account Info', profile_picture = profile_image, form = form, MY_SKILLS_LIST = MY_SKILLS_LIST)
+        if current_user.skills != 'Unknown':
+                MY_SKILLS_LIST = (current_user.skills).split(',')
+        if form.validate_on_submit():
+            flash(f'Updated','info')
+            if form.profile_pic.data:
+                pic_name = add_profile_pic(form.profile_pic.data)
+                current_user.profile_pic = pic_name
+            if form.username.data:
+                current_user.username = form.username.data
+            if form.email.data:
+                current_user.email = form.email.data
+            if form.country.data:
+                current_user.country = form.country.data
+            if form.skills.data:
+                current_user.skills = form.skills.data
+                MY_SKILLS_LIST = (form.skills.data).split(',')
+            current_user.first_name = form.first_name.data.title()
+            current_user.last_name = form.last_name.data.title()
+            current_user.country = form.country.data.title()
+
+            db.session.commit()
+            flash('Your account info is Updated !!!','success')
+            return redirect(url_for('users.account'))
+        elif request.method == 'GET':
+            if current_user.first_name != 'Unknown':
+                form.first_name.data = current_user.first_name
+            if current_user.last_name != 'Unknown':
+                form.last_name.data = current_user.last_name
+            if current_user.skills != 'Unknown':
+                form.skills.data = current_user.skills
+            form.username.data = current_user.username
+            form.email.data = current_user.email
+        profile_image = url_for('static',filename = 'images/' + current_user.profile_pic)
+
+        return render_template('account.html',title = 'Your Account Info', profile_picture = profile_image, form = form, MY_SKILLS_LIST = MY_SKILLS_LIST, user = current_user)
 
 @login_required
 @users.route("/user/<string:username>")

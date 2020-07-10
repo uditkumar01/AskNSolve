@@ -94,7 +94,12 @@ body{
     margin: 4px;
 }
 
-
+.a{
+    color: #fa0509;
+}
+.a:hover,.a:focus{
+    color: #b92c01;
+}
 
 
 
@@ -190,7 +195,12 @@ body{
         font-size: 13px;
         font-family:  Aldrich ,sans-serif,Arial, Helvetica;
     }
-    
+    .a{
+        color: #fa0509;
+    }
+    .a:hover,.a:focus{
+        color: #b92c01;
+    }
         
 
 }
@@ -253,7 +263,12 @@ body{
         font-family:  Aldrich ,sans-serif,Arial, Helvetica;
     }
     
-        
+    .a{
+        color: #fa0509;
+    }
+    .a:hover,.a:focus{
+        color: #b92c01;
+    }
 
 }
 
@@ -323,6 +338,12 @@ body{
     .skill_icon-1{
         font-size: 25px;
         margin: 4px;
+    }
+    .a{
+        color: #fa0509;
+    }
+    .a:hover,.a:focus{
+        color: #b92c01;
     }
 
 }
