@@ -1,4 +1,4 @@
-from flask import render_template, request, Blueprint, url_for
+from flask import render_template, request, Blueprint, url_for, redirect
 from webpack.models import Post
 from datetime import datetime
 from flask_login import current_user
@@ -8,6 +8,8 @@ main = Blueprint('main',__name__)
 @main.route("/")
 @main.route("/home")
 def home():
+    if not (current_user.is_authenticated):
+        return redirect(url_for('users.login'))
     page_no = request.args.get('page',1,type = int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page = page_no,per_page = 4)
     if current_user.is_authenticated:
