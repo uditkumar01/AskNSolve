@@ -1,19 +1,8 @@
 {% extends "layout.html" %}
   {% block files %}
-    <link rel="stylesheet" href="{{ url_for('static',filename='my_style1.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='my_style.css')}}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/all.min.css')}}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/fontawesome.min.css')}}">
-
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/all.min.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/fontawesome.min.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.lite.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.lite.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/modules/animations-extended.min.css') }}">
   {% endblock files %}
   {% block content %}
       <div class="__container">
@@ -41,33 +30,37 @@
 
 
         <!-- form -->
-            <div class="box-1">
-              <div class="my_container">
+            
+              <div class="_container">
                 <form action="" method="POST">
                   {{ form.hidden_tag() }}
-                  <p class="text-center mb-10" style="font-size: 180%;">REQUEST RESET</p>
-                  <div class="form-group mb-4 mt-4">
-                    {{ form.email(class = "form-control",placeholder = "Email") }}
+                  <div class="form">
+                  <div class="input">
+                  <h2 class="text-center mb-10" style="font-size: 180%;">REQUEST RESET</h2>
+                  <div class="inputbox">
+                    {{ form.email(class = "input",placeholder = "Email") }}
                     {% if form.email.errors %}
                       {% for error in form.email.errors%}
-                        <small class="form-text text-danger">{{ error }}</small>
+                        <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
                       {% endfor %}
                     {% endif %}
                     
                   </div>
                   
                   
-                  <div class="text-center">
-                    {{ form.submit(class="btn btn-primary", placeholder = "Login") }}
+                  <div class="inputbox">
+                    {{ form.submit(class="input text-center") }}
                   </div>
                   
                   {% if form.email.errors %}
                       {% for error in form.email.errors%}
                         <div class="text-center mt-3">
-                          <a href="{{ url_for('users.register') }}" class="stretched link">Need An Account ?</a>
+                          <a href="{{ url_for('users.register') }}" class="forget">Need An Account ?</a>
                         </div>
                       {% endfor %}
                     {% endif %}
+                  </div>
+                </div>
                 </form>
               </div>
         <!-- end -->
