@@ -20,11 +20,17 @@
                 {% for category,message in messages%}
                     <div>
                         {% if category == "info" %}
-                            <div class = "alert alert-info" ><i class="fas fa-bell fl-fw icon_bell"></i>{{ message }}</div>
+                            <div class = "alert alert-info" ><i class="fas fa-bell fl-fw icon_bell"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button></div>
                         {% elif category == "success" %}
-                            <div class = "alert alert-success" ><i class="fas fa-check-circle fl-fw icon_tick"></i>{{ message }}</div>
+                            <div class = "alert alert-success" ><i class="fas fa-check-circle fl-fw icon_tick"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button></div>
                         {% elif category == "danger" %}
-                            <div class = "alert alert-danger" ><i class="fas fa-times-circle fl-fw icon_danger"></i>{{ message }}</div>
+                            <div class = "alert alert-danger" ><i class="fas fa-times-circle fl-fw icon_danger"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button></div>
                         {% endif %}
                     </div>
                 {% endfor %}
@@ -64,5 +70,4 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/mdb.min.js')}}"></script>
     <!-- Your custom scripts (optional) -->
-    <script type="text/javascript"></script>
 {% endblock content %}

@@ -24,7 +24,7 @@ def login():
             flash("{}, please check your password!".format(user.username),'danger')
         elif user == None:
             flash("Please, check your email!",'danger')
-    return render_template('login_page1.html' , title = "Login Page", form = form)
+    return render_template('login_page.html' , title = "Login Page", form = form)
 
 @users.route("/register", methods = ['GET','POST'])
 def register():
@@ -38,7 +38,7 @@ def register():
         db.session.commit()
         flash("{}'s account created successfully!".format(form.username.data),'success')
         return redirect(url_for('users.login'))
-    return render_template('register.html' , title = "Register", form = form)
+    return render_template('register1.html' , title = "Register", form = form)
 
 
 @login_required
@@ -74,7 +74,7 @@ def account(user_id):
 
             db.session.commit()
             flash('Your account info is Updated !!!','success')
-            return redirect(url_for('users.account'))
+            return redirect(url_for('users.account', user_id = current_user.id))
         elif request.method == 'GET':
             if current_user.first_name != 'Unknown':
                 form.first_name.data = current_user.first_name

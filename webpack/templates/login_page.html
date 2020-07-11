@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+  {% block files %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='my_style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/fontawesome.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/bootstrap.min.css') }}">
+  {% endblock files %}
+  {% block content %}
+
+<div class="__container">
+  {% with messages = get_flashed_messages(with_categories = true) %}
+      {% if messages %}
+          {% for category,message in messages%}
+              <div>
+                  {% if category == "info" %}
+                      <div class = "alert alert-info" ><i class="fas fa-bell fl-fw icon_bell"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button></div>
+                  {% elif category == "success" %}
+                      <div class = "alert alert-success" ><i class="fas fa-check-circle fl-fw icon_tick"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button></div>
+                  {% elif category == "danger" %}
+                      <div class = "alert alert-danger" ><i class="fas fa-times-circle fl-fw icon_danger"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button></div>
+                  {% endif %}
+              </div>
+          {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+
+    <div class="_container">
+        <form action="" method="POST">
+          {{ form.hidden_tag() }}
+          <div class="form">
+            <div class="input">
+              <h2>LOGIN</h2>
+              <div class="inputbox">
+                {{ form.email(class = "input",placeholder = "Email") }}
+                {% if form.email.errors %}
+                {% for error in form.email.errors%}
+                  <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
+                {% endfor %}
+              {% endif %}
+              </div>
+            
+              
+              <div class="inputbox">
+                {{ form.password(class = "input",placeholder = "Password")}}
+
+                  {% if form.password.errors %}
+                    {% for error in form.password.errors%}
+                      <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
+                    {% endfor %}
+                  {% endif %}
+              </div>
+              
+              <div class="custom-control custom-checkbox mb-4 mt-3">
+                {{ form.checkbox(class = "custom-control-input", style = "background: red;", type = "checkbox",  id="defaultUnchecked") }}
+                {% if form.checkbox.errors %}
+                  {% for error in form.checkbox.errors%}
+                    <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
+                  {% endfor %}
+                {% endif %}
+                <label class="custom-control-label forget-3" for="defaultUnchecked" style="margin-left: 10px;">Remember Me</label>
+              </div>
+
+
+              <div class="inputbox" style="margin-bottom: 30px;">
+                {{ form.submit(type = "submit", placeholder = "Login") }}
+              </div>
+            </div>
+            <a href="{{ url_for('users.request_reset') }}" class="forget">Forgot Password ?</a><br><br>
+            <a href="{{ url_for('users.register') }}"  class="forget-2">Need An Account ?</a>
+          </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="{{ url_for('static',filename='MDB/js/jquery.min.js')}}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/popper.min.js')}}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/bootstrap.min.js')}}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/mdb.min.js')}}"></script>
+  {% endblock content %}
