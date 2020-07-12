@@ -18,6 +18,7 @@
 .sub-container-i{
     width: 330px;
     height: 120px;
+    overflow: hidden;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     box-shadow: -5px -5px 15px rgba(255,255,255,0.8),
