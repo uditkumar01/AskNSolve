@@ -1,48 +1,33 @@
-body,.__container{
-    overflow-x: hidden;
-    margin: 0;
+.container-i{
+    height: 100vh;
+    width: 100vw;
     padding: 0;
-}
-
-.form{
-    margin-top: 50px;
-    margin-left: 0px;
-    margin-bottom: 50px;
-    padding: 0 0;
-    padding-left: 10px;
-}
-._container{
-    margin-top: 20px;
-}
-.input-1{
-    height: 300px;
-    width: 90%;
-    background: red;
-    margin-top: -80px;
-}
-.profile-pic-1{
-    margin-top: -140px;
-    transform: translate(-35%,-50%);
-}
-.upper_box{
-    width: 103%;
-    height: 120px;
-    margin-left: -10px;
+    margin: 0;
     background: #ebf5fc;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 10px;
     text-align: center;
-    overflow: hidden;
+}
+.container-ii{
+    width: 330px;
+    display: inline-block;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: -5px -5px 15px rgba(255,255,255,0.8),
+                5px 5px 10px rgba(0,0,0,0.1);
+    margin-top: 40px;
+}
+.sub-container-i{
+    width: 330px;
+    height: 120px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     box-shadow: -5px -5px 15px rgba(255,255,255,0.8),
                 5px 5px 10px rgba(0,0,0,0.1);
 }
-
-.ask_button{
-    margin-right: 120px;
-    margin-bottom: 50px;
+.profile-pic-1{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
 }
-
-
 
 
 
