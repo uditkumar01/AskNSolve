@@ -1,24 +1,31 @@
+body{
+    overflow-x: hidden;
+}
+
 .form{
     margin-top: 50px;
     margin-left: 0px;
     margin-bottom: 50px;
+    padding: 0 0;
+    padding-left: 10px;
 }
 ._container{
     margin-top: 20px;
 }
 .input-1{
-    background: transparent;
-    margin-left: -25%;
+    height: 300px;
+    width: 90%;
+    background: red;
     margin-top: -80px;
 }
 .profile-pic-1{
-    margin-top: -80px;
-    transform: translate(80%,-40%);
+    margin-top: -140px;
+    transform: translate(93%,-50%);
 }
 .upper_box{
-    width: 130%;
+    width: 103%;
     height: 120px;
-    margin: -15%;
+    margin-left: -10px;
     background: #ebf5fc;
     border-top-left-radius: 5px;
     border-top-right-radius: 10px;
@@ -29,8 +36,8 @@
 }
 
 .ask_button{
-    margin-top: -100px;
-    margin-right: 80px;
+    margin-right: 120px;
+    margin-bottom: 50px;
 }
 
 
