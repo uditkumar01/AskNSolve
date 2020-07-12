@@ -18,7 +18,7 @@ def home():
         else:
             profile_image = url_for('static',filename = 'images/' + 'default_profile_pic.jpg')
 
-        return render_template('Home_page.html' , title = "Home Page" ,posts = posts, profile_pic = profile_image , username_menu = current_user.username,present_time = datetime.utcnow())
+        return render_template('Home_page_light.html' , title = "Home Page" ,posts = posts, profile_pic = profile_image , username_menu = current_user.username,present_time = datetime.utcnow())
     else:
         profile_image = url_for('static',filename = 'images/' + 'default_profile_pic.jpg')
-        return render_template('animate_Home_page.html' , title = "Home Page",posts = posts, profile_pic = profile_image , username_menu = 'Unknown User',present_time = datetime.utcnow() )
+        return render_template('Home_page_light.html' , title = "Home Page",posts = posts, profile_pic = profile_image , username_menu = 'Unknown User',present_time = datetime.utcnow() )

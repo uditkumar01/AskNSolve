@@ -1,24 +1,11 @@
 {% extends "layout.html" %}
     {% block files %}
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/konpa/devicon@master/devicon.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='account_style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/all.min.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/fontawesome.min.css')}}">
-    
-    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='light_theme.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='my_style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='account_style.css')}}">
     <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.lite.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.lite.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/modules/animations-extended.min.css') }}">
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/konpa/devicon@master/devicon.min.css">
     
     {% endblock files %}
     {% block content %}
@@ -44,139 +31,142 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-          <header>
-            <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" style="background: rgba(255,255,255,0.3); color: rgba(0,0,0,0.7); padding: 10px;">
-                <a class="navbar-brand" href="#" style="margin-right: 30px;"><strong>AskNSolve</strong></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto" style="margin-left: 10px; ">
-                      {% if _user.is_authenticated: %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('main.home') }}">Home </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('posts.create_post') }}">Ask</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link"  style="font-size: 16px;" href="{{ url_for('users.account',user_id = _user.id) }}">Account <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About Us</a>
-                        </li>
-                      {% else %}
-                      <li class="nav-item active">
-                        <a class="nav-link" href="{{ url_for('main.home') }}">Home <span class="sr-only">(current)</span></a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="{{ url_for('users.login') }}">Login</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="{{ url_for('users.register') }}">Register</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="#">About Us</a>
-                      {% endif %}
-                    </ul>
-                    {% if _user.is_authenticated: %}
-                      <ul class="navbar-nav nav-flex-icons" style="margin-left: 10px;">
-                        <li class="nav-item">
-                          <a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a>
-                        </li>
-                      </ul>
-                    {% endif %}
-                </div>
-            </nav>
-
-          </header>
+          <!--Navbar -->
+          <nav class="mb-1 navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="#" style="color: rgb(43, 148, 137); font-size: 20px; font-weight: 600;">AskNSolve</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+            aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+            <ul class="navbar-nav mr-auto">
+                {% if current_user.is_authenticated %}
+                <li class="nav-item menu-option">
+                <a class="nav-link" style="color: rgb(51, 177, 164); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(51, 177, 164)'" href="{{url_for('main.home')}}">Home
+                </a>
+                </li>
+                <li class="nav-item menu-option">
+                <a class="nav-link" style="color: rgb(51, 177, 164); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(51, 177, 164)'" href="{{url_for('posts.create_post')}}">Ask</a>
+                </li>
+                <li class="nav-item menu-option active">
+                <a class="nav-link" style="color: rgb(51, 177, 164); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(51, 177, 164)'" href="{{url_for('users.account',user_id = current_user.id)}}">Account<span class="sr-only">(current)</span></a>
+                </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+                {% if current_user.is_authenticated %}
+                <li class="nav-item menu-option">
+                    <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" a href="{{url_for('users.logout')}}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item menu-option">
+                    <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" href="{{url_for('users.login')}}" >Login</a>
+                </li>
+                <li class="nav-item menu-option">
+                    <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" href="{{url_for('users.register')}}" >Register</a>
+                </li>
+                {% endif %}
+            </ul>
+            </div>
+        </nav>
+        <!--/.Navbar -->
 
           <!-- from -->
+        <div class="text-center">
           <div class="dropdown" style=" margin-top: 80px; float: right; margin-right: 10px;">
             
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-dropup-auto="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button class="ask_button" type="button" id="dropdownMenuButton" data-dropup-auto="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 More
               </button>
             
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-menu" style="background: #ebf5fc; margin-left: -70px;" aria-labelledby="dropdownMenuButton">
               {% if form != "NULL" %}
                 
-                <button class="btn purple-gradient btn-rounded" data-toggle="modal" style="font-size: 11px; width: 92%;" data-target="#modalLoginAvatar" >Update info</button>
+                <button class="btn btn-light btn-sm" data-toggle="modal" style="font-size: 11px; width: 92%; background: #ebf5fc; color: rgb(43, 148, 137); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);" data-target="#modalLoginAvatar" >Update info</button>
                 
               {% endif %}
               
-                <a href="{{ url_for('users.all_user_post', username = _user.username) }}" class="btn purple-gradient btn-rounded" style="font-size: 11px; width: 92%;">My Posts</a>
+                <a href="{{ url_for('users.all_user_post', username = _user.username) }}" class="btn btn-light btn-sm" style="font-size: 11px; width: 92%; background: #ebf5fc; color: rgb(43, 148, 137); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);">My Posts</a>
           
               
             </div>
           </div>
+        </div>
           
 
-          <div class="my container-1">
-              <div class="container-2">
-                <div class="profile-pic-2">
-                  <img src="{{ profile_picture }}" alt="Profile Picture" class="pic-pic">
+          <div class="_container">
+              <div class="form">
+                <div class="upper_box">
+                  <span class="circle-1">A</span>
+                  <span class="circle-2">N</span>
+                  <span class="circle-3">S</span>
+                  <span class="circle-4">A</span>
+                  <span class="circle-5">A</span>
+                  <span class="circle-6">A</span>
                 </div>
-              </div>
-                <div class = "info-user"  style="color:rgba(0,0,0,0.7);text-align: left; width: 400px; border: 2px solid transparent; padding: 40px; margin-top: 70px;">
-                  
-                    <div data-toggle="popover" data-placement="top" title="Full Name" data-content="{{_user.first_name}} {{_user.last_name}}" style="display: flex;cursor: pointer;"><p style="font-weight: bold;">Name :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>
-                      {% if _user.first_name|length < 15 %}
-                        {{ _user.first_name }}
-                      {% elif (_user.first_name|length + _user.last_name|length) < 15 %}
-                        {{ _user.first_name }} {{ _user.last_name }}
-                      {% elif _user.first_name|length > 15 %}
-                        {{ _user.first_name[:14] }}
-                      {% endif %}
-                    </p></div>
-                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Full Username"
-                    data-content="{{ _user.username }}"><p style="font-weight: bold;">Username :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>
-                      
-                      {% if _user.username|length < 15 %}
-                        {{ _user.username }}
-                      {% elif _user.username|length > 15 %}
-                        {{ _user.username[:14] }}
-                      {% endif %}
-                    </p></div>
-                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="E-mail"
-                    data-content="{{_user.email}}"><p style="font-weight: bold;">Email : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>{{ _user.email[:14] }}...</p></div>
-                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Skills"
-                    data-content="{{_user.skills}}"><p style="font-weight: bold;">Skills : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>{{ _user.skills[:15] }}...</p></div>
-                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Country"
-                    data-content="{{_user.country}}"><p style="font-weight: bold;">Country : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>{{ _user.country }}</p></div>
-                    <div class="skill_icon">
-                      {% for i in MY_SKILLS_LIST[:8] %}
-                          {% if ((i|upper)[:6] == 'PYTHON') %}
-                            <i style="color: #1abc9c;margin: 4px; font-size: 20px;" class="devicon-python-plain"></i>
-                          {% elif ((i|upper)[:10] == 'JAVASCRIPT') %}
-                            <i style="color: #e67e22;margin: 4px; font-size: 20px;" class="fab fa-js-square skill_icon-1"></i>
-                          {% elif ((i|upper)[:4] == 'JAVA') %}
-                            <i style="color: #3498db;margin: 4px; font-size: 20px;" class="devicon-java-plain" ></i>
-                          {% elif ((i|upper)[:3] == 'CSS') %}
-                            <i style="color: #e74c3c;margin: 4px; font-size: 20px;" class="devicon-javascript-plain" ></i>
-                          {% elif ((i|upper)[:3] == 'C++') %}
-                            <i style="color: #f1c40f;margin: 4px; font-size: 20px;" class="devicon-cplusplus-plain skill_icon-1" ></i>
-                          {% elif ((i|upper)[:1] == 'C') %}
-                            <i style="color: #27ae60;margin: 4px; font-size: 20px;" class="devicon-c-plain skill_icon-1" ></i>
-                          {% elif ((i|upper)[:7] == 'ANDROID') %}
-                            <i style="color: #34495e;margin: 4px; font-size: 20px;" class="devicon-android-plain skill_icon-1" ></i>
-                          {% elif ((i|upper)[:7] == 'ANGULAR') %}
-                            <i style="color: #8e44ad;margin: 4px; font-size: 20px;" class="devicon-angularjs-plain skill_icon-1" ></i>
-                          {% elif ((i|upper)[:4] == 'HTML') %}
-                            <i style="color: #0652DD;margin: 4px; font-size: 20px;" class="devicon-html5-plain" ></i>
-                          {% elif ((i|upper)[:10] == 'POSTGRESQL') %}
-                            <i style="color: #92dd06;margin: 4px; font-size: 20px;"class="devicon-postgresql-plain"></i>
-                          {% elif ((i|upper)[:4] == 'RUBY') %}
-                            <i style="color: #58b8f0;margin: 4px; font-size: 20px;" class="devicon-ruby-plain"></i>
-                          {% elif ((i|upper)[:4] == 'SASS') %}
-                            <i style="color: #2d6915;margin: 4px; font-size: 20px;" class="devicon-sass-original"></i>
-                          {% elif ((i|upper)[:5] == 'SWIFT') %}
-                            <i style="color: #d3a409;margin: 4px; font-size: 20px;" class="devicon-swift-plain"></i>
-                          {% endif %}
-                      {% endfor %}
+                  <div class="input-1">
+                      <div class = "info-user"  style="color:rgba(0,0,0,0.7);text-align: left; width: 400px; border: 2px solid transparent; padding: 40px; margin-top: 70px;">
+                        <div class="profile-pic-2">
+                          <img src="{{ profile_picture }}" alt="Profile Picture" class="profile-pic-1" style="height: 90px; width: 90px;">
+                        </div>
+                          <div data-toggle="popover" data-placement="top" title="Full Name" data-content="{{_user.first_name}} {{_user.last_name}}" style="display: flex;cursor: pointer;"><p style="font-weight: bold; color: rgb(43, 148, 137);">Name :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: rgb(136, 136, 136); font-weight: bolder;">
+                            {% if _user.first_name|length < 15 %}
+                              {{ _user.first_name }}
+                            {% elif (_user.first_name|length + _user.last_name|length) < 15 %}
+                              {{ _user.first_name }} {{ _user.last_name }}
+                            {% elif _user.first_name|length > 15 %}
+                              {{ _user.first_name[:14] }}
+                            {% endif %}
+                          </p></div>
+                          <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Full Username"
+                          data-content="{{ _user.username }}"><p style="font-weight: bold; color: rgb(43, 148, 137);">Username :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: rgb(136, 136, 136); font-weight: bolder;">
+                            
+                            {% if _user.username|length < 15 %}
+                              {{ _user.username }}
+                            {% elif _user.username|length > 15 %}
+                              {{ _user.username[:14] }}
+                            {% endif %}
+                          </p></div>
+                          <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="E-mail"
+                          data-content="{{_user.email}}"><p style="font-weight: bold; color: rgb(43, 148, 137);">Email : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: rgb(136, 136, 136); font-weight: bolder;">{{ _user.email[:14] }}...</p></div>
+                          <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Skills"
+                          data-content="{{_user.skills}}"><p style="font-weight: bold; color: rgb(43, 148, 137);">Skills : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: rgb(136, 136, 136); font-weight: bolder;">{{ _user.skills[:15] }}...</p></div>
+                          <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Country"
+                          data-content="{{_user.country}}"><p style="font-weight: bold; color: rgb(43, 148, 137);">Country : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: rgb(136, 136, 136); font-weight: bolder;">{{ _user.country }}</p></div>
+                          <div class="text-center" style="margin-top: 30px; margin-bottom: -70px; width: 78%;">
+                            {% for i in MY_SKILLS_LIST[:8] %}
+                                {% if ((i|upper)[:6] == 'PYTHON') %}
+                                  <i style="color: #1abc9c;margin: 4px; font-size: 20px;" class="devicon-python-plain"></i>
+                                {% elif ((i|upper)[:10] == 'JAVASCRIPT') %}
+                                  <i style="color: #e67e22;margin: 4px; font-size: 20px;" class="fab fa-js-square skill_icon-1"></i>
+                                {% elif ((i|upper)[:4] == 'JAVA') %}
+                                  <i style="color: #3498db;margin: 4px; font-size: 20px;" class="devicon-java-plain" ></i>
+                                {% elif ((i|upper)[:3] == 'CSS') %}
+                                  <i style="color: #e74c3c;margin: 4px; font-size: 20px;" class="devicon-javascript-plain" ></i>
+                                {% elif ((i|upper)[:3] == 'C++') %}
+                                  <i style="color: #f1c40f;margin: 4px; font-size: 20px;" class="devicon-cplusplus-plain skill_icon-1" ></i>
+                                {% elif ((i|upper)[:1] == 'C') %}
+                                  <i style="color: #27ae60;margin: 4px; font-size: 20px;" class="devicon-c-plain skill_icon-1" ></i>
+                                {% elif ((i|upper)[:7] == 'ANDROID') %}
+                                  <i style="color: #34495e;margin: 4px; font-size: 20px;" class="devicon-android-plain skill_icon-1" ></i>
+                                {% elif ((i|upper)[:7] == 'ANGULAR') %}
+                                  <i style="color: #8e44ad;margin: 4px; font-size: 20px;" class="devicon-angularjs-plain skill_icon-1" ></i>
+                                {% elif ((i|upper)[:4] == 'HTML') %}
+                                  <i style="color: #0652DD;margin: 4px; font-size: 20px;" class="devicon-html5-plain" ></i>
+                                {% elif ((i|upper)[:10] == 'POSTGRESQL') %}
+                                  <i style="color: #92dd06;margin: 4px; font-size: 20px;"class="devicon-postgresql-plain"></i>
+                                {% elif ((i|upper)[:4] == 'RUBY') %}
+                                  <i style="color: #58b8f0;margin: 4px; font-size: 20px;" class="devicon-ruby-plain"></i>
+                                {% elif ((i|upper)[:4] == 'SASS') %}
+                                  <i style="color: #2d6915;margin: 4px; font-size: 20px;" class="devicon-sass-original"></i>
+                                {% elif ((i|upper)[:5] == 'SWIFT') %}
+                                  <i style="color: #d3a409;margin: 4px; font-size: 20px;" class="devicon-swift-plain"></i>
+                                {% endif %}
+                            {% endfor %}
+                          </div>
+                      </div>
                     </div>
-                </div>
-                
+              </div>
             </div>
             
           <!-- end -->
@@ -204,19 +194,19 @@
 
                     <div class="md-form ml-0 mr-0">
                       {{ form.first_name(class="form-control form-control-sm validate ml-0", id = "form29") }}
-                      <label data-error="wrong" data-success="right" for="form29" class="ml-0">First Name</label>
+                      <label data-error="wrong" data-success="right" for="form29" class="ml-0" style="box-shadow: 0 0 0 0 ;">First Name</label>
                     </div>
                     <div class="md-form ml-0 mr-0">
                       {{ form.last_name(class="form-control form-control-sm validate ml-0", id = "form29") }}
-                      <label data-error="wrong" data-success="right" for="form29" class="ml-0">Last Name</label>
+                      <label data-error="wrong" data-success="right" for="form29" class="ml-0" style="box-shadow: 0 0 0 0 ;">Last Name</label>
                     </div>
                     <div class="md-form ml-0 mr-0">
                       {{ form.username(class="form-control form-control-sm validate ml-0", id = "form29") }}
-                      <label data-error="wrong" data-success="right" for="form29" class="ml-0">Username</label>
+                      <label data-error="wrong" data-success="right" for="form29" class="ml-0" style="box-shadow: 0 0 0 0 ;">Username</label>
                     </div>
                     <div class="md-form ml-0 mr-0">
                       {{ form.email(class="form-control form-control-sm validate ml-0", id = "form29") }}
-                      <label data-error="wrong" data-success="right" for="form29" class="ml-0">E-mail</label>
+                      <label data-error="wrong" data-success="right" for="form29" class="ml-0" style="box-shadow: 0 0 0 0 ;">E-mail</label>
                     </div>
                     <div class="md-form ml-0 mr-0">
                       
@@ -473,11 +463,11 @@
                     </div>
                     <div class="md-form ml-0 mr-0">
                       {{ form.skills(class="form-control form-control-sm validate ml-0", id = "form29") }}
-                      <label data-error="wrong" data-success="right" for="form29" class="ml-0">Skills</label>
+                      <label data-error="wrong" data-success="right" for="form29" class="ml-0" style="box-shadow: 0 0 0 0 ;">Skills</label>
                     </div>
 
                     <div class="md-form ml-0 mr-0">
-                      {{ form.profile_pic(class="custom-file-label browse-1") }}
+                      {{ form.profile_pic(class="custom-file-label browse-1", style="width: 100%;") }}
                     </div>
 
                     <div class="text-center mt-4" style="transform: translate(0%,160%);">

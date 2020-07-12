@@ -69,10 +69,10 @@ def post(post_id):
         else:
             profile_image = url_for('static',filename = 'images/' + 'default_profile_pic.jpg')
 
-        return render_template('sep_post.html' , title = post.title ,post = post, profile_pic = profile_image ,_comments = _comments ,no_of_likes = no_of_likes ,username_menu = current_user.username,form = form,post_like_name = post_like_name ,present_time = datetime.utcnow())
+        return render_template('sep_post_light.html' , title = post.title ,post = post, profile_pic = profile_image ,_comments = _comments ,no_of_likes = no_of_likes ,username_menu = current_user.username,form = form,post_like_name = post_like_name ,present_time = datetime.utcnow())
     else:
         profile_image = url_for('static',filename = 'images/' + 'default_profile_pic.jpg')
-        return render_template('sep_post.html' , title = post.title ,post = post, profile_pic = profile_image ,_comments = _comments ,no_of_likes = no_of_likes , username_menu = 'Unknown User' , form = form,post_like_name = post_like_name , present_time = datetime.utcnow())
+        return render_template('sep_post_light.html' , title = post.title ,post = post, profile_pic = profile_image ,_comments = _comments ,no_of_likes = no_of_likes , username_menu = 'Unknown User' , form = form,post_like_name = post_like_name , present_time = datetime.utcnow())
 
 # @login_required
 # @posts.route("/post_id=<int:post_id>/viewcomments", methods = ['POST','GET'])

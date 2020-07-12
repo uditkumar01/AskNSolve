@@ -4,10 +4,17 @@
     box-sizing: border-box;
     font-family: 'Poppins',sans-serif,Arial, Helvetica;
 }
-
 .__container{
-    background: #ebf5fc;
+    color: #ebf5fc;
 }
+body{
+    background: #ebf5fc;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-color: rgba(255,255,255,0.6) rgba(255,255,255,0);
+    scroll-behavior: smooth;
+}
+
 ._container{
     display: flex;
     justify-content: center;
