@@ -72,26 +72,7 @@
         <!--/.Navbar -->
 
           <!-- from -->
-        <div class="text-center">
-          <div class="dropdown" style=" margin-top: 80px; float: right; margin-right: 10px;">
-            
-              <button class="ask_button" type="button" id="dropdownMenuButton" data-dropup-auto="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                More
-              </button>
-            
-            <div class="dropdown-menu" style="background: #ebf5fc; margin-left: -70px;" aria-labelledby="dropdownMenuButton">
-              {% if form != "NULL" %}
-                
-                <button class="btn btn-light btn-sm" data-toggle="modal" style="font-size: 11px; width: 92%; background: #ebf5fc; color: rgb(43, 148, 137); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);" data-target="#modalLoginAvatar" >Update info</button>
-                
-              {% endif %}
-              
-                <a href="{{ url_for('users.all_user_post', username = _user.username) }}" class="btn btn-light btn-sm" style="font-size: 11px; width: 92%; background: #ebf5fc; color: rgb(43, 148, 137); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);">My Posts</a>
-          
-              
-            </div>
-          </div>
-        </div>
+
           
 
           <div class="_container">
@@ -166,10 +147,40 @@
                           </div>
                       </div>
                     </div>
+                    <div class="text-center">
+                      <div class="dropdown" style=" margin-top: 80px; float: right; margin-right: 10px;">
+                        
+                          <button class="ask_button"type="button" id="dropdownMenuButton" data-dropup-auto="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            More
+                          </button>
+                        
+                        <div class="dropdown-menu" style="background: #ebf5fc; margin-left: -70px;" aria-labelledby="dropdownMenuButton">
+                          {% if form != "NULL" %}
+                            
+                            <button class="btn btn-light btn-sm" data-toggle="modal" style="font-size: 11px; width: 92%; background: #ebf5fc; color: rgb(43, 148, 137); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);" data-target="#modalLoginAvatar" >Update info</button>
+                            
+                          {% endif %}
+                          
+                            <a href="{{ url_for('users.all_user_post', username = _user.username) }}" class="btn btn-light btn-sm" style="font-size: 11px; width: 92%; background: #ebf5fc; color: rgb(43, 148, 137); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);">My Posts</a>
+                      
+                          
+                        </div>
+                      </div>
+                    </div>
               </div>
+              
             </div>
             
           <!-- end -->
+
+
+
+
+          
+
+
+
+
 
 
       </div>

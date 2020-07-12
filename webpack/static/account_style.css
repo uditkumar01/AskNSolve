@@ -1,6 +1,7 @@
 .form{
     margin-top: 50px;
-    margin-left: 226px;
+    margin-left: 0px;
+    margin-bottom: 50px;
 }
 ._container{
     margin-top: 20px;
@@ -29,7 +30,7 @@
 
 .ask_button{
     margin-top: -100px;
-    margin-right: 130px;
+    margin-right: 80px;
 }
 
 
@@ -160,13 +161,5 @@
         box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
                   inset  5px 5px 10px rgba(0,0,0,0.1);
         top: 50px;
-    }
-}
-@media (max-width: 48em){
-    .ask_button{
-        margin-right: 130px;
-    }
-    ._container{
-        margin-top: 100px;
     }
 }
