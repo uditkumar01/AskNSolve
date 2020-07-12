@@ -3,13 +3,27 @@ body,.__container{
     margin: 0;
     padding: 0;
 }
-
-.form{
-    margin-top: 50px;
-    margin-left: 0px;
-    margin-bottom: 50px;
-    padding: 0 0;
-    padding-left: 10px;
+.container-1{
+    margin: auto;
+    margin-top: 70px;
+    height: auto;
+    padding: 0px;
+    text-align: center;
+    max-width: 350px;
+    background: #ebf5fc;
+    box-shadow: -5px -5px 15px rgba(255,255,255,0.9),
+                5px 5px 10px rgba(0,0,0,0.2);
+}
+.container-2{
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    max-width: 350px;
+    background: #ebf5fc;
+    overflow: hidden;
+    height: 130px;
+    box-shadow: -5px -5px 15px rgba(255,255,255,0.9),
+                5px 5px 10px rgba(0,0,0,0.2);
 }
 ._container{
     margin-top: 20px;
@@ -20,9 +34,12 @@ body,.__container{
     background: red;
     margin-top: -80px;
 }
-.profile-pic-1{
-    margin-top: -140px;
-    transform: translate(93%,-50%);
+.profile-pic-2{
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    margin-top: 0px;
+    transform: translate(50%,-85%);
 }
 .upper_box{
     width: 103%;
