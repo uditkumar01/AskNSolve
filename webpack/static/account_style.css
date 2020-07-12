@@ -1,5 +1,7 @@
-body{
+body,.__container{
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 .form{
