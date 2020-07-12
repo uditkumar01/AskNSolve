@@ -86,7 +86,7 @@ def account(user_id):
             form.email.data = current_user.email
         profile_image = url_for('static',filename = 'images/' + current_user.profile_pic)
 
-        return render_template('account_light.html',title = 'Your Account Info', profile_picture = profile_image, form = form, MY_SKILLS_LIST = MY_SKILLS_LIST, _user = current_user)
+        return render_template('account.html',title = 'Your Account Info', profile_picture = profile_image, form = form, MY_SKILLS_LIST = MY_SKILLS_LIST, _user = current_user)
 
 @login_required
 @users.route("/user/<string:username>")
