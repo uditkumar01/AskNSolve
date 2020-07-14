@@ -92,7 +92,30 @@
         5px 5px 10px rgba(0,0,0,0.1);
         top: 10px;
     }
-    50%,100%{
+    25%{
+        color: rgba(55, 201, 186,0.3);
+        background: rgba(55, 201, 186,0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    50%{
+        color: rgba(101, 201, 55,0.3);
+        background: rgba(101, 201, 55, 0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    75%{
+        color: rgba(23, 199, 230, 0.3);
+        background: rgba(23, 199, 230, 0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    100%{
+        color: rgba(186, 201, 55, 0.3);
+        background: rgba(186, 201, 55, 0.3);
         box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
                   inset  5px 5px 10px rgba(0,0,0,0.1);
         top: 50px;
@@ -104,7 +127,30 @@
         5px 5px 10px rgba(0,0,0,0.1);
         top: 10px;
     }
-    50%,100%{
+    25%{
+        color: rgba(201, 143, 55, 0.3);
+        background: rgba(201, 143, 55, 0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    50%{
+        color: rgba(130, 55, 201, 0.3);
+        background: rgba(130, 55, 201, 0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    75%{
+        color: rgba(23, 230, 75, 0.3);
+        background: rgba(23, 230, 75, 0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    100%{
+        color: rgba(201, 55, 123, 0.3);
+        background: rgba(201, 55, 123, 0.3);
         box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
                   inset  5px 5px 10px rgba(0,0,0,0.1);
         top: 50px;
@@ -116,7 +162,30 @@
         5px 5px 10px rgba(0,0,0,0.1);
         top: 10px;
     }
-    50%,100%{
+    25%{
+        color: rgba(201, 55, 92, 0.3);
+        background: rgba(201, 55, 92, 0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    50%{
+        color: rgba(106, 55, 201, 0.3);
+        background: rgba(106, 55, 201, 0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    75%{
+        color: rgba(68, 23, 230, 0.3);
+        background: rgba(68, 23, 230, 0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    100%{
+        color: rgba(55, 201, 67, 0.3);
+        background: rgba(55, 201, 67, 0.3);
         box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
                   inset  5px 5px 10px rgba(0,0,0,0.1);
         top: 50px;
@@ -128,7 +197,30 @@
         5px 5px 10px rgba(0,0,0,0.1);
         top: 10px;
     }
-    50%,100%{
+    25%{
+        color: rgba(201, 55, 92, 0.3);
+        background: rgba(201, 55, 92, 0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    50%{
+        color: rgba(106, 55, 201, 0.3);
+        background: rgba(106, 55, 201, 0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    75%{
+        color: rgba(68, 23, 230, 0.3);
+        background: rgba(68, 23, 230, 0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    100%{
+        color: rgba(55, 201, 67, 0.3);
+        background: rgba(55, 201, 67, 0.3);
         box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
                   inset  5px 5px 10px rgba(0,0,0,0.1);
         top: 50px;
@@ -140,7 +232,30 @@
         5px 5px 10px rgba(0,0,0,0.1);
         top: 10px;
     }
-    50%,100%{
+    25%{
+        color: rgba(174, 201, 55, 0.3);
+        background: rgba(174, 201, 55, 0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    50%{
+        color: rgba(55, 179, 201, 0.3);
+        background: rgba(55, 179, 201, 0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    75%{
+        color: rgba(23, 230, 75, 0.3);
+        background: rgba(23, 230, 75, 0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    100%{
+        color: rgba(201, 55, 99, 0.3);
+        background: rgba(201, 55, 99, 0.3);
         box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
                   inset  5px 5px 10px rgba(0,0,0,0.1);
         top: 50px;
@@ -152,7 +267,30 @@
         5px 5px 10px rgba(0,0,0,0.1);
         top: 10px;
     }
-    50%,100%{
+    25%{
+        color: rgba(55, 135, 201, 0.3);
+        background: rgba(55, 135, 201, 0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    50%{
+        color: rgba(133, 201, 55, 0.3);
+        background: rgba(133, 201, 55, 0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    75%{
+        color: rgba(230, 23, 137, 0.3);
+        background: rgba(230, 23, 137, 0.3);
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
+                  inset  5px 5px 10px rgba(0,0,0,0.1);
+        top: 50px;
+    }
+    100%{
+        color: rgba(201, 101, 55, 0.3);
+        background: rgba(201, 101, 55, 0.3);
         box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
                   inset  5px 5px 10px rgba(0,0,0,0.1);
         top: 50px;

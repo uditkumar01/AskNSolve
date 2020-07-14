@@ -132,7 +132,7 @@
                                 {% for no in posts.iter_pages(left_edge = 1,right_edge = 1, left_current = 1, right_current = 2) %}
                                     {% if no %}
                                         {% if posts.page == no %}
-                                            <a href="{{ url_for('main.home',page = no) }}" class="page-i">{{ no }}</a>
+                                            <a href="{{ url_for('main.home',page = no) }}" class="page-i active">{{ no }}</a>
                                         {% else %}
                                             <a href="{{ url_for('main.home',page = no) }}" class="page-i">{{ no }}</a>
                                         {% endif %}
