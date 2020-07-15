@@ -17,7 +17,10 @@ def create_post():
         db.session.commit()
         flash('Your Question is Uploded! ', 'success')
         return redirect(url_for('main.home'))
-    return render_template('create_post.html', title = "Ask", form = form, form_title_webpage = "Ask Here" , button_name = "Ask")
+    if current_user.theme == 'NULL':
+        return render_template('create_post.html', title = "Ask", form = form, form_title_webpage = "Ask Here" , button_name = "Ask")
+    else:
+        return render_template('create_post_dark.html', title = "Ask", form = form, form_title_webpage = "Ask Here" , button_name = "Ask")
 
 @login_required
 @posts.route("/like/<int:post_id>", methods = ['POST','GET'])
@@ -64,14 +67,16 @@ def post(post_id):
         else:
             flash(f'Your Comment is not uploaded successfully!','danger')
     if current_user.is_authenticated:
-        if current_user.profile_pic:
-            profile_image = url_for('static',filename = 'images/' + current_user.profile_pic)
-        else:
-            profile_image = url_for('static',filename = 'images/' + 'default_profile_pic.jpg')
+        
+        profile_image = url_for('static',filename = 'images/' + current_user.profile_pic)
 
-        return render_template('sep_post_light.html' , title = post.title ,post = post, profile_pic = profile_image ,_comments = _comments ,no_of_likes = no_of_likes ,username_menu = current_user.username,form = form,post_like_name = post_like_name ,present_time = datetime.utcnow())
+        if current_user.theme == 'NULL':
+            return render_template('sep_post_light.html' , title = post.title ,post = post, profile_pic = profile_image ,_comments = _comments ,no_of_likes = no_of_likes ,username_menu = current_user.username,form = form,post_like_name = post_like_name ,present_time = datetime.utcnow())
+        else:
+            return render_template('sep_post_dark.html' , title = post.title ,post = post, profile_pic = profile_image ,_comments = _comments ,no_of_likes = no_of_likes ,username_menu = current_user.username,form = form,post_like_name = post_like_name ,present_time = datetime.utcnow())
     else:
         profile_image = url_for('static',filename = 'images/' + 'default_profile_pic.jpg')
+
         return render_template('sep_post_light.html' , title = post.title ,post = post, profile_pic = profile_image ,_comments = _comments ,no_of_likes = no_of_likes , username_menu = 'Unknown User' , form = form,post_like_name = post_like_name , present_time = datetime.utcnow())
 
 # @login_required
@@ -117,7 +122,10 @@ def update_post(post_id):
         return redirect(url_for('posts.post', post_id = post.id))
     form.post_title.data = post.title
     form.content.data = post.content
-    return render_template('create_post.html', title = "Update Question", form = form , form_title_webpage = "Edit Question" , button_name = 'Update')
+    if current_user.theme == 'NULL':
+        return render_template('create_post.html', title = "Update Question", form = form , form_title_webpage = "Edit Question" , button_name = 'Update')
+    else:
+        return render_template('create_post_dark.html', title = "Update Question", form = form , form_title_webpage = "Edit Question" , button_name = 'Update')
 
 @login_required
 @posts.route("/ask/<int:post_id>/delete" , methods = ['POST'])

@@ -39,7 +39,8 @@
 
 .circle-1,.circle-2,.circle-3,.circle-4,.circle-5,.circle-6{
     color: transparent;
-    padding: 50px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     box-shadow: -5px -5px 15px rgba(255,255,255,0.8),
                 5px 5px 10px rgba(0,0,0,0.1);
@@ -50,249 +51,116 @@
     margin-top: -30px;
     margin-left: -30px;
     animation: animate1 1s linear infinite;
+    overflow: hidden;
 }
 .circle-2:nth-child(2){
     float: right;
     margin-top: 80px;
     margin-right: -20px;
-    padding: 20px;
+    width: 50px;
+    height: 50px;
     animation: animate2 1s linear infinite;
     animation-delay: 0.25s;
+    overflow: hidden;
 
 }
 .circle-3:nth-child(3){
     float: inline-end;
     margin-top: -60px;
     margin-right: -80px;
-    padding: 30px;
+    width: 90px;
+    height: 90px;
     animation: animate3 1s linear infinite;
     animation-delay: 0.5s;
+    overflow: hidden;
 }
 .circle-4:nth-child(4){
-    padding: 40px;
+    width: 90px;
+    height: 90px;
+    padding: 30px;
     animation: animate4 1s linear infinite;
     animation-delay: 0.75s;
+    overflow: hidden;
 }
 .circle-5:nth-child(5){
     float: right;
     animation: animate5 1s linear infinite;
     animation-delay: 1s;
+    overflow: hidden;
 }
 .circle-6:nth-child(6){
     float: left;
     margin-top: 80px;
     margin-left: -20px;
-    padding: 20px;
+    width: 60px;
+    height: 60px;
     animation: animate6 1s linear infinite;
     animation-delay: 1.25s;
+    overflow: hidden;
 }
 @keyframes animate1{
     0%{
         box-shadow: -5px -5px 15px rgba(255,255,255,0.8),
-        5px 5px 10px rgba(0,0,0,0.1);
+                    5px 5px 10px rgba(0,0,0,0.1);
         top: 10px;
     }
-    25%{
-        color: rgba(55, 201, 186,0.3);
-        background: rgba(55, 201, 186,0.3);
+    50%,100%{
         box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    50%{
-        color: rgba(101, 201, 55,0.3);
-        background: rgba(101, 201, 55, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    75%{
-        color: rgba(23, 199, 230, 0.3);
-        background: rgba(23, 199, 230, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    100%{
-        color: rgba(186, 201, 55, 0.3);
-        background: rgba(186, 201, 55, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
+                   inset  5px 5px 10px rgba(0,0,0,0.1);
     }
 }
 @keyframes animate2{
     0%{
         box-shadow: -5px -5px 15px rgba(255,255,255,0.8),
-        5px 5px 10px rgba(0,0,0,0.1);
+                    5px 5px 10px rgba(0,0,0,0.1);
         top: 10px;
     }
-    25%{
-        color: rgba(201, 143, 55, 0.3);
-        background: rgba(201, 143, 55, 0.3);
+    50%,100%{
         box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    50%{
-        color: rgba(130, 55, 201, 0.3);
-        background: rgba(130, 55, 201, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    75%{
-        color: rgba(23, 230, 75, 0.3);
-        background: rgba(23, 230, 75, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    100%{
-        color: rgba(201, 55, 123, 0.3);
-        background: rgba(201, 55, 123, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
+                   inset  5px 5px 10px rgba(0,0,0,0.1);
     }
 }
 @keyframes animate3{
     0%{
         box-shadow: -5px -5px 15px rgba(255,255,255,0.8),
-        5px 5px 10px rgba(0,0,0,0.1);
+                    5px 5px 10px rgba(0,0,0,0.1);
         top: 10px;
     }
-    25%{
-        color: rgba(201, 55, 92, 0.3);
-        background: rgba(201, 55, 92, 0.3);
+    50%,100%{
         box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    50%{
-        color: rgba(106, 55, 201, 0.3);
-        background: rgba(106, 55, 201, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    75%{
-        color: rgba(68, 23, 230, 0.3);
-        background: rgba(68, 23, 230, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    100%{
-        color: rgba(55, 201, 67, 0.3);
-        background: rgba(55, 201, 67, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
+                   inset  5px 5px 10px rgba(0,0,0,0.1);
     }
 }
 @keyframes animate4{
     0%{
         box-shadow: -5px -5px 15px rgba(255,255,255,0.8),
-        5px 5px 10px rgba(0,0,0,0.1);
+                    5px 5px 10px rgba(0,0,0,0.1);
         top: 10px;
     }
-    25%{
-        color: rgba(201, 55, 92, 0.3);
-        background: rgba(201, 55, 92, 0.3);
+    50%,100%{
         box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    50%{
-        color: rgba(106, 55, 201, 0.3);
-        background: rgba(106, 55, 201, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    75%{
-        color: rgba(68, 23, 230, 0.3);
-        background: rgba(68, 23, 230, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    100%{
-        color: rgba(55, 201, 67, 0.3);
-        background: rgba(55, 201, 67, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
+                   inset  5px 5px 10px rgba(0,0,0,0.1);
     }
 }
 @keyframes animate5{
     0%{
-        box-shadow: -5px -5px 15px rgba(255,255,255,0.8),
-        5px 5px 10px rgba(0,0,0,0.1);
+        box-shadow: -5px -5px 15px rgba(255,255,255,1),
+                    5px 5px 10px rgba(0,0,0,0.1);
         top: 10px;
     }
-    25%{
-        color: rgba(174, 201, 55, 0.3);
-        background: rgba(174, 201, 55, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    50%{
-        color: rgba(55, 179, 201, 0.3);
-        background: rgba(55, 179, 201, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    75%{
-        color: rgba(23, 230, 75, 0.3);
-        background: rgba(23, 230, 75, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    100%{
-        color: rgba(201, 55, 99, 0.3);
-        background: rgba(201, 55, 99, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
+    50%,100%{
+        box-shadow:inset -5px -5px 15px rgba(255,255,255,1),
+                   inset  5px 5px 10px rgba(0,0,0,0.1);
     }
 }
 @keyframes animate6{
     0%{
         box-shadow: -5px -5px 15px rgba(255,255,255,0.8),
-        5px 5px 10px rgba(0,0,0,0.1);
+                    5px 5px 10px rgba(0,0,0,0.1);
         top: 10px;
     }
-    25%{
-        color: rgba(55, 135, 201, 0.3);
-        background: rgba(55, 135, 201, 0.3);
+    50%,100%{
         box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    50%{
-        color: rgba(133, 201, 55, 0.3);
-        background: rgba(133, 201, 55, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    75%{
-        color: rgba(230, 23, 137, 0.3);
-        background: rgba(230, 23, 137, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
-    }
-    100%{
-        color: rgba(201, 101, 55, 0.3);
-        background: rgba(201, 101, 55, 0.3);
-        box-shadow:inset -5px -5px 15px rgba(255,255,255,0.8),
-                  inset  5px 5px 10px rgba(0,0,0,0.1);
-        top: 50px;
+                   inset  5px 5px 10px rgba(0,0,0,0.1);
     }
 }

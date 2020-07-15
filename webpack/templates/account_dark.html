@@ -1,190 +1,175 @@
 {% extends "layout.html" %}
-    {% block files %}
-    
-    <link rel="stylesheet" href="{{ url_for('static',filename='light_theme.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='my_style.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='account_style.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/konpa/devicon@master/devicon.min.css">
-    
-    {% endblock files %}
-    {% block content %}
-  <div class="__container">
-          {% with messages = get_flashed_messages(with_categories = true) %}
-            {% if messages %}
-                {% for category,message in messages%}
-                    <div>
-                        {% if category == "info" %}
-                            <div class = "alert alert-info" role="alert"><i class="fas fa-bell fl-fw icon_bell"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button></div>
-                        {% elif category == "success" %}
-                            <div class = "alert alert-success" role="alert"><i class="fas fa-check-circle fl-fw icon_tick"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button></div>
-                        {% elif category == "danger" %}
-                            <div class = "alert alert-danger" role="alert"><i class="fas fa-times-circle fl-fw icon_danger"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button></div>
-                        {% endif %}
-                    </div>
-                {% endfor %}
+  {% block files %}
+  <link rel="stylesheet" href="{{ url_for('static',filename='dark_theme.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='toogle.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/konpa/devicon@master/devicon.min.css">
+  {% endblock files %}
+  {% block content %}
+
+<div class="__container">
+  {% with messages = get_flashed_messages(with_categories = true) %}
+      {% if messages %}
+          {% for category,message in messages%}
+              <div>
+                  {% if category == "info" %}
+                      <div class = "alert alert-info" ><i class="fas fa-bell fl-fw icon_bell"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button></div>
+                  {% elif category == "success" %}
+                      <div class = "alert alert-success" ><i class="fas fa-check-circle fl-fw icon_tick"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button></div>
+                  {% elif category == "danger" %}
+                      <div class = "alert alert-danger" ><i class="fas fa-times-circle fl-fw icon_danger"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button></div>
+                  {% endif %}
+              </div>
+          {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <!--Navbar -->
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark" style="background: #131419;">
+        <span class="my-brand" style="color: #fff; font-size: 20px; font-weight: 600; cursor: pointer; margin-right: 20px;">AskNSolve</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+        aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+        <ul class="navbar-nav mr-auto">
+            {% if current_user.is_authenticated %}
+            
+            <li class="nav-item menu-option">
+                <a class="nav-link button-i" style="color: grey; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'lime'" onmouseout="this.style.color = 'grey'" href="{{url_for('main.home')}}">Home</a>
+            </li>
+            <li class="nav-item menu-option">
+            <a class="nav-link button-ii" style="color: grey; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'orange'" onmouseout="this.style.color = 'grey'" href="{{url_for('posts.create_post')}}">Ask</a>
+            </li>
+            <li class="nav-item menu-option">
+            <a class="nav-link button-iii" style="color: #fff; font-size: 15px; font-weight: 600; border: 2px solid #fff; border-radius: 5px; text-shadow: 0px 0px 5px rgba(33,156,243,0.5),0px 0px 10px rgba(33,156,243,0.5); box-shadow:   0px 0px 5px rgba(33,156,243,0.5),0px 0px 10px rgba(33,156,243,0.5),0px 0px 15px rgba(33,156,243,0.5),inset 0px 0px 10px rgba(33,156,243,1);" onmouseover="this.style.color = '#fff'" onmouseout="this.style.color = '#fff'" href="{{url_for('users.account',user_id = current_user.id)}}">Account</a>
+            </li>
             {% endif %}
-        {% endwith %}
-          <!--Navbar -->
-          <nav class="mb-1 navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="#" style="color: rgb(43, 148, 137); font-size: 20px; font-weight: 600;">AskNSolve</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
-            aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
-            <ul class="navbar-nav mr-auto">
-                {% if current_user.is_authenticated %}
-                <li class="nav-item menu-option">
-                <a class="nav-link" style="color: rgb(51, 177, 164); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(51, 177, 164)'" href="{{url_for('main.home')}}">Home
-                </a>
-                </li>
-                <li class="nav-item menu-option">
-                <a class="nav-link" style="color: rgb(51, 177, 164); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(51, 177, 164)'" href="{{url_for('posts.create_post')}}">Ask</a>
-                </li>
-                <li class="nav-item menu-option active">
-                <a class="nav-link" style="color: rgb(51, 177, 164); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(51, 177, 164)'" href="{{url_for('users.account',user_id = current_user.id)}}">Account<span class="sr-only">(current)</span></a>
-                </li>
-                {% endif %}
-            </ul>
-            <ul class="navbar-nav ml-auto nav-flex-icons">
-                {% if current_user.is_authenticated %}
-                <li class="nav-item menu-option">
-                    <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" a href="{{url_for('users.logout')}}">Logout</a>
-                </li>
-                {% else %}
-                <li class="nav-item menu-option">
-                    <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" href="{{url_for('users.login')}}" >Login</a>
-                </li>
-                <li class="nav-item menu-option">
-                    <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" href="{{url_for('users.register')}}" >Register</a>
-                </li>
-                {% endif %}
-            </ul>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            {% if current_user.is_authenticated %}
+            <li class="nav-item menu-option">
+                <a class="nav-link button-iv" style="color: rgb(126, 0, 0); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = '#FF0000'" onmouseout="this.style.color = 'crimson'" a href="{{url_for('users.logout')}}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item menu-option">
+                <a class="nav-link button-ii" style="color:grey; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'orange'" onmouseout="this.style.color = 'grey'" href="{{url_for('users.login')}}" >Login</a>
+            </li>
+            <li class="nav-item menu-option">
+                <a class="nav-link button-i" style="color: grey; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'lime'" onmouseout="this.style.color = 'grey'" href="{{url_for('users.register')}}" >Register</a>
+            </li>
+            {% endif %}
+        </ul>
+        </div>
+    </nav>
+    <!--/.Navbar -->
+    <div class="container-i">
+        <div class="container-ii" style="margin-bottom: 40px;">
+            <div class="sub-container-i">
+                  <span class="circle-1">.</span>
+                  <span class="circle-2">.</span>
+                  <span class="circle-3">.</span>
+                  <span class="circle-4">.</span>
+                  <span class="circle-5">.</span>
+                  <span class="circle-6">.</span>
             </div>
-        </nav>
-        <!--/.Navbar -->
-
-          <!-- from -->
-
-          
-
-          <div class="_container">
-              <div class="form">
-                <div class="upper_box">
-                  <span class="circle-1">A</span>
-                  <span class="circle-2">N</span>
-                  <span class="circle-3">S</span>
-                  <span class="circle-4">A</span>
-                  <span class="circle-5">A</span>
-                  <span class="circle-6">A</span>
-                </div>
-                  <div class="_container">
-                      <div class = "info-user text-center"  style="color:rgba(0,0,0,0.7);text-align: left; width: 400px; border: 2px solid transparent; padding: 40px; margin-top: 70px;">
-                        <div class="profile-pic-2">
-                          <img src="{{ profile_picture }}" alt="Profile Picture" class="profile-pic-1" style="height: 90px; width: 90px;">
-                        </div>
-                          <div data-toggle="popover" data-placement="top" title="Full Name" data-content="{{_user.first_name}} {{_user.last_name}}" style="display: flex;cursor: pointer;"><p style="font-weight: bold; color: rgb(43, 148, 137);">Name :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: rgb(136, 136, 136); font-weight: bolder;">
-                            {% if _user.first_name|length < 15 %}
-                              {{ _user.first_name }}
-                            {% elif (_user.first_name|length + _user.last_name|length) < 15 %}
-                              {{ _user.first_name }} {{ _user.last_name }}
-                            {% elif _user.first_name|length > 15 %}
-                              {{ _user.first_name[:14] }}
-                            {% endif %}
-                          </p></div>
-                          <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Full Username"
-                          data-content="{{ _user.username }}"><p style="font-weight: bold; color: rgb(43, 148, 137);">Username :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: rgb(136, 136, 136); font-weight: bolder;">
+            <div class="sub-container-ii text-center">
+                
+                  <div class="profile-pic-2">
+                    <img src="{{ profile_picture }}" alt="Profile Picture" class="profile-pic-1" style="transform: translate(0%,-50%); height: 80px; width: 80px;">
+                  </div>
+                    <div data-toggle="popover" data-placement="top" title="Full Name" data-content="{{_user.first_name}} {{_user.last_name}}" style="margin-left: 30px; display: flex;cursor: pointer;"><p style="font-weight: bold; color: rgb(0, 255, 229); font-family: Aldrich,Arial, Helvetica, sans-serif;">Name :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">
+                      {% if _user.first_name|length < 15 %}
+                        {{ _user.first_name }}
+                      {% elif (_user.first_name|length + _user.last_name|length) < 15 %}
+                        {{ _user.first_name }} {{ _user.last_name }}
+                      {% elif _user.first_name|length > 15 %}
+                        {{ _user.first_name[:14] }}
+                      {% endif %}
+                    </p></div>
+                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Full Username"
+                    data-content="{{ _user.username }}"><p style="font-family: Aldrich,Arial, Helvetica, sans-serif; margin-left: 30px; font-weight: bold; color: rgb(0, 255, 229);">Username :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">
+                      
+                      {% if _user.username|length < 11 %}
+                        {{ _user.username }}
+                      {% elif _user.username|length > 11 %}
+                        {{ _user.username[:10] }}...
+                      {% endif %}
+                    </p></div>
+                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="E-mail"
+                    data-content="{{_user.email}}"><p style="margin-left: 30px; font-weight: bold; color: rgb(0, 255, 229); font-family: Aldrich,Arial, Helvetica, sans-serif;">Email : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">{{ _user.email[:14] }}...</p></div>
+                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Skills"
+                    data-content="{{_user.skills}}"><p style="margin-left: 30px;font-weight: bold; color: rgb(0, 255, 229); font-family: Aldrich,Arial, Helvetica, sans-serif;">Skills : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">{{ _user.skills[:15] }}...</p></div>
+                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Country"
+                    data-content="{{_user.country}}"><p style="margin-left: 30px; font-weight: bold; color: rgb(0, 255, 229); font-family: Aldrich,Arial, Helvetica, sans-serif;">Country : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">{{ _user.country }}</p></div>
+                    <div class="text-center" style="margin-left: 30px; margin-top: 30px; margin-bottom: -50px; width: 78%;">
+                      {% for i in MY_SKILLS_LIST[:8] %}
+                          {% if ((i|upper)[:6] == 'PYTHON') %}
+                            <i style="color: #00ffcc;margin: 4px; font-size: 20px;" class="devicon-python-plain"></i>
+                          {% elif ((i|upper)[:10] == 'JAVASCRIPT') %}
+                            <i style="color: #ff7700;margin: 4px; font-size: 20px;" class="fab fa-js-square skill_icon-1"></i>
+                          {% elif ((i|upper)[:4] == 'JAVA') %}
+                            <i style="color: #0099ff;margin: 4px; font-size: 20px;" class="devicon-java-plain" ></i>
+                          {% elif ((i|upper)[:3] == 'CSS') %}
+                            <i style="color: #ff1900;margin: 4px; font-size: 20px;" class="devicon-javascript-plain" ></i>
+                          {% elif ((i|upper)[:3] == 'C++') %}
+                            <i style="color: #ffcc00;margin: 4px; font-size: 20px;" class="devicon-cplusplus-plain skill_icon-1" ></i>
+                          {% elif ((i|upper)[:1] == 'C') %}
+                            <i style="color: #00ff6a;margin: 4px; font-size: 20px;" class="devicon-c-plain skill_icon-1" ></i>
+                          {% elif ((i|upper)[:7] == 'ANDROID') %}
+                            <i style="color: #0080ff;margin: 4px; font-size: 20px;" class="devicon-android-plain skill_icon-1" ></i>
+                          {% elif ((i|upper)[:7] == 'ANGULAR') %}
+                            <i style="color: #b300ff;margin: 4px; font-size: 20px;" class="devicon-angularjs-plain skill_icon-1" ></i>
+                          {% elif ((i|upper)[:4] == 'HTML') %}
+                            <i style="color: rgb(0, 89, 255);margin: 4px; font-size: 20px;" class="devicon-html5-plain" ></i>
+                          {% elif ((i|upper)[:10] == 'POSTGRESQL') %}
+                            <i style="color: #a6ff00;margin: 4px; font-size: 20px;"class="devicon-postgresql-plain"></i>
+                          {% elif ((i|upper)[:4] == 'RUBY') %}
+                            <i style="color: #00a2ff;margin: 4px; font-size: 20px;" class="devicon-ruby-plain"></i>
+                          {% elif ((i|upper)[:4] == 'SASS') %}
+                            <i style="color: #48ff00;margin: 4px; font-size: 20px;" class="devicon-sass-original"></i>
+                          {% elif ((i|upper)[:5] == 'SWIFT') %}
+                            <i style="color: #ffc400;margin: 4px; font-size: 20px;" class="devicon-swift-plain"></i>
+                          {% endif %}
+                      {% endfor %}
+                      <div>
                             
-                            {% if _user.username|length < 15 %}
-                              {{ _user.username }}
-                            {% elif _user.username|length > 15 %}
-                              {{ _user.username[:14] }}
+                            <div style="transform: translate(1%,100%); margin-top: 40px; margin-bottom: -40px;"><a class="ask_button" style="font-family: Aldrich,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #fff; font-size: 13px; border: 2px solid #fff; border-radius: 5px; text-shadow: 0px 0px 5px rgba(33,156,243,0.5),0px 0px 10px rgba(33,156,243,0.5); box-shadow:   0px 0px 5px rgba(33,156,243,0.5),0px 0px 10px rgba(33,156,243,0.5),0px 0px 15px rgba(33,156,243,0.5),inset 0px 0px 10px rgba(33,156,243,1);" onmouseover="this.style.color = '#fff'" onmouseout="this.style.color = '#fff'" href="{{url_for('users.theme_select')}}">
+                            {% if current_user.theme == 'NULL' %}
+                              DARK MODE</a></div>
+                            {% else %}
+                              LIGHT MODE</a></div>
                             {% endif %}
-                          </p></div>
-                          <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="E-mail"
-                          data-content="{{_user.email}}"><p style="font-weight: bold; color: rgb(43, 148, 137);">Email : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: rgb(136, 136, 136); font-weight: bolder;">{{ _user.email[:14] }}...</p></div>
-                          <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Skills"
-                          data-content="{{_user.skills}}"><p style="font-weight: bold; color: rgb(43, 148, 137);">Skills : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: rgb(136, 136, 136); font-weight: bolder;">{{ _user.skills[:15] }}...</p></div>
-                          <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Country"
-                          data-content="{{_user.country}}"><p style="font-weight: bold; color: rgb(43, 148, 137);">Country : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: rgb(136, 136, 136); font-weight: bolder;">{{ _user.country }}</p></div>
-                          <div class="text-center" style="margin-top: 30px; margin-bottom: -70px; width: 78%;">
-                            {% for i in MY_SKILLS_LIST[:8] %}
-                                {% if ((i|upper)[:6] == 'PYTHON') %}
-                                  <i style="color: #1abc9c;margin: 4px; font-size: 20px;" class="devicon-python-plain"></i>
-                                {% elif ((i|upper)[:10] == 'JAVASCRIPT') %}
-                                  <i style="color: #e67e22;margin: 4px; font-size: 20px;" class="fab fa-js-square skill_icon-1"></i>
-                                {% elif ((i|upper)[:4] == 'JAVA') %}
-                                  <i style="color: #3498db;margin: 4px; font-size: 20px;" class="devicon-java-plain" ></i>
-                                {% elif ((i|upper)[:3] == 'CSS') %}
-                                  <i style="color: #e74c3c;margin: 4px; font-size: 20px;" class="devicon-javascript-plain" ></i>
-                                {% elif ((i|upper)[:3] == 'C++') %}
-                                  <i style="color: #f1c40f;margin: 4px; font-size: 20px;" class="devicon-cplusplus-plain skill_icon-1" ></i>
-                                {% elif ((i|upper)[:1] == 'C') %}
-                                  <i style="color: #27ae60;margin: 4px; font-size: 20px;" class="devicon-c-plain skill_icon-1" ></i>
-                                {% elif ((i|upper)[:7] == 'ANDROID') %}
-                                  <i style="color: #34495e;margin: 4px; font-size: 20px;" class="devicon-android-plain skill_icon-1" ></i>
-                                {% elif ((i|upper)[:7] == 'ANGULAR') %}
-                                  <i style="color: #8e44ad;margin: 4px; font-size: 20px;" class="devicon-angularjs-plain skill_icon-1" ></i>
-                                {% elif ((i|upper)[:4] == 'HTML') %}
-                                  <i style="color: #0652DD;margin: 4px; font-size: 20px;" class="devicon-html5-plain" ></i>
-                                {% elif ((i|upper)[:10] == 'POSTGRESQL') %}
-                                  <i style="color: #92dd06;margin: 4px; font-size: 20px;"class="devicon-postgresql-plain"></i>
-                                {% elif ((i|upper)[:4] == 'RUBY') %}
-                                  <i style="color: #58b8f0;margin: 4px; font-size: 20px;" class="devicon-ruby-plain"></i>
-                                {% elif ((i|upper)[:4] == 'SASS') %}
-                                  <i style="color: #2d6915;margin: 4px; font-size: 20px;" class="devicon-sass-original"></i>
-                                {% elif ((i|upper)[:5] == 'SWIFT') %}
-                                  <i style="color: #d3a409;margin: 4px; font-size: 20px;" class="devicon-swift-plain"></i>
-                                {% endif %}
-                            {% endfor %}
+
+                            <div class="dropdown" style=" margin-top: 80px; float: right; margin-right: 10px;">
+                            
+                              <button class="ask_button dropdown-toggle" style="margin-right: 70px;" type="button" id="dropdownMenuButton" data-dropup-auto="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                More
+                              </button>
+                            
+                            <div class="dropdown-menu" style="background: #ebf5fc; margin-left: -70px; background: #131419;" aria-labelledby="dropdownMenuButton">
+                              {% if form != "NULL" %}
+                                
+                                <button class="btn" data-toggle="modal" style="font-size: 11px; width: 92%; background: #131419; color: rgb(0, 255, 229); font-weight: 600; box-shadow: -2px -2px 6px rgba(255,255,255,0.1),2px 2px 6px rgba(0,0,0,0.8); text-shadow: 0px 0px 5px rgba(0, 255, 229,0.4),0px 0px 10px rgba(0, 255, 229,0.4); border: 2px solid #fff; border-radius: 5px;" data-target="#modalLoginAvatar" >Update info</button>
+                                
+                              {% endif %}
+                              
+                                <a href="{{ url_for('users.all_user_post', username = _user.username) }}" class="btn" style="font-size: 11px; width: 92%; background: #131419; font-weight: 600; box-shadow: -2px -2px 6px rgba(255,255,255,0.1),2px 2px 6px rgba(0,0,0,0.8); color: rgb(0, 255, 229); border: 2px solid #fff; border-radius: 5px;">My Posts</a>
+                          
+                              
+                            </div>
                           </div>
                       </div>
                     </div>
-                    <div class="text-center">
-                      <div class="dropdown" style=" margin-top: 80px; float: right; margin-right: 10px;">
-                        
-                          <button class="ask_button dropdown-toggle"type="button" id="dropdownMenuButton" data-dropup-auto="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More
-                          </button>
-                        
-                        <div class="dropdown-menu" style="background: #ebf5fc; margin-left: -70px;" aria-labelledby="dropdownMenuButton">
-                          {% if form != "NULL" %}
-                            
-                            <button class="btn btn-light btn-sm" data-toggle="modal" style="font-size: 11px; width: 92%; background: #ebf5fc; color: rgb(43, 148, 137); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);" data-target="#modalLoginAvatar" >Update info</button>
-                            
-                          {% endif %}
-                          
-                            <a href="{{ url_for('users.all_user_post', username = _user.username) }}" class="btn btn-light btn-sm" style="font-size: 11px; width: 92%; background: #ebf5fc; color: rgb(43, 148, 137); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);">My Posts</a>
-                      
-                          
-                        </div>
-                      </div>
-                    </div>
-              </div>
-              
             </div>
-            
-          <!-- end -->
-
-
-
-
-          
-
-
-
-
-
-
-      </div>
-      {% if form != "NULL" %}
+        </div>
+    </div>
+    {% if form != "NULL" %}
           <!--Modal: update Form-->
           <div class="modal fade" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
           aria-hidden="true">
@@ -493,22 +478,18 @@
           </div>
     </div>
       {% endif %}
-          
-              
-          <!-- end -->
 
-          
-  <script type="text/javascript" src="{{ url_for('static',filename = 'MDB/js/popper.min.js') }}"></script>
-  <script type="text/javascript" src="{{ url_for('static',filename = 'MDB/js/popper.js') }}"></script>
-    
-  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/jquery.min.js')}}"></script>
+</div>
+<script type="text/javascript" src="{{ url_for('static',filename='MDB/js/jquery.min.js')}}"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/popper.min.js')}}"></script>
   <!-- Bootstrap core JavaScript -->
   <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/bootstrap.min.js')}}"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/mdb.min.js')}}"></script>
-  <!-- Your custom scripts (optional) -->
+  <script type="text/javascript" src="{{ url_for('static',filename='js/particles.js')}}"></script>
+  <script type="text/javascript" src="{{ url_for('static',filename='js/app.js')}}"></script>
+  
   <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
   <script type="text/javascript" src="Scripts/jquery-2.1.1.min.js"></script>
   <script>
@@ -528,4 +509,4 @@
         });
   </script>
 
-    {% endblock content %}
+  {% endblock content %}

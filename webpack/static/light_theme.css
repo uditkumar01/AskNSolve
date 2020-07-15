@@ -5,6 +5,7 @@
     border-radius: 5px;
     margin-left: 20px;
     margin-bottom: 5px;
+    background: #ebf5fc;
     box-shadow: -5px -5px 15px rgba(255,255,255,0.9),
                 5px 5px 10px rgba(0,0,0,0.2);
 }
@@ -16,6 +17,7 @@
     border-radius: 5px;
     margin-left: 20px;
     margin-bottom: 5px;
+    background: #ebf5fc;
     box-shadow: -5px -5px 15px rgba(255,255,255,0.9),
                 5px 5px 10px rgba(0,0,0,0.2);
 }
@@ -33,6 +35,7 @@
     text-align: center;
     color: rgb(49, 170, 158);
     border-radius: 5px;
+    background: #ebf5fc;
     margin-left: 20px;
     margin-bottom: 5px;
     box-shadow:inset -5px -5px 15px rgba(255,255,255,1),

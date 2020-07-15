@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+{% block files %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='dark_theme.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.css') }}">
+{% endblock files %}
+{% block content %}
+    <div class = "__container">
+      {% with messages = get_flashed_messages(with_categories = true) %}
+            {% if messages %}
+                {% for category,message in messages%}
+                    <div>
+                        {% if category == "info" %}
+                            <div class = "alert alert-info" ><i class="fas fa-bell fl-fw icon_bell"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button></div>
+                        {% elif category == "success" %}
+                            <div class = "alert alert-success" ><i class="fas fa-check-circle fl-fw icon_tick"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button></div>
+                        {% elif category == "danger" %}
+                            <div class = "alert alert-danger" ><i class="fas fa-times-circle fl-fw icon_danger"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button></div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <!--Navbar -->
+        <nav class="mb-1 navbar navbar-expand-lg navbar-dark" style="background: #131419;">
+            <span class="my-brand" style="color: #fff; font-size: 20px; font-weight: 600; cursor: pointer; margin-right: 20px;">AskNSolve</span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+            aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+            <ul class="navbar-nav mr-auto">
+                {% if current_user.is_authenticated %}
+                
+                <li class="nav-item menu-option">
+                    <a class="nav-link button-i" style="color: grey; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'lime'" onmouseout="this.style.color = 'grey'" href="{{url_for('main.home')}}">Home</a>
+                </li>
+                <li class="nav-item menu-option">
+                <a class="nav-link button-ii active-ii" style="color: orange; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = '#fff'" onmouseout="this.style.color = 'orange'" href="{{url_for('posts.create_post')}}">Ask</a>
+                </li>
+                <li class="nav-item menu-option">
+                <a class="nav-link button-iii" style="color: grey; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = '#fff'" onmouseout="this.style.color = 'grey'" href="{{url_for('users.account',user_id = current_user.id)}}">Account</a>
+                </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+                {% if current_user.is_authenticated %}
+                <li class="nav-item menu-option">
+                    <a class="nav-link button-iv" style="color: rgb(126, 0, 0); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = '#FF0000'" onmouseout="this.style.color = 'crimson'" a href="{{url_for('users.logout')}}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item menu-option">
+                    <a class="nav-link button-ii" style="color:grey; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'orange'" onmouseout="this.style.color = 'grey'" href="{{url_for('users.login')}}" >Login</a>
+                </li>
+                <li class="nav-item menu-option">
+                    <a class="nav-link button-i" style="color: grey; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'lime'" onmouseout="this.style.color = 'grey'" href="{{url_for('users.register')}}" >Register</a>
+                </li>
+                {% endif %}
+            </ul>
+            </div>
+        </nav>
+      <!--/.Navbar -->
+      <div class="_container">
+        <div class="input-1">
+          <div class="form-3" style="padding: 20px; margin-top: -100px; border-radius: 5px;">
+            <form action="" method = "POST">
+              {{ form.hidden_tag() }}
+              <fieldset class="post_form">
+                <h2 style="color: rgb(0, 255, 229); text-align: center;text-shadow: 0px 0px 5px rgba(0, 255, 229,0.7),0px 0px 10px rgba(0, 255, 229,0.7);">{{ form_title_webpage }}</h2>
+                <div class="post_title" style="margin: 10px; margin-top: 30px;">
+                  {{ form.post_title(class = "form-control-1",placeholder = "Title should be clear and specific ") }}
+                  {% if form.post_title.errors %}
+                    {%for error in form.post_title.errors%}
+                      <p class="error_placeholder">{{ error }}</p>
+                    {%endfor%}
+                  {% endif %}
+                </div>
+                <div class="post_content" style="margin: 10px; margin-top: 30px;">
+                  {{ form.content(class="form-control-1", id="exampleFormControlTextarea4", rows="3", placeholder = "Explain your doubt ") }}
+                  {% if form.content.errors %}
+                    {%for error in form.content.errors%}
+                      <p class="error_placeholder">{{ error }}</p>
+                    {%endfor%}
+                  {% endif %}
+                </div>
+                <div class="text-center">
+                  {{ form.submit(class = "ask_button") }}
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/jquery.min.js')}}"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/popper.min.js')}}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/bootstrap.min.js')}}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/mdb.min.js')}}"></script>
+    <!-- Your custom scripts (optional) -->
+{% endblock content %}

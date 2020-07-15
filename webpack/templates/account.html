@@ -71,8 +71,13 @@
     <!--/.Navbar -->
     <div class="container-i">
         <div class="container-ii">
-            <div class="sub-container-i" id="snow_fall">
-                  
+            <div class="sub-container-i">
+                  <span class="circle-1">.</span>
+                  <span class="circle-2">.</span>
+                  <span class="circle-3">.</span>
+                  <span class="circle-4">.</span>
+                  <span class="circle-5">.</span>
+                  <span class="circle-6">.</span>
             </div>
             <div class="sub-container-ii text-center">
                 
@@ -133,6 +138,13 @@
                             <i style="color: #d3a409;margin: 4px; font-size: 20px;" class="devicon-swift-plain"></i>
                           {% endif %}
                       {% endfor %}
+
+                      <div style="transform: translate(1%,100%); margin-top: 40px; margin-bottom: -40px;"><a class="ask_button" style="font-family: Aldrich,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: rgb(43, 148, 137); font-size: 13px; border-radius: 5px;" onmouseover="this.style.color = 'rgb(33,156,243)'" onmouseout="this.style.color = '#grey'" href="{{url_for('users.theme_select')}}">
+                        {% if current_user.theme == 'NULL' %}
+                          DARK MODE</a></div>
+                        {% else %}
+                          LIGHT MODE</a></div>
+                        {% endif %}
                       <div>
                             <div class="dropdown" style=" margin-top: 80px; float: right; margin-right: 10px;">
                             

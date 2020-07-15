@@ -22,7 +22,7 @@ class User(db.Model,UserMixin):
     email = db.Column(db.String(150), unique = True, nullable = False)
     password = db.Column(db.String(60), nullable = False)
     profile_pic = db.Column(db.String(100), nullable = False, default = "default_profile_pic.jpg")
-    no_of_followers = db.Column(db.Integer, default  = "NULL")
+    theme = db.Column(db.Integer, default  = "NULL")
     posts = db.relationship('Post', backref = 'author', lazy = True)
 
 

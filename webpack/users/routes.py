@@ -26,6 +26,17 @@ def login():
             flash("Please, check your email!",'danger')
     return render_template('login_page.html' , title = "Login Page", form = form)
 
+
+@users.route("/theme_select", methods = ['GET','POST'])
+def theme_select():
+    if current_user.theme == 'NULL':
+        current_user.theme = 'DARK'
+        db.session.commit()
+    elif current_user.theme == 'DARK':
+        current_user.theme = 'NULL'
+        db.session.commit()
+    return redirect(url_for('users.account',user_id = current_user.id))
+
 @users.route("/register", methods = ['GET','POST'])
 def register():
     if current_user.is_authenticated:
@@ -50,7 +61,10 @@ def account(user_id):
     if current_user.id != _user.id:
         MY_SKILLS_LIST = (_user.skills).split(',')
         profile_image = url_for('static',filename = 'images/' + _user.profile_pic)
-        return render_template('account.html',title = _user.username + '\'s Account Info', profile_picture = profile_image, form = "NULL", MY_SKILLS_LIST = MY_SKILLS_LIST, _user = _user)
+        if current_user.theme == 'NULL':
+            return render_template('account.html',title = _user.username + '\'s Account Info', profile_picture = profile_image, form = "NULL", MY_SKILLS_LIST = MY_SKILLS_LIST, _user = _user)
+        else:
+            return render_template('account_dark.html',title = _user.username + '\'s Account Info', profile_picture = profile_image, form = "NULL", MY_SKILLS_LIST = MY_SKILLS_LIST, _user = _user)
     else:
         if current_user.skills != 'Unknown':
                 MY_SKILLS_LIST = (current_user.skills).split(',')
@@ -86,7 +100,10 @@ def account(user_id):
             form.email.data = current_user.email
         profile_image = url_for('static',filename = 'images/' + current_user.profile_pic)
 
-        return render_template('account.html',title = 'Your Account Info', profile_picture = profile_image, form = form, MY_SKILLS_LIST = MY_SKILLS_LIST, _user = current_user)
+        if current_user.theme == 'NULL':
+            return render_template('account.html',title = 'Your Account Info', profile_picture = profile_image, form = form, MY_SKILLS_LIST = MY_SKILLS_LIST, _user = current_user)
+        else:
+            return render_template('account_dark.html',title = 'Your Account Info', profile_picture = profile_image, form = form, MY_SKILLS_LIST = MY_SKILLS_LIST, _user = current_user)
 
 @login_required
 @users.route("/user/<string:username>")
@@ -95,7 +112,10 @@ def all_user_post(username):
     user = User.query.filter_by(username = username).first_or_404()
     _posts = Post.query.order_by(Post.date_posted.desc()).filter_by(user_id = user.id).paginate(page = page_no, per_page = 5)
     if current_user.is_authenticated:
-        return render_template('only_his_post.html' , title = user.username ,posts = _posts, profile_pic = current_user.profile_pic , username_menu = user.username ,present_time = datetime.utcnow(), user = user)
+        if current_user.theme == 'NULL':
+            return render_template('only_his_post_dark.html' , title = user.username ,posts = _posts, profile_pic = current_user.profile_pic , username_menu = user.username ,present_time = datetime.utcnow(), user = user)
+        else:
+            return render_template('only_his_post_dark.html' , title = user.username ,posts = _posts, profile_pic = current_user.profile_pic , username_menu = user.username ,present_time = datetime.utcnow(), user = user)
     else:
         redirect(url_for('users.login'))
     

@@ -13,12 +13,13 @@ def home():
     page_no = request.args.get('page',1,type = int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page = page_no,per_page = 4)
     if current_user.is_authenticated:
-        if current_user.profile_pic:
-            profile_image = url_for('static',filename = 'images/' + current_user.profile_pic)
+        
+        profile_image = url_for('static',filename = 'images/' + current_user.profile_pic)
+        
+        if current_user.theme == 'NULL':
+            return render_template('Home_page_light.html' , title = "Home Page" ,posts = posts, profile_pic = profile_image , username_menu = current_user.username,present_time = datetime.utcnow())
         else:
-            profile_image = url_for('static',filename = 'images/' + 'default_profile_pic.jpg')
-
-        return render_template('Home_page_light.html' , title = "Home Page" ,posts = posts, profile_pic = profile_image , username_menu = current_user.username,present_time = datetime.utcnow())
+            return render_template('Home_page_dark.html' , title = "Home Page" ,posts = posts, profile_pic = profile_image , username_menu = current_user.username,present_time = datetime.utcnow())
     else:
         profile_image = url_for('static',filename = 'images/' + 'default_profile_pic.jpg')
-        return render_template('Home_page_light.html' , title = "Home Page",posts = posts, profile_pic = profile_image , username_menu = 'Unknown User',present_time = datetime.utcnow() )
+        return render_template('Home_page_dark.html' , title = "Home Page",posts = posts, profile_pic = profile_image , username_menu = 'Unknown User',present_time = datetime.utcnow() )

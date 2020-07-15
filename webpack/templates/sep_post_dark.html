@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 {% block files %}
-    <link rel="stylesheet" href="{{ url_for('static',filename='light_theme.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='my_style.css')}}">
 
     <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='dark_theme.css')}}">
+    
 {% endblock files %}
 {% block content %}
 
@@ -30,8 +30,8 @@
             {% endif %}
         {% endwith %}
             <!--Navbar -->
-            <nav class="mb-1 navbar navbar-expand-lg navbar-dark">
-                <a class="navbar-brand" href="#" style="color: rgb(43, 148, 137); font-size: 20px; font-weight: 600;">AskNSolve</a>
+            <nav class="mb-1 navbar navbar-expand-lg navbar-dark" style="background: #131419;">
+                <span class="my-brand" style="color: #fff; font-size: 20px; font-weight: 600; cursor: pointer; margin-right: 20px;">AskNSolve</span>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
                 aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -39,30 +39,29 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
                 <ul class="navbar-nav mr-auto">
                     {% if current_user.is_authenticated %}
+                    
                     <li class="nav-item menu-option">
-                    <a class="nav-link" style="color: rgb(51, 177, 164); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(51, 177, 164)'" href="{{url_for('main.home')}}">Home
-                        
-                    </a>
+                        <a class="nav-link button-i" style="color: grey; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'lime'" onmouseout="this.style.color = 'grey'" href="{{url_for('main.home')}}">Home</a>
                     </li>
                     <li class="nav-item menu-option">
-                    <a class="nav-link" style="color: rgb(51, 177, 164); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(51, 177, 164)'" href="{{url_for('posts.create_post')}}">Ask</a>
+                    <a class="nav-link button-ii" style="color: grey; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'orange'" onmouseout="this.style.color = 'grey'" href="{{url_for('posts.create_post')}}">Ask</a>
                     </li>
                     <li class="nav-item menu-option">
-                    <a class="nav-link" style="color: rgb(51, 177, 164); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(51, 177, 164)'" href="{{url_for('users.account',user_id = current_user.id)}}">Account</a>
+                    <a class="nav-link button-iii" style="color: grey; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = '#fff'" onmouseout="this.style.color = 'grey'" href="{{url_for('users.account',user_id = current_user.id)}}">Account</a>
                     </li>
                     {% endif %}
                 </ul>
                 <ul class="navbar-nav ml-auto nav-flex-icons">
                     {% if current_user.is_authenticated %}
                     <li class="nav-item menu-option">
-                        <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" a href="{{url_for('users.logout')}}">Logout</a>
+                        <a class="nav-link button-iv" style="color: rgb(126, 0, 0); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = '#FF0000'" onmouseout="this.style.color = 'crimson'" a href="{{url_for('users.logout')}}">Logout</a>
                     </li>
                     {% else %}
                     <li class="nav-item menu-option">
-                        <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" href="{{url_for('users.login')}}" >Login</a>
+                        <a class="nav-link button-ii" style="color:grey; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'orange'" onmouseout="this.style.color = 'grey'" href="{{url_for('users.login')}}" >Login</a>
                     </li>
                     <li class="nav-item menu-option">
-                        <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" href="{{url_for('users.register')}}" >Register</a>
+                        <a class="nav-link button-i" style="color: grey; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'lime'" onmouseout="this.style.color = 'grey'" href="{{url_for('users.register')}}" >Register</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -71,7 +70,7 @@
             <!--/.Navbar -->
         <div class="_container">
             <div class="input-1">
-                <div class="form-1">
+                <div class="form-3" style="text-align: left; border-radius: 5px; border-width: 4px;">
                         
 
                             
@@ -84,15 +83,15 @@
                                         <a href="{{ url_for('users.login',user_id = post.author.id) }}"><img src="{{ url_for('static',filename = 'images/'+post.author.profile_pic)}}" class="profile-pic-1" style="height: 60px; width: 60px;" alt="Profile Picture">
                                     {% endif %}
                                         </a>
-                                    <div style="width: 40%; padding-left: 2px; height: 40px; margin-left: 80px; margin-top: -55px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                    <div style="width: 40%; padding-left: 2px; height: 40px; padding: 10px; margin-left: 80px; margin-top: -65px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                                     {% if current_user.is_authenticated %}
-                                        <a href="{{ url_for('users.account',user_id = post.author.id) }}" style="font-size: 18px; margin-left: -1px; font-weight: 510; color: dimgray;">
+                                        <a class="button-username-1" href="{{ url_for('users.account',user_id = post.author.id) }}" style="font-size: 18px; margin-left: -1px; font-weight: 510; color: rgba(0,255,255);">
                                     {% else %}
-                                        <a href="{{ url_for('users.login') }}" style="font-size: 18px; margin-left: -1px; font-weight: 510; color: dimgray;">
+                                        <a class="button-username-1" href="{{ url_for('users.login') }}" style="font-size: 18px; margin-left: -1px; font-weight: 510; color: rgba(0,255,255);">
                                     {% endif %}
                                         {{ post.author.username }}</a></div>
-                                        <div class="text-right" style="width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -32px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: rgb(95, 94, 94);">{{ no_of_likes }} <i class="far fa-thumbs-up"></i> &nbsp;&nbsp;&nbsp;{{ _comments|length }} <i class="far fa-comments"></i></div>
-                                    <div class="text-right" style="width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: rgb(95, 94, 94);">{{ post.date_posted.strftime('%H:%M:%S') }} &nbsp;&nbsp;&nbsp;{{ post.date_posted.strftime('%d/%m/%Y') }}</div>
+                                        <div class="text-right" style="width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -32px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #fff;">{{ no_of_likes }} <i class="far fa-thumbs-up"></i> &nbsp;&nbsp;&nbsp;{{ _comments|length }} <i class="far fa-comments"></i></div>
+                                    <div class="text-right" style="width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #fff;">{{ post.date_posted.strftime('%H:%M:%S') }} &nbsp;&nbsp;&nbsp;{{ post.date_posted.strftime('%d/%m/%Y') }}</div>
                                 </div>
 
                                 <div class="card-body">
@@ -103,32 +102,32 @@
                                         
                                         {% if post_like_name == "like" %}
                                             
-                                            <a class="btn btn-primary btn-sm text-center pt-1.5 mr-3" style="padding: 6px; height: 30px; width: 30px; font-size: 0px;border-radius: 50%;"  href="{{url_for('posts.like',post_id = post.id)}}"><i class="fas fa-thumbs-up" style="color: white; font-size: 15px; margin-top: 0px;"></i></a>
+                                            <a class="likebutton text-center pt-1.5 mr-3" style="padding: 6px; height: 30px; width: 30px; font-size: 0px;border-radius: 50%; margin-top: 0px;"  href="{{url_for('posts.like',post_id = post.id)}}"><i class="fas fa-thumbs-up" style="color: #fff; font-size: 15px; margin-top: 0px;"></i></a>
 
                                             
 
                                         {% elif post_like_name == "unlike" %}
-                                            <a class="btn btn-danger btn-sm text-center pt-2 mr-3" style="padding: 6px; height: 30px; width: 30px; font-size: 0px;border-radius: 50%;"  href="{{url_for('posts.like',post_id = post.id)}}"><i class="fas fa-thumbs-down" style="color: white; font-size: 15px; margin-top: 0px;"></i></a>
+                                            <a class="unlikebutton text-center pt-2 mr-3" style="padding: 6px; height: 30px; width: 30px; font-size: 0px;border-radius: 50%;"  href="{{url_for('posts.like',post_id = post.id)}}"><i class="fas fa-thumbs-down" style="color: #fff; font-size: 15px; margin-top: 0px;"></i></a>
                                         {% endif %}
                                         
                                         <div class="dropdown">
-                                            <button class="btn btn-success btn-sm text-center pt-2 mr-3 dropdown-toggle" style="padding: 6px; height: 30px; width: 30px; font-size: 0px;border-radius: 50%;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v" style="color: white; font-size: 15px; margin-top: -1px;"></i>
+                                            <button class="three-dots text-center pt-2 mr-3 dropdown-toggle" style="padding: 6px; height: 30px; width: 30px; font-size: 0px;border-radius: 50%;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v" style="color: lime; font-size: 15px; margin-top: -1px;"></i>
                                             </button>
                                         
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <button class="btn btn-info btn-sm text-center pt-2 mr-3" style="padding: 6px; height: 30px; width: 30px; font-size: 0px;border-radius: 50%;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-comment-dots" style="color: white; font-size: 15px; margin-top: -1px;"></i></button>
-                                                <button type="button" class="btn btn-success btn-sm text-center pt-2 mr-3" style="padding: 6px; height: 30px; width: 30px; font-size: 0px;border-radius: 50%;" data-toggle="modal" data-target="#exampleModal">
-                                                    <i class="fas fa-comments" style="color: white; font-size: 15px; margin-top: -1px;"></i>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background: #131419; margin-left: -50px;">
+                                                <button class="text-center pt-2 mr-3" style="box-shadow: 0px 0px 5px rgb(0, 174, 255,0.5),0px 0px 10px rgba(0, 174, 255,0.5),0px 0px 15px rgba(0, 174, 255,0.5),inset 0px 0px 10px rgba(0, 174, 255,0.5); padding: 6px; height: 30px; width: 30px; font-size: 0px;border-radius: 50%; background: transparent; border-color: transparent; margin-bottom: 15px;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-comment-dots" style="color: rgb(0, 174, 255); font-size: 15px; margin-top: -1px;"></i></button>
+                                                <button type="button" class="text-center pt-2 mr-3" style="box-shadow: 0px 0px 5px rgba(187, 255, 0,0.5),0px 0px 10px rgba(187, 255, 0,0.5),0px 0px 15px rgba(187, 255, 0,0.5),inset 0px 0px 10px rgba(187, 255, 0,0.5); background: transparent; border-color: transparent; padding: 6px; height: 30px; width: 30px; font-size: 0px;border-radius: 50%;" data-toggle="modal" data-target="#exampleModal">
+                                                    <i class="fas fa-comments" style="color: rgb(187, 255, 0); font-size: 15px; margin-top: -2px; "></i>
                                                 </button>
                                                 {% if post.author.username == current_user.username %}
-                                                    <button type="button"  class="btn btn-danger btn-sm text-center pt-2 mr-3" style="padding: 6px; height: 30px; width: 30px; font-size: 0px;border-radius: 50%;" data-toggle="modal" data-target="#DELETE">
-                                                        <i class="fas fa-trash-alt" style="color: white; font-size: 15px; margin-top: -1px;"></i>
+                                                    <button type="button"  class="text-center pt-2 mr-3" style="box-shadow: 0px 0px 5px rgba(255,0,0,0.5),0px 0px 10px rgba(255,0,0,0.5),0px 0px 15px rgba(255,0,0,0.5),inset 0px 0px 10px rgba(255,0,0,0.5); padding: 6px; background: transparent; border-color: transparent; height: 30px; width: 30px; font-size: 0px;border-radius: 50%;" data-toggle="modal" data-target="#DELETE">
+                                                        <i class="fas fa-trash-alt" style="color: red; font-size: 15px; margin-top: -2px;"></i>
                                                     </button>
                                                 {% endif %}
                                                 {% if post.author.username == current_user.username %}
                                                     <form action="{{ url_for('posts.update_post', post_id = post.id) }}" method="POST">
-                                                    <button type="submit" class="btn btn-warning btn-sm text-center pt-2 mr-3" style="padding: 6px; height: 30px; width: 30px; font-size: 0px;border-radius: 50%;"><i class="fas fa-edit" style="color: white; font-size: 15px; margin-top: -1px;"></i></button></form>
+                                                    <button type="submit" class="text-center pt-2 mr-3" style="box-shadow: 0px 0px 5px rgba(255,255,0,0.5),0px 0px 10px rgba(255,255,0,0.5),0px 0px 15px rgba(255,255,0,0.5),inset 0px 0px 10px rgba(255, 255, 0,0.5); padding: 6px; height: 30px; width: 30px; font-size: 0px;border-radius: 50%; background: transparent; border-color: transparent;"><i class="fas fa-edit" style="color: #ffff00; font-size: 15px; margin-top: -1px;"></i></button></form>
                                                 {% endif %}
                                             
                                             </div>
@@ -139,13 +138,13 @@
                                 </div>    
                                 <div href="#" ><p class="post_title" style="margin-left: -7px; margin-top: -10px; height: 30px; border: 2px solid transparent; font-size: 20px; color: #516169;">
                                     
-                                    <div class="overlay" style="color: rgb(43, 148, 137); font-size: 20px; font-weight: 500;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(43, 148, 137)'">{{ post.title }}</div>
+                                    <div class="overlay" style="color: rgb(0,255,255); font-size: 20px; font-weight: 500;">{{ post.title }}</div>
                                     
                                 </p></div>
 
                                 <div href="#" ><p class="" style="margin-left: 2px; margin-top: -35px; height: 30px; border: 2px solid transparent; font-size: 15px; color: #788e99;">
                                     
-                                    <div class="overlay" style="color: rgb(92, 92, 92); font-size: 17px; font-weight: 500;">{{ post.content }}</div>
+                                    <div class="overlay" style="color: silver; font-size: 17px; font-weight: 500;">{{ post.content }}</div>
                                 </p></div>
                                 
                                 </div>
