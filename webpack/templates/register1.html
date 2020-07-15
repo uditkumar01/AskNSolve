@@ -29,70 +29,71 @@
           {% endfor %}
       {% endif %}
     {% endwith %}
+    <div class="_container">
+        <form action="" method="POST">
+          {{ form.hidden_tag() }}
+          <div class="form">
+            <div class="input">
+              <h2>REGISTER</h2>
 
-    <form action="" method="POST">
-      {{ form.hidden_tag() }}
-      <div class="form">
-        <div class="input">
-          <h2>REGISTER</h2>
+              <div class="inputbox">
+                {{ form.username(class = "input",placeholder = "Username") }}
+                    {% if form.username.errors %}
+                      {% for error in form.username.errors%}
+                        <small class="form-text text-danger">{{ error }}</small>
+                      {% endfor %}
+                    {% endif %}
+              </div>
 
-          <div class="inputbox">
-            {{ form.username(class = "input",placeholder = "Username") }}
-                {% if form.username.errors %}
-                  {% for error in form.username.errors%}
-                    <small class="form-text text-danger">{{ error }}</small>
-                  {% endfor %}
-                {% endif %}
-          </div>
-
-          <div class="inputbox">
-            {{ form.email(class = "input",placeholder = "Email") }}
-            {% if form.email.errors %}
-            {% for error in form.email.errors%}
-              <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
-            {% endfor %}
-          {% endif %}
-          </div>
-         
-          
-          <div class="inputbox">
-            {{ form.password(class = "input",placeholder = "Password")}}
-
-              {% if form.password.errors %}
-                {% for error in form.password.errors%}
+              <div class="inputbox">
+                {{ form.email(class = "input",placeholder = "Email") }}
+                {% if form.email.errors %}
+                {% for error in form.email.errors%}
                   <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
                 {% endfor %}
               {% endif %}
-          </div>
+              </div>
+            
+              
+              <div class="inputbox">
+                {{ form.password(class = "input",placeholder = "Password")}}
 
-          <div class="inputbox">
-            {{ form.confirm_password(class = "input",placeholder = "Confirm Password")}}
+                  {% if form.password.errors %}
+                    {% for error in form.password.errors%}
+                      <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
+                    {% endfor %}
+                  {% endif %}
+              </div>
 
-                {% if form.confirm_password.errors %}
-                  {% for error in form.confirm_password.errors%}
-                    <small class="form-text text-danger">{{ error }}</small>
+              <div class="inputbox">
+                {{ form.confirm_password(class = "input",placeholder = "Confirm Password")}}
+
+                    {% if form.confirm_password.errors %}
+                      {% for error in form.confirm_password.errors%}
+                        <small class="form-text text-danger">{{ error }}</small>
+                      {% endfor %}
+                    {% endif %}
+              </div>
+              
+              <div class="custom-control custom-checkbox mb-4 mt-3">
+                {{ form.checkbox(class = "custom-control-input", style = "background: red;", type = "checkbox",  id="defaultUnchecked") }}
+                {% if form.checkbox.errors %}
+                  {% for error in form.checkbox.errors%}
+                    <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
                   {% endfor %}
                 {% endif %}
-          </div>
-          
-          <div class="custom-control custom-checkbox mb-4 mt-3">
-            {{ form.checkbox(class = "custom-control-input", style = "background: red;", type = "checkbox",  id="defaultUnchecked") }}
-            {% if form.checkbox.errors %}
-              {% for error in form.checkbox.errors%}
-                <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
-              {% endfor %}
-            {% endif %}
-            <label class="custom-control-label forget-3" for="defaultUnchecked" style="margin-left: 10px;">I agree to all <a href="#" class="forget">Terms & Conditions</a></label>
-          </div>
+                <label class="custom-control-label forget-3" for="defaultUnchecked" style="margin-left: 10px;">I agree to all <a href="#" class="forget">Terms & Conditions</a></label>
+              </div>
 
 
-          <div class="inputbox" style="margin-bottom: 30px;">
-            {{ form.submit(type = "submit", placeholder = "Login") }}
+              <div class="inputbox" style="margin-bottom: 30px;">
+                {{ form.submit(type = "submit", placeholder = "Login") }}
+              </div>
+            </div>
+            <a href="{{ url_for('users.login') }}" class="forget">Have An Account ?</a>
           </div>
-        </div>
-        <a href="{{ url_for('users.login') }}" class="forget">Have An Account ?</a>
+        </form>
       </div>
-    </form>
 </div>
 <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/jquery.min.js')}}"></script>
   <!-- Bootstrap tooltips -->
