@@ -437,6 +437,10 @@ header,.cardbody{
         margin-left: -11%;
         width: 120%;
     }
+    .circle-3{
+        height: 0px;
+        width: 0px;
+    }
 }
 @media (min-width: 600px) and (max-width: 780px) {
 
@@ -522,7 +526,7 @@ header,.cardbody{
     float: left;
     margin-top: -30px;
     margin-left: -30px;
-    animation: animate1 1s linear infinite;
+    animation: animate1 4s linear infinite;
     overflow: hidden;
 }
 .circle-2:nth-child(2){
@@ -531,8 +535,8 @@ header,.cardbody{
     margin-right: -20px;
     width: 50px;
     height: 50px;
-    animation: animate2 1s linear infinite;
-    animation-delay: 0.25s;
+    animation: animate2 4s linear infinite;
+    animation-delay: 0.5s;
     overflow: hidden;
 
 }
@@ -542,22 +546,22 @@ header,.cardbody{
     margin-right: -80px;
     width: 90px;
     height: 90px;
-    animation: animate3 1s linear infinite;
-    animation-delay: 0.5s;
+    animation: animate3 4s linear infinite;
+    animation-delay: 1s;
     overflow: hidden;
 }
 .circle-4:nth-child(4){
     width: 10px;
     height: 10px;
     padding-left: 13px;
-    animation: animate4 1s linear infinite;
-    animation-delay: 0.75s;
+    animation: animate4 4s linear infinite;
+    animation-delay: 2s;
     overflow: hidden;
 }
 .circle-5:nth-child(5){
     float: right;
-    animation: animate5 2s linear infinite;
-    animation-delay: 1s;
+    animation: animate5 4s linear infinite;
+    animation-delay: 3s;
     overflow: hidden;
 }
 .circle-6:nth-child(6){
@@ -566,8 +570,8 @@ header,.cardbody{
     margin-left: -20px;
     width: 60px;
     height: 60px;
-    animation: animate6 1s linear infinite;
-    animation-delay: 1.25s;
+    animation: animate6 4s linear infinite;
+    animation-delay: 4s;
     overflow: hidden;
 }
 @keyframes animate1{

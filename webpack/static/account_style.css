@@ -164,10 +164,3 @@
                    inset  5px 5px 10px rgba(0,0,0,0.1);
     }
 }
-
-@media (max-width: 48em){
-    .circle-3{
-        height: 0px;
-        width: 0px;
-    }
-}
