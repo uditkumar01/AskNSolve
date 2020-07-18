@@ -37,7 +37,7 @@ def send_request_email(user):
     server.starttls()
     server.ehlo()
 
-    server.login(Config.MAIL_USERNAME,Config.MAIL_PASSWORD)
+    server.login(Config.MAIL_USERNAME,'rypktgiqkystabig')
 
     subject = 'Reset Your Password'
 
