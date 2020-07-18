@@ -2,6 +2,9 @@ import smtplib
 from PIL import Image
 from flask import url_for, current_app, flash
 import secrets
+from webpack import mail
+from webpack.config import Config
+from flask_mail import Message
 import os
 
 def add_profile_pic(pic):
@@ -15,6 +18,18 @@ def add_profile_pic(pic):
     img1.save(profile_pic_path)
     return picture_name
 
+# def send_request_email(user):
+#     token = user.get_reset_token()
+#     msg = Message('Password Reset Request',
+#                   sender='abhixuditxpiyushcompany@gmail.com',
+#                   recipients=[user.email])
+#     msg.body = f'''To reset your password, visit the following link:
+# {url_for('reset_token', token=token, _external=True)}
+
+# If you did not make this request then simply ignore this email and no changes will be made.
+# '''
+#     mail.send(msg)
+
 def send_request_email(user):
     token = user.get_reset_token()
     server = smtplib.SMTP('smtp.gmail.com',587)
@@ -22,7 +37,7 @@ def send_request_email(user):
     server.starttls()
     server.ehlo()
 
-    server.login('abhixuditxpiyushcompany@gmail.com','gcwkuocyvoppnfnz')
+    server.login(Config.MAIL_USERNAME,Config.MAIL_PASSWORD)
 
     subject = 'Reset Your Password'
 
