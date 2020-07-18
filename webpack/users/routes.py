@@ -23,7 +23,7 @@ def login():
         elif user and not bcrypt.check_password_hash(user.password,form.password.data):
             flash("{}, please check your password!".format(user.username),'danger')
         elif user == None:
-            flash("Please, check your email!",'danger')
+            flash("Your E-mail is not registered!",'danger')
     return render_template('login_page.html' , title = "Login Page", form = form)
 
 
