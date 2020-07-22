@@ -1,0 +1,477 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif,Arial, Helvetica;
+}
+.__container,.__container-1{
+    color: #ebf5fc;
+}
+body{
+    background: #ebf5fc;
+}
+
+._container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #ebf5fc;
+}
+.form{
+    position: relative;
+    width: 350px;
+    padding: 40px 40px 60px;
+    background: #ebf5fc;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow:-5px -5px 15px rgba(255,255,255,1),
+               5px 5px 10px rgba(0,0,0,0.2);
+
+}
+.form h2{
+    color: #a8a8a8;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+.form .input{
+    text-align: left;
+    margin-top: 40px;
+}
+.form .input .inputbox label{
+    display: block;
+    color: #868686;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+.form .input .inputbox{
+    margin-top: 10px;
+}
+
+.form .input .inputbox input{
+    width: 100%;
+    height: 50px;
+    background: #ebf5fc;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    padding: 5px 15px;
+    color: #a8a8a8;
+    font-size: 18px;
+    color: #a8a8a8;
+    box-shadow:-5px -5px 15px rgba(255,255,255,1),
+               5px 5px 10px rgba(0,0,0,0.2);
+}
+.form .input .inputbox input[type = "submit"]{
+    margin-top: 10px;
+    width: 70%;
+    margin-left: 15%;
+    color: #a8a8a8;
+    box-shadow:-5px -5px 15px rgba(255,255,255,1),
+               5px 5px 10px rgba(0,0,0,0.2);
+}
+.form .input .inputbox input[type = "password"]{
+    margin-top: 20px;
+    color: #a8a8a8;
+}
+.form .input .inputbox input[type = "text"]:focus,.form .input .inputbox input[type = "password"]:focus{
+
+    color: rgb(0, 199, 199);
+    box-shadow:-5px -5px 15px rgba(255,255,255,1),
+               5px 5px 10px rgba(0,0,0,0.2);
+    margin-bottom: 5px;
+}
+.form .input .inputbox input[type = "submit"]:active{
+
+    color: rgb(0, 156, 156);
+    margin-top: 10px;
+    box-shadow: -2px -2px 6px rgba(255,255,255,0.1),
+                 2px 2px 6px rgba(0,0,0,0.8);
+}
+.form .input .inputbox input::placeholder{
+    color: #aaaaaa;
+    font-size: 18px;
+}
+.forget{
+    color: #a8a8a8;
+    cursor: pointer;
+}
+.forget-3{
+    color: #a8a8a8;
+    cursor: pointer;
+}
+.forget-2{
+    margin-top: 10px;
+    color: #a8a8a8;
+    cursor: pointer;
+}
+.forget:active, .forget:hover{
+    margin-top: 30px;
+    color: rgb(0, 199, 199);
+}
+.forget-2:active, .forget-2:hover{
+    margin-top: 10px;
+    color: rgb(0, 199, 199);
+}
+
+
+
+input[type=checkbox] {
+    display: none;
+}
+input[type=checkbox]:checked {
+    content: "\2713";
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+    font-size: 15px;
+    color: rgb(0, 199, 199);
+    text-align: center;
+    line-height: 15px;
+    
+}
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before{
+background-color: rgba(0,199,199);
+color: rgb(0, 199, 199);
+box-shadow:inset -5px -5px 15px rgba(255,255,255,1),
+               inset 5px 5px 10px rgba(0,0,0,0.2);
+}
+.custom-checkbox .custom-control-input:checked~.custom-control-label::after{
+    color: rgb(0, 199, 199);
+}
+
+
+
+
+.menu-option{
+    width: 90px;
+    text-align: center;
+    color: rgb(49, 170, 158);
+    border-radius: 5px;
+    margin-left: 20px;
+    margin-bottom: 5px;
+    box-shadow:-5px -5px 15px rgba(255,255,255,1),
+               5px 5px 10px rgba(0,0,0,0.2);
+}
+.page-i{
+    width: 40px;
+    padding-top: 5px;
+    text-align: center;
+    color: rgb(49, 170, 158);
+    border-radius: 5px;
+    margin-left: 20px;
+    margin-bottom: 5px;
+    box-shadow:-2px -2px 6px rgba(255,255,255,0.1),
+               2px 2px 6px rgba(0,0,0,0.8);
+}
+
+.profile-pic-1{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin: 5px;
+    margin-bottom: 10px;
+    box-shadow:-5px -5px 15px rgba(255,255,255,1),
+               5px 5px 10px rgba(0,0,0,0.2);
+}
+.menu-option:hover,.menu-option:focus,.menu-option:active, .page-i:hover, .page-i:focus, .profile-pic-1:active,.profile-pic-1:hover, .profile-pic-1:focus, .page-i:active,.form-control-1:focus{
+    text-align: center;
+    color: rgb(0, 172, 172);
+    border-color: transparent;
+    border-radius: 5px;
+    margin-left: 20px;
+    margin-bottom: 5px;
+    box-shadow:inset -5px -5px 15px rgba(255,255,255,1),
+               inset 5px 5px 10px rgba(0,0,0,0.2);
+}
+
+.profile-pic-1:active,.profile-pic-1:hover, .profile-pic-1:focus{
+    margin-left: 4px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    box-shadow:-5px -5px 15px rgba(255,255,255,1),
+               5px 5px 10px rgba(0,0,0,0.2);
+}
+
+.form-control-1:focus{
+    text-align: left;
+    margin-left: 0px;
+
+}
+.form-1,.form-2,.from-3{
+    position: relative;
+    width: 100%;
+    background: #ebf5fc;
+    border-radius: 10px;
+    text-align: left;
+    margin-bottom: 30px;
+    box-shadow:-5px -5px 15px rgba(255,255,255,1),
+               5px 5px 10px rgba(0,0,0,0.2);
+
+}
+header,.cardbody{
+    width: auto;
+    border-radius: 5px;
+    box-shadow:-5px -5px 15px rgba(255,255,255,1),
+               5px 5px 10px rgba(0,0,0,0.2);
+}
+.cardbody{
+    margin-top: 40px;
+}
+
+
+
+.profile-pic-1:hover,.profile-pic-1:active{
+    height: 43px;
+    width: 43px;
+    border: 3px solid rgb(253, 173, 0);
+    box-shadow: 0px 0px 5px rgba(253, 173, 0,0.8),
+                0px 0px 10px rgba(253, 173, 0,0.8),
+                0px 0px 15px rgba(253, 173, 0,0.8),
+                inset 0px 0px 10px rgba(253, 173, 0,0.8);
+}
+
+
+
+
+.my_message-1,.my_message-2{
+    color: rgb(0, 172, 172);
+    border: 2px solid rgb(0, 172, 172);
+    border-radius: 0px;
+    border-bottom-left-radius: 20px;
+    padding: 15px;
+    background: #ebf5fc;
+}
+.my_message-2{
+    color: rgb(221, 111, 21);
+    border-color: rgb(221, 111, 21);
+}
+.my_card_message{
+    width: 40%;
+}
+.my_card_message-1,.my_message_name{
+    margin-left: 20%;
+}
+.ask_button{
+    width: 90px;
+    padding: 10px;
+    background: #ebf5fc;
+    color: rgb(49, 170, 158);
+    font-weight: 600;
+    border: 2px solid rgb(49, 170, 158);
+    border-radius: 5px;
+    margin-top: 30px;
+    box-shadow:-5px -5px 15px rgba(255,255,255,1),
+               5px 5px 10px rgba(0,0,0,0.2);
+}
+.ask_button:hover,.ask_button:focus,.ask_button:active{
+    color: rgb(221, 111, 21);
+    border: 2px solid rgb(221, 111, 21);
+    font-size: 17px;
+}
+
+.input-1,.input-3{
+    position: relative;
+    width: 78%;
+    padding: 40px 40px 60px;
+    background: #ebf5fc;
+    border-radius: 10px;
+    text-align: center;
+}
+.input-3{
+    width: 100%;
+    height: 500px;
+}
+.form-2{
+    padding: 30px;
+}
+.form-control-1{
+    color: rgb(163, 162, 162);
+    width: 100%;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow:-5px -5px 15px rgba(255,255,255,1),
+               5px 5px 10px rgba(0,0,0,0.2);
+}
+.nav-link{
+    letter-spacing: 0.1em;
+}
+.nav-link:hover{
+    border-radius: 5px;
+    letter-spacing: 0.1em;
+    border: 2px solid #fff;
+    box-shadow:inset -5px -5px 15px rgba(255,255,255,1),
+              inset  5px 5px 10px rgba(0,0,0,0.2);
+}
+.my_message_name{
+    background: rgb(0, 172, 172);
+    color: #ebf5fc;
+    margin-left: 50%;
+    margin-bottom: -5px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 10px;
+    padding-left: 15px;
+}
+.my_message_name-1{
+    background: rgb(221, 111, 21);
+    color: #ebf5fc;
+    margin-bottom: -5px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 10px;
+    padding-left: 15px;
+}
+
+
+.button-i:hover,.active-i{
+    border: 2px solid rgba(0,255,0,1);
+    border-radius: 5px;
+    box-shadow:   0px 0px 5px rgba(0,255,0,0.5),
+                   0px 0px 10px rgba(0,255,0,0.5),
+                   0px 0px 15px rgba(0,255,0,0.5),
+                   inset 0px 0px 10px rgba(0,255,0,0.5);
+    text-shadow: 0px 0px 10px rgba(0,255,0,1),
+                 0px 0px 20px rgba(0,255,0,1);
+}
+.nav-link{
+    color: rgba(0,255,0,1);
+}
+.button-ii:hover,.active-ii{
+    border: 2px solid rgba(255,165,0,1);
+    border-radius: 5px;
+    box-shadow:    0px 0px 5px rgba(255,165,0,0.5),
+                   0px 0px 10px rgba(255,165,0,0.5),
+                   0px 0px 15px rgba(255,165,0,0.5),
+                   inset 0px 0px 10px rgba(255,165,0,0.5);
+    text-shadow: 0px 0px 10px rgba(255,165,0,1),
+                 0px 0px 20px rgba(255,165,0,1);
+}
+.button-iv:hover{
+    border: 2px solid rgba(255,0,0,1);
+    box-shadow:   0px 0px 5px rgba(255,0,0,0.5),
+                   0px 0px 10px rgba(255,0,0,0.5),
+                   0px 0px 15px rgba(255,0,0,0.5),
+                   inset 0px 0px 10px rgba(255,0,0,0.5);
+    text-shadow: 0px 0px 10px rgba(255,0,0,1),
+                 0px 0px 20px rgba(255,0,0,1);
+}
+.my-brand{
+    text-shadow:   0px 0px 5px rgba(33,156,243,1),
+                   0px 0px 10px rgba(33,156,243,1);
+                   
+}
+@media (max-width: 48em) {
+    .input-1{
+        width: 200%;
+        
+    }
+    .__container-1{
+        width: 150%;
+        margin-left: -25%;
+        margin-top: -20%;
+    }
+    .form-1,.form-3{
+        width: 112%;
+        margin-left: -20px;
+    }
+    .form-control-1{
+        margin-left: 10%;
+        width: 80%;
+    }
+    .ask_button{
+        margin-right:10%;
+    }
+    .menu-option{
+        width: 90%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .form-2{
+        margin-left: -11%;
+        width: 120%;
+    }
+    .circle-3{
+        height: 0px;
+        width: 0px;
+    }
+    .my_message-1{
+        color: #fff;
+        border: 2px solid rgb(0, 172, 172);
+        border-radius: 0px;
+        border-bottom-left-radius: 20px;
+        padding: 15px;
+        background: #ebf5fc;   
+    }
+    .my_card_message{
+        width: 70%;
+    }
+    .my_card_message-1{
+        margin-left: -20%;
+    }
+}
+@media (min-width: 600px) and (max-width: 780px) {
+
+    .menu-option{
+        margin-top: 5px;
+        margin-bottom: 20px;
+        width: 95%;
+    }
+    .form-2{
+        margin-left: 0;
+        width: 100%;
+    }
+    .__container-1{
+        width: 110%;
+        margin-left: -5%;
+    }
+    .my_message-1{
+        color: #fff;
+        border: 2px solid rgb(0, 172, 172);
+        border-radius: 0px;
+        border-bottom-left-radius: 20px;
+        padding: 15px;   
+    }
+    .my_card_message{
+        width: 40%;
+    }
+    .my_card_message-1{
+        margin-left: 20%;
+    }
+
+}
+@media (max-width: 900px) and (min-width: 780px){
+    .form-1,.form-3{
+        width: 105%;
+    }
+    .input-1{
+        margin-top: -300px;
+    }
+    ._container{
+        margin-top: -4%;
+    }
+    
+  }
+
+.container-i{
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    background: #ebf5fc;
+    text-align: center;
+    
+}
+
+
+.profile-pic-1{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+
+
+

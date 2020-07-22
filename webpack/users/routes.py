@@ -120,7 +120,8 @@ def all_user_post(username):
             return render_template('only_his_post_dark.html' , title = user.username ,posts = _posts, profile_pic = current_user.profile_pic , username_menu = user.username ,present_time = datetime.utcnow(), user = user)
     else:
         redirect(url_for('users.login'))
-    
+
+
 @users.route("/reset_password", methods = ['GET','POST'])
 def request_reset():
     if current_user.is_authenticated:
@@ -184,7 +185,10 @@ def chat_room(user_id):
         db.session.commit()
         form.message.data = ""
     if my_chat != None and his_chat != None:
-        return render_template('chat_room.html',title = 'Chat', form = form, messages = all_messages ,user_id = user_id, _user = _user)
+        if current_user.theme == "NULL":
+            return render_template('chat_room_light.html',title = 'Chat', form = form, messages = all_messages ,user_id = user_id, _user = _user)
+        else:
+            return render_template('chat_room.html',title = 'Chat', form = form, messages = all_messages ,user_id = user_id, _user = _user)
     return redirect(url_for('users.account', user_id = user_id))
 
 
@@ -200,7 +204,10 @@ def all_chats(user_id):
         all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat])
     all_messages.sort(reverse=True, key = lambda x:x[2])
     if my_chat != None and his_chat != None:
-        return render_template('chats.html',title = 'Chat', messages = all_messages ,user_id = user_id, _user = _user)
+        if current_user.theme == "NULL":
+            return render_template('chats_light.html',title = 'Chat', messages = all_messages ,user_id = user_id, _user = _user)
+        else:
+            return render_template('chats.html',title = 'Chat', messages = all_messages ,user_id = user_id, _user = _user)
     return redirect(url_for('users.account', user_id = user_id))
 
     

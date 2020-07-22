@@ -1,0 +1,208 @@
+{% extends "layout.html" %}
+{% block files %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='my_chat_light.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.css') }}">
+{% endblock files %}
+{% block content %}
+
+    <div class="__container">
+        {% with messages = get_flashed_messages(with_categories = true) %}
+            {% if messages %}
+                {% for category,message in messages%}
+                    <div>
+                        {% if category == "info" %}
+                            <div class = "alert alert-info" ><i class="fas fa-bell fl-fw icon_bell"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button></div>
+                        {% elif category == "success" %}
+                            <div class = "alert alert-success" ><i class="fas fa-check-circle fl-fw icon_tick"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button></div>
+                        {% elif category == "danger" %}
+                            <div class = "alert alert-danger" ><i class="fas fa-times-circle fl-fw icon_danger"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button></div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+            <!--Navbar -->
+            <nav class="mb-1 navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="#" style="color: rgb(43, 148, 137); font-size: 20px; font-weight: 600;">AskNSolve</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+                aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+                <ul class="navbar-nav mr-auto">
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item menu-option">
+                    <a class="nav-link" style="color: rgb(51, 177, 164); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(51, 177, 164)'" href="{{url_for('main.home')}}">Home
+                        
+                    </a>
+                    </li>
+                    <li class="nav-item menu-option">
+                    <a class="nav-link" style="color: rgb(51, 177, 164); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(51, 177, 164)'" href="{{url_for('posts.create_post')}}">Ask</a>
+                    </li>
+                    <li class="nav-item menu-option">
+                    <a class="nav-link" style="color: rgb(51, 177, 164); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(51, 177, 164)'" href="{{url_for('users.account',user_id = current_user.id)}}">Account</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <ul class="navbar-nav ml-auto nav-flex-icons">
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item menu-option">
+                        <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" a href="{{url_for('users.logout')}}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item menu-option">
+                        <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" href="{{url_for('users.login')}}" >Login</a>
+                    </li>
+                    <li class="nav-item menu-option">
+                        <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" href="{{url_for('users.register')}}" >Register</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                </div>
+            </nav>
+            <!--/.Navbar -->
+        
+
+            <form action="" method = "POST" style="margin-top: 40px;">
+                {{ form.hidden_tag() }}
+                <fieldset class="post_form">
+                  <h2 style="color: rgb(0, 255, 229); text-align: center;text-shadow: 0px 0px 5px rgba(0, 255, 229,0.7),0px 0px 10px rgba(0, 255, 229,0.7);">{{ form_title_webpage }}</h2>
+                  <div class="post_title" style="margin: 10px; margin-top: 30px;">
+                    {{ form.message(class = "form-control-1",placeholder = "Type here...", style="border: 2px solid rgba(0, 255, 229,0.3);") }}
+                    
+                  
+                  <div class="text-right mr-3">
+                    {{ form.submit(class = "ask_button", style = "padding: 8px;") }}
+                  </div>
+                </fieldset>
+            </form>
+
+
+            <div class="_container">
+             
+            
+                <div class="input-3" id="chats">
+                    {%for message in messages%}
+                    
+                        {% if message[0] == current_user.id %}
+                            <div style="text-align: right; margin-top: 3px;">
+                                {% if message[1] != "No message" %}
+                                    <div class="card text-left my_card_message-1" style="background: transparent; box-shadow: 0 0 0 0;">
+                                        <div class="card-title my_message_name">
+                                            {{current_user.username}}
+                                            <div class="text-right" style="width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -0px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #fff;">
+                                                <mark style="background: #ebf5fc;padding: 4px; border-radius: 30px; padding-right: 10px;">
+                                                {% if _user.active == "active" %}
+                                                    <span title="{{ _user.active }} is active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: lime; text-shadow: 0px 0px 5px rgba(124,252,0,0.6),0px 0px 10px rgba(124,252,0,0.6),0px 0px 15px rgba(124,252,0,0.6); "></i><span style="color: limegreen;">active now</span></span>
+                                                {% else %}
+                                                <span title="{{ _user.active }} isn't active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: rgb(70, 105, 35);"></i><span style="color: rgb(70, 105, 35);">not active</span></span>
+                                                {% endif %}
+                                                </mark>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="card-text" style="background: transparent; box-shadow: 0 0 0 0; width: auto;margin-left: 50%;"><p class="my_message-1">{{ message[1] }}</p></div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% else %}
+
+                                <div class="text-left" style="margin-top: 3px;">
+                                    {% if message[1] != "No message" %}
+                                        
+                                        <div class="card text-left my_card_message" style="background: transparent; box-shadow: 0 0 0 0;">
+                                            <div class="card-title my_message_name-1">
+                                                {% if _user.username|length > 14 %}
+                                                    {{_user.username[:15]}}...
+                                                {% else %}
+                                                    {{_user.username}}
+                                                {% endif %}
+                                                <div class="text-right" style="width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -0px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #fff;">
+                                                    <mark style="background: #ebf5fc;padding: 4px; border-radius: 30px; padding-right: 10px;">
+                                                    {% if _user.active == "active" %}
+                                                        <span title="{{ _user.active }} is active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: lime; text-shadow: 0px 0px 5px rgba(124,252,0,0.6),0px 0px 10px rgba(124,252,0,0.6),0px 0px 15px rgba(124,252,0,0.6); "></i><span style="color: limegreen;">active now</span></span>
+                                                    {% else %}
+                                                    <span title="{{ _user.active }} isn't active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: rgb(70, 105, 35);"></i><span style="color: rgb(70, 105, 35);">not active</span></span>
+                                                    {% endif %}
+                                                    </mark>
+                                                </div>
+                                            </div>
+                                            <div class="card-text" style="background: transparent; width: auto;margin-left: 0%; box-shadow: 0 0 0 0;"><p class="my_message-2" style="box-shadow: 0 0 0 0;">{{ message[1] }}</p></div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            
+                        {% endif %}
+                
+                    {%endfor%}
+                </div>                
+    
+            </div>
+
+            
+    </div>
+        
+
+
+
+
+    </div>
+
+    
+
+
+
+            
+
+    
+        
+      
+    
+
+
+    
+
+        
+
+
+
+
+
+    
+    <!-- jQuery -->
+    <script type="text/javascript" src="{{ url_for('static',filename = 'MDB/js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename = 'MDB/js/popper.js') }}"></script>
+      
+    <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/jquery.min.js')}}"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/popper.min.js')}}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/bootstrap.min.js')}}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/mdb.min.js')}}"></script>
+    <!-- Your custom scripts (optional) -->
+    <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-2.1.1.min.js"></script>
+
+    <script>
+        function ajax(){
+    
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function(){
+        if(req.readyState == 4 && req.status == 200)
+        {
+        document.getElementById('chats').innerHTML = req.responseText;
+        }
+        }
+        req.open("GET", "{{ url_for('users.all_chats', user_id = user_id) }}", true);
+        req.send();
+        }
+        setInterval(function(){ajax()}, 2000);
+    </script>
+{% endblock content %}
