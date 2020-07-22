@@ -368,8 +368,12 @@ header,.cardbody{
         width: 200%;
         
     }
+    .input-3{
+        width: 120%;
+        margin-left: -7%;
+    }
     .__container-1{
-        width: 150%;
+        width: 100%;
         margin-left: -25%;
         margin-top: -20%;
     }
@@ -424,7 +428,7 @@ header,.cardbody{
         width: 100%;
     }
     .__container-1{
-        width: 110%;
+        width: 140%;
         margin-left: -5%;
     }
     .my_message-1{

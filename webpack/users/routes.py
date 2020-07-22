@@ -115,7 +115,7 @@ def all_user_post(username):
     _posts = Post.query.order_by(Post.date_posted.desc()).filter_by(user_id = user.id).paginate(page = page_no, per_page = 5)
     if current_user.is_authenticated:
         if current_user.theme == 'NULL':
-            return render_template('only_his_post_dark.html' , title = user.username ,posts = _posts, profile_pic = current_user.profile_pic , username_menu = user.username ,present_time = datetime.utcnow(), user = user)
+            return render_template('only_his_post.html' , title = user.username ,posts = _posts, profile_pic = current_user.profile_pic , username_menu = user.username ,present_time = datetime.utcnow(), user = user)
         else:
             return render_template('only_his_post_dark.html' , title = user.username ,posts = _posts, profile_pic = current_user.profile_pic , username_menu = user.username ,present_time = datetime.utcnow(), user = user)
     else:
