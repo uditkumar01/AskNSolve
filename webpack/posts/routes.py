@@ -44,6 +44,7 @@ def post(post_id):
     user_exist = Post_like.query.filter_by(post__id = post_id,user__id = current_user.id).first()
     no_of_likes = len(Post_like.query.filter_by(post__id = post_id).all())
     post_like_name = "like"
+    print(post.author.is_authenticated)
     if post and (not user_exist):
         post_like_name = "like"
     elif post and user_exist:

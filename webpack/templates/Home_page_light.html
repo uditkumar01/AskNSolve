@@ -104,8 +104,18 @@
                                             <a href="{{ url_for('users.login') }}" style="font-size: 16px; margin-left: -1px; font-weight: 510; color: dimgray;">
                                         {% endif %}
                                             {{ post.author.username }}</a></div>
+
+                                            <div class="text-right" style="width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -40px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #fff;">
+                                                {% if post.author.active == "active" %}
+                                                    <span title="{{ post.author.username }} is active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: lime; text-shadow: 0px 0px 5px rgba(124,252,0,0.3),0px 0px 10px rgba(124,252,0,0.3),0px 0px 15px rgba(124,252,0,0.3); "></i><span style="color: limegreen;">active now</span></span>
+                                                {% else %}
+                                                <span title="{{ post.author.username }} isn't active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: rgb(70, 105, 35);"></i><span style="color: rgb(70, 105, 35);">not active&nbsp;&nbsp;</span></span>
+                                                {% endif %}
+                                            </div>
+                                            
+                                            <div class="text-right" style="color: rgb(78, 78, 78); width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; cursor: pointer;" onmouseover="this.style.color = 'white'" onmouseout="this.style.color = 'rgb(78, 78, 78)'">{{ post.date_posted.strftime('%H:%M:%S') }} &nbsp;&nbsp;&nbsp;{{ post.date_posted.strftime('%d/%m/%Y') }}</div>
                                         
-                                        <div class="text-right" style="width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -23px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{ post.date_posted.strftime('%H:%M:%S') }} &nbsp;&nbsp;&nbsp;{{ post.date_posted.strftime('%d/%m/%Y') }}</div>
+
                                     </div>
                                     <div class="card-body">
                                         {% if current_user.is_authenticated %}

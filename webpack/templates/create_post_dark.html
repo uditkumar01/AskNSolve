@@ -76,7 +76,7 @@
                   {{ form.post_title(class = "form-control-1",placeholder = "Title should be clear and specific ") }}
                   {% if form.post_title.errors %}
                     {%for error in form.post_title.errors%}
-                      <p class="error_placeholder">{{ error }}</p>
+                      <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
                     {%endfor%}
                   {% endif %}
                 </div>
@@ -84,7 +84,7 @@
                   {{ form.content(class="form-control-1", id="exampleFormControlTextarea4", rows="3", placeholder = "Explain your doubt ") }}
                   {% if form.content.errors %}
                     {%for error in form.content.errors%}
-                      <p class="error_placeholder">{{ error }}</p>
+                      <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
                     {%endfor%}
                   {% endif %}
                 </div>

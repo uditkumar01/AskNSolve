@@ -67,3 +67,7 @@ class Change_password(FlaskForm):
     password = PasswordField('Password',validators = [DataRequired()])
     confirm_password = PasswordField('Password',validators = [DataRequired(),EqualTo('password')])
     submit = SubmitField('Reset Password')
+
+class Chatting(FlaskForm):
+    message = StringField('Type here ...',validators = [DataRequired()])
+    submit = SubmitField('Send')

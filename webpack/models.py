@@ -23,6 +23,8 @@ class User(db.Model,UserMixin):
     password = db.Column(db.String(60), nullable = False)
     profile_pic = db.Column(db.String(100), nullable = False, default = "default_profile_pic.jpg")
     theme = db.Column(db.Integer, default  = "NULL")
+    active = db.Column(db.Integer, default  = "NULL")
+    total_time_spent = db.Column(db.Integer, default  = "NULL")
     posts = db.relationship('Post', backref = 'author', lazy = True)
 
 
@@ -72,3 +74,13 @@ class Post_like(db.Model):
 
     def __repr__(self):
         return f"Post_like('{self.post__id}','{self.user__id}')"
+
+class Chat(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_start_id = db.Column(db.Integer, nullable = False)
+    user__id = db.Column(db.Integer, nullable = False)
+    time_of_chat = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
+    messages = db.Column(db.String(10000),nullable = False, default = "No message")
+
+    def __repr__(self):
+        return f"Chat('{self.user_start_id}','{self.user__id}','{self.messages}')"

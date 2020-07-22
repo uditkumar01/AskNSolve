@@ -1,7 +1,7 @@
 from flask import render_template, flash,redirect,url_for,request, abort, Blueprint
-from webpack.users.forms import Login_form,Registration_Form, Update_Form, Request_reset_form, Change_password
+from webpack.users.forms import Login_form,Registration_Form, Update_Form, Request_reset_form, Change_password, Chatting
 from webpack import db,bcrypt
-from webpack.models import User, Post
+from webpack.models import User, Post, Chat
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
 from webpack.users.utils import add_profile_pic, send_request_email
@@ -18,6 +18,8 @@ def login():
         if user and bcrypt.check_password_hash(user.password,form.password.data):
             login_user(user, remember=form.checkbox.data)
             flash("{} logined successfully!".format(user.username),'success')
+            user.active = "active"
+            db.session.commit()
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('main.home'))
         elif user and not bcrypt.check_password_hash(user.password,form.password.data):
@@ -152,6 +154,53 @@ def request_token(token):
 @login_required
 @users.route("/logout")
 def logout():
+    
+    current_user.active = "notactive"
+    current_user.total_time_spent = datetime.utcnow()
+    db.session.commit()
     logout_user()
-    flash('Logout Successfull','success')
+    flash(f'Logout Successfull!','success')
     return redirect(url_for('users.login'))
+
+
+
+@users.route("/chat_room/<int:user_id>" , methods = ['GET','POST'])
+def chat_room(user_id):
+    form = Chatting()
+    my_chat = Chat.query.filter_by(user_start_id = user_id, user__id = current_user.id).all()
+    his_chat = Chat.query.filter_by(user_start_id = current_user.id, user__id = user_id).all()
+    _user = User.query.filter_by(id = user_id).first()
+    all_messages = []
+    for chat in my_chat:
+        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat])
+    for chat in his_chat:
+        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat])
+    all_messages.sort(reverse=True, key = lambda x:x[2])
+    if form.validate_on_submit() and request.method == "POST":
+        text_1 = Chat(user_start_id = current_user.id, user__id = user_id, messages = form.message.data)
+        db.session.add(text_1)
+        print('text_1',text_1)
+        flash(f"{all_messages}")
+        db.session.commit()
+        form.message.data = ""
+    if my_chat != None and his_chat != None:
+        return render_template('chat_room.html',title = 'Chat', form = form, messages = all_messages ,user_id = user_id, _user = _user)
+    return redirect(url_for('users.account', user_id = user_id))
+
+
+@users.route("/chats/<int:user_id>" , methods = ['GET'])
+def all_chats(user_id):
+    my_chat = Chat.query.filter_by(user_start_id = user_id, user__id = current_user.id).all()
+    his_chat = Chat.query.filter_by(user_start_id = current_user.id, user__id = user_id).all()
+    _user = User.query.filter_by(id = user_id).first()
+    all_messages = []
+    for chat in my_chat:
+        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat])
+    for chat in his_chat:
+        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat])
+    all_messages.sort(reverse=True, key = lambda x:x[2])
+    if my_chat != None and his_chat != None:
+        return render_template('chats.html',title = 'Chat', messages = all_messages ,user_id = user_id, _user = _user)
+    return redirect(url_for('users.account', user_id = user_id))
+
+    
