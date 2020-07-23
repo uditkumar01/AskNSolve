@@ -40,13 +40,13 @@ def theme_select():
     return redirect(url_for('users.account',user_id = current_user.id))
 
 @login_required
-@users.route("/followers", methods = ['GET'])
-def my_followers():
-    followers = Follow.query.filter_by(user_id = current_user.id).all()
+@users.route("/followers/<int:user_id>", methods = ['GET'])
+def my_followers(user_id):
+    followers = Follow.query.filter_by(user_id = user_id).all()
     searched_users = []
     follow_page = True
     for _user in followers:
-        searched_users.append(User.query.filter_by(id = _user.user_id).first())
+        searched_users.append(User.query.filter_by(id = _user.current_user_id).first())
     searched_posts = []
     if current_user.theme == "NULL":
         return render_template('search_results.html',follow_page=follow_page, title = current_user.username + "'s followers", searched_users = searched_users, searched_posts = searched_posts)
@@ -54,9 +54,9 @@ def my_followers():
         return render_template('search_results_dark.html',follow_page=follow_page, title = current_user.username + "'s followers", searched_users = searched_users, searched_posts = searched_posts)
 
 @login_required
-@users.route("/following", methods = ['GET'])
-def my_following():
-    following = Follow.query.filter_by(current_user_id = current_user.id).all()
+@users.route("/following/<int:user_id>", methods = ['GET'])
+def my_following(user_id):
+    following = Follow.query.filter_by(current_user_id = user_id).all()
     searched_users = []
     follow_page = True
     for _user in following:
@@ -136,8 +136,8 @@ def search():
 def account(user_id):
     form = Update_Form()
     MY_SKILLS_LIST = []
-    followers = Follow.query.filter_by(user_id = current_user.id).all()
-    following = Follow.query.filter_by(current_user_id = current_user.id).all()
+    followers = Follow.query.filter_by(user_id = user_id).all()
+    following = Follow.query.filter_by(current_user_id = user_id).all()
     follow_checking = Follow.query.filter_by(user_id = user_id,current_user_id = current_user.id).first()
     name_of_follow = ""
     if follow_checking:

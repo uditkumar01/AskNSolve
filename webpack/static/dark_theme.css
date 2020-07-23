@@ -311,6 +311,8 @@ header,.cardbody{
 }
 .my_message-2{
     border-color: rgb(255, 115, 0);
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 20px;
 }
 .my_card_message{
     width: 40%;

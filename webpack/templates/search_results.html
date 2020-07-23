@@ -96,7 +96,16 @@
         <div class="_container">
             
                 <div class="input-1">
-                    {% if searched_users|length == 0 and searched_posts|length == 0 and not (follow_page) %}
+                    {% if follow_page and searched_users|length == 0 and searched_posts|length == 0 %}
+                        <div class="card" style="background: transparent; box-shadow: 0 0 0 0; width: 100%; border-radius: 10px;">
+                            <div class="card-header" style="color: rgb(43, 148, 137); font-size: 40px; border: 2px solid rgb(43, 148, 137);">
+                                No Data Found!
+                            </div>
+                            <div class="card-body text-muted text-center">
+                                Don't worry you are the best...
+                            </div>
+                        </div>
+                    {% elif searched_users|length == 0 and searched_posts|length == 0 and not (follow_page) %}
                         <div class="card" style="background: transparent; box-shadow: 0 0 0 0; width: 100%; border-radius: 10px;">
                             <div class="card-header text-muted" style="font-size: 40px;">
                                 No results

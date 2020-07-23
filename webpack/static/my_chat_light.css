@@ -245,6 +245,8 @@ header,.cardbody{
 .my_message-2{
     color: rgb(221, 111, 21);
     border-color: rgb(221, 111, 21);
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 20px;
 }
 .my_card_message{
     width: 40%;
