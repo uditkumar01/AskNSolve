@@ -31,7 +31,7 @@
     box-shadow: -5px -5px 15px rgba(255,255,255,1),
                 5px 5px 10px rgba(0,0,0,0.2);
 }
-.menu-option:hover,.menu-option:focus,.active,.menu-option:active, .page-i:hover, .page-i:focus, .profile-pic-1:active,.profile-pic-1:hover, .profile-pic-1:focus, .page-i:active,.form-control-1:focus{
+.menu-option:hover,.menu-option:focus,.active-1111,.menu-option:active, .page-i:hover, .page-i:focus, .profile-pic-1:active,.profile-pic-1:hover, .profile-pic-1:focus, .page-i:active,.form-control-1:focus{
     text-align: center;
     color: rgb(49, 170, 158);
     border-radius: 5px;
@@ -102,6 +102,13 @@ header,.cardbody{
     border-radius: 10px;
     text-align: center;
 }
+.display_results{
+    display: block; width: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+
+}
+.display_results::after{
+    content: "...";
+}
 .form-2{
     padding: 30px;
 }
@@ -128,6 +135,11 @@ header,.cardbody{
     }
     .menu-option{
         width: 90%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .search-bar{
+        width: 80%;
         margin-top: 10px;
         margin-bottom: 10px;
     }

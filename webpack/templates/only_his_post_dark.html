@@ -107,16 +107,13 @@
                                     </div>
                                     <div class="card-body">
                                         {% if current_user.is_authenticated %}
-                                            <a href="{{url_for('posts.post', post_id = post.id)}}" ><p class="post_title" style="color: rgb(43, 148, 137); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'lawngreen'" onmouseout="this.style.color = 'rgb(43, 148, 137)'">
-                                        {% else %}
-                                            <a href="{{url_for('users.login')}}" ><p class="post_title" style="color: rgb(43, 148, 137); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'rgb(0, 255, 179)'" onmouseout="this.style.color = 'rgb(43, 148, 137)'">
-                                        {% endif %}
-                                                {% if post.title|length < 30 %}
-                                                    {{ post.title }}
+                                                    <a href="{{url_for('posts.post', post_id = post.id)}}" ><p class="post_title" style="color: rgb(43, 148, 137); font-size: 15px; font-weight: 600;display: block; width: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" onmouseover="this.style.color = 'lime'" onmouseout="this.style.color = 'rgb(43, 148, 137)'">
                                                 {% else %}
-                                                    {{ post.title[:28] }} ...
+                                                    <a href="{{url_for('users.login')}}" ><p class="post_title" style="color: rgb(43, 148, 137); font-size: 15px; font-weight: 600; display: block; width: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" onmouseover="this.style.color = 'lime'" onmouseout="this.style.color = 'rgb(43, 148, 137)'">
                                                 {% endif %}
-                                            </p></a>
+                                                        
+                                                    {{ post.title }}
+                                                    </p></a>
                                     
 
                                     

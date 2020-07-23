@@ -84,3 +84,11 @@ class Chat(db.Model):
 
     def __repr__(self):
         return f"Chat('{self.user_start_id}','{self.user__id}','{self.messages}')"
+
+class Follow(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, nullable = False)
+    current_user_id = db.Column(db.Integer, nullable = False)
+
+    def __repr__(self):
+        return f"Follow('{self.user_id}','{self.current_user_id}')"

@@ -48,7 +48,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
                 <ul class="navbar-nav mr-auto">
                     {% if current_user.is_authenticated %}
-                    <li class="nav-item menu-option active">
+                    <li class="nav-item menu-option active-1111">
                     <a class="nav-link" style="color: rgb(51, 177, 164); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(51, 177, 164)'" href="{{url_for('main.home')}}">Home
                         <span class="sr-only">(current)</span>
                     </a>
@@ -59,13 +59,22 @@
                     <li class="nav-item menu-option">
                     <a class="nav-link" style="color: rgb(51, 177, 164); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(51, 177, 164)'" href="{{url_for('users.account',user_id = current_user.id)}}">Account</a>
                     </li>
+                    
                     {% endif %}
                 </ul>
-                <ul class="navbar-nav ml-auto nav-flex-icons">
+                <ul class="navbar-nav ml-auto">
                     {% if current_user.is_authenticated %}
-                    <li class="nav-item menu-option">
-                        <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" a href="{{url_for('users.logout')}}">Logout</a>
+                    <li class="nav-item">
+                        <form style="display: flex;" action="{{ url_for('users.search') }}" method="POST">
+                        <input type="text" name="search_keyword" class="form-control-1 search-bar" style="margin-top: 5px; width: 90%; height: 35px;border: 1.5px solid rgb(43, 148, 137);color: rgb(117, 117, 117); margin-left: 20px;" placeholder="Search" onmouseover="this.style.color = 'rgb(117,117,117)'" onmouseout="this.style.color = 'teal'">
+                        <button type="submit" class="btn btn-sm text-center pt-1.5 mr-3" style="padding: 6px; height: 35px; width: 50px; border-radius: 8px; background: rgb(43, 148, 137);"><i class="fas fa-search" style="color: white; font-size: 15px; margin-top: 0px;"></i></button>
+                        </form>
                     </li>
+
+                    <li class="nav-item menu-option">
+                        <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" href="{{url_for('users.logout')}}">Logout</a>
+                    </li>
+                    
                     {% else %}
                     <li class="nav-item menu-option">
                         <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" href="{{url_for('users.login')}}" >Login</a>
@@ -119,17 +128,14 @@
                                     </div>
                                     <div class="card-body">
                                         {% if current_user.is_authenticated %}
-                                            <a href="{{url_for('posts.post', post_id = post.id)}}" ><p class="post_title" style="color: rgb(43, 148, 137); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(43, 148, 137)'">
+                                            <a href="{{url_for('posts.post', post_id = post.id)}}" ><p class="post_title" style="color: rgb(43, 148, 137); font-size: 15px; font-weight: 600;display: block; width: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(43, 148, 137)'">
                                         {% else %}
-                                            <a href="{{url_for('users.login')}}" ><p class="post_title" style="color: rgb(43, 148, 137); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(43, 148, 137)'">
+                                            <a href="{{url_for('users.login')}}" ><p class="post_title" style="color: rgb(43, 148, 137); font-size: 15px; font-weight: 600; display: block; width: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(43, 148, 137)'">
                                         {% endif %}
-                                                {% if post.title|length < 30 %}
-                                                    {{ post.title }}
-                                                {% else %}
-                                                    {{ post.title[:28] }} ...
-                                                {% endif %}
+                                                
+                                            {{ post.title }}
                                             </p></a>
-                                    
+                            
 
                                     
                                     </div>
@@ -142,7 +148,7 @@
                                 {% for no in posts.iter_pages(left_edge = 1,right_edge = 1, left_current = 1, right_current = 2) %}
                                     {% if no %}
                                         {% if posts.page == no %}
-                                            <a href="{{ url_for('main.home',page = no) }}" class="page-i active">{{ no }}</a>
+                                            <a href="{{ url_for('main.home',page = no) }}" class="page-i active-1111">{{ no }}</a>
                                         {% else %}
                                             <a href="{{ url_for('main.home',page = no) }}" class="page-i">{{ no }}</a>
                                         {% endif %}

@@ -1,7 +1,7 @@
 from flask import render_template, flash,redirect,url_for,request, abort, Blueprint
 from webpack.users.forms import Login_form,Registration_Form, Update_Form, Request_reset_form, Change_password, Chatting
 from webpack import db,bcrypt
-from webpack.models import User, Post, Chat
+from webpack.models import User, Post, Chat, Follow
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
 from webpack.users.utils import add_profile_pic, send_request_email
@@ -39,6 +39,63 @@ def theme_select():
         db.session.commit()
     return redirect(url_for('users.account',user_id = current_user.id))
 
+@login_required
+@users.route("/followers", methods = ['GET'])
+def my_followers():
+    followers = Follow.query.filter_by(user_id = current_user.id).all()
+    searched_users = []
+    follow_page = True
+    for _user in followers:
+        searched_users.append(User.query.filter_by(id = _user.user_id).first())
+    searched_posts = []
+    if current_user.theme == "NULL":
+        return render_template('search_results.html',follow_page=follow_page, title = current_user.username + "'s followers", searched_users = searched_users, searched_posts = searched_posts)
+    else:
+        return render_template('search_results_dark.html',follow_page=follow_page, title = current_user.username + "'s followers", searched_users = searched_users, searched_posts = searched_posts)
+
+@login_required
+@users.route("/following", methods = ['GET'])
+def my_following():
+    following = Follow.query.filter_by(current_user_id = current_user.id).all()
+    searched_users = []
+    follow_page = True
+    for _user in following:
+        searched_users.append(User.query.filter_by(id = _user.user_id).first())
+    searched_posts = []
+    if current_user.theme == "NULL":
+        return render_template('search_results.html',follow_page=follow_page, title = current_user.username + "'s following", searched_users = searched_users, searched_posts = searched_posts)
+    else:
+        return render_template('search_results_dark.html',follow_page=follow_page, title = current_user.username + "'s following", searched_users = searched_users, searched_posts = searched_posts)
+
+
+
+@login_required
+@users.route("/follow/<int:user_id>", methods = ['GET'])
+def follow_me(user_id):
+    
+    if not current_user.is_authenticated:
+        return redirect(url_for('users.login'))
+    
+    user = User.query.filter_by(id = user_id).first()
+    user_check = Follow.query.filter_by(user_id = user_id, current_user_id = current_user.id).first()
+    if user and not (user_check):
+        follower = Follow(user_id = user_id, current_user_id = current_user.id)
+        db.session.add(follower)
+        db.session.commit()
+        
+        flash(f'You are now following {user.username}. You might like {user.username}\'s profile, have a look !!!', 'success')
+        return redirect(url_for('users.account',user_id = user_id))
+    elif user and user_check:
+        db.session.delete(user_check)
+        db.session.commit()
+        
+        flash(f'You have unfollowed {user.username}.', 'info')
+        return redirect(url_for('main.home'))
+    else:
+        return redirect(url_for('main.home'))
+
+    
+
 @users.route("/register", methods = ['GET','POST'])
 def register():
     if current_user.is_authenticated:
@@ -53,20 +110,48 @@ def register():
         return redirect(url_for('users.login'))
     return render_template('register1.html' , title = "Register", form = form)
 
+@login_required
+@users.route("/search" ,methods = ['POST'])
+def search():
+    if not (current_user.is_authenticated):
+        return redirect(url_for('users.login'))
+    if request.form['search_keyword'] != None:
+        search_me = request.form['search_keyword']
+        searched_users_1 = User.query.filter_by(username = search_me).all()
+        searched_users_2 = User.query.filter_by(email = search_me).all()
+        searched_users = searched_users_1 + searched_users_2
+        searched_post_1 = Post.query.filter_by(title = search_me).all()
+        searched_post_2 = Post.query.filter_by(content = search_me).all()
+        searched_posts = searched_post_1 + searched_post_2
+        if current_user.theme == "NULL":
+            return render_template('search_results.html',follow_page=False, title = search_me + ' results', searched_users = searched_users, searched_posts = searched_posts)
+        else:
+            return render_template('search_results_dark.html',follow_page=False, title = search_me + ' results', searched_users = searched_users, searched_posts = searched_posts)
+
+
+
 
 @login_required
 @users.route("/account/<int:user_id>", methods = ['POST','GET'])
 def account(user_id):
     form = Update_Form()
     MY_SKILLS_LIST = []
+    followers = Follow.query.filter_by(user_id = current_user.id).all()
+    following = Follow.query.filter_by(current_user_id = current_user.id).all()
+    follow_checking = Follow.query.filter_by(user_id = user_id,current_user_id = current_user.id).first()
+    name_of_follow = ""
+    if follow_checking:
+        name_of_follow = "Unfollow"
+    else:
+        name_of_follow = "Follow"
     _user = User.query.get_or_404(user_id)
     if current_user.id != _user.id:
         MY_SKILLS_LIST = (_user.skills).split(',')
         profile_image = url_for('static',filename = 'images/' + _user.profile_pic)
         if current_user.theme == 'NULL':
-            return render_template('account.html',title = _user.username + '\'s Account Info', profile_picture = profile_image, form = "NULL", MY_SKILLS_LIST = MY_SKILLS_LIST, _user = _user)
+            return render_template('account.html',title = _user.username + '\'s Account Info',name_of_follow = name_of_follow,followers = followers,following=following, profile_picture = profile_image, form = "NULL", MY_SKILLS_LIST = MY_SKILLS_LIST, _user = _user)
         else:
-            return render_template('account_dark.html',title = _user.username + '\'s Account Info', profile_picture = profile_image, form = "NULL", MY_SKILLS_LIST = MY_SKILLS_LIST, _user = _user)
+            return render_template('account_dark.html',title = _user.username + '\'s Account Info',name_of_follow = name_of_follow,followers = followers,following=following, profile_picture = profile_image, form = "NULL", MY_SKILLS_LIST = MY_SKILLS_LIST, _user = _user)
     else:
         if current_user.skills != 'Unknown':
                 MY_SKILLS_LIST = (current_user.skills).split(',')
@@ -103,9 +188,9 @@ def account(user_id):
         profile_image = url_for('static',filename = 'images/' + current_user.profile_pic)
 
         if current_user.theme == 'NULL':
-            return render_template('account.html',title = 'Your Account Info', profile_picture = profile_image, form = form, MY_SKILLS_LIST = MY_SKILLS_LIST, _user = current_user)
+            return render_template('account.html',title = 'Your Account Info',followers=followers,name_of_follow = name_of_follow,following=following, profile_picture = profile_image, form = form, MY_SKILLS_LIST = MY_SKILLS_LIST, _user = current_user)
         else:
-            return render_template('account_dark.html',title = 'Your Account Info', profile_picture = profile_image, form = form, MY_SKILLS_LIST = MY_SKILLS_LIST, _user = current_user)
+            return render_template('account_dark.html',title = 'Your Account Info',followers=followers,name_of_follow = name_of_follow,following=following, profile_picture = profile_image, form = form, MY_SKILLS_LIST = MY_SKILLS_LIST, _user = current_user)
 
 @login_required
 @users.route("/user/<string:username>")

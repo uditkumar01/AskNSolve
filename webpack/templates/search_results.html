@@ -1,0 +1,242 @@
+{% extends "layout.html" %}
+{% block files %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='light_theme.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='my_style.css')}}">
+    
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.css') }}">
+
+{% endblock files %}
+{% block content %}
+
+    <div class="__container">
+        
+            {% with messages = get_flashed_messages(with_categories = true) %}
+                {% if messages %}
+                    {% for category,message in messages%}
+                        <div>
+                            {% if category == "info" %}
+                                <div class = "alert alert-info" ><i class="fas fa-bell fl-fw icon_bell"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button></div>
+                            {% elif category == "success" %}
+                                <div class = "alert alert-success" ><i class="fas fa-check-circle fl-fw icon_tick"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button></div>
+                            {% elif category == "danger" %}
+                                <div class = "alert alert-danger" ><i class="fas fa-times-circle fl-fw icon_danger"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button></div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+
+            
+
+            
+
+            
+            <!--Navbar -->
+            <nav class="mb-1 navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="#" style="color: rgb(43, 148, 137); font-size: 20px; font-weight: 600;">AskNSolve</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+                aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+                <ul class="navbar-nav mr-auto">
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item menu-option">
+                    <a class="nav-link" style="color: rgb(51, 177, 164); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(51, 177, 164)'" href="{{url_for('main.home')}}">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                    </li>
+                    <li class="nav-item menu-option">
+                    <a class="nav-link" style="color: rgb(51, 177, 164); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(51, 177, 164)'" href="{{url_for('posts.create_post')}}">Ask</a>
+                    </li>
+                    <li class="nav-item menu-option">
+                    <a class="nav-link" style="color: rgb(51, 177, 164); font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(51, 177, 164)'" href="{{url_for('users.account',user_id = current_user.id)}}">Account</a>
+                    </li>
+                    
+                    {% endif %}
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <form style="display: flex;" action="{{ url_for('users.search') }}" method="POST">
+                        <input type="text" name="search_keyword" class="form-control-1 search-bar" style="margin-top: 5px; width: 90%; height: 35px;border: 1.5px solid rgb(43, 148, 137);color: rgb(117, 117, 117); margin-left: 20px;" placeholder="Search" onmouseover="this.style.color = 'rgb(117,117,117)'" onmouseout="this.style.color = 'teal'">
+                        <button type="submit" class="btn btn-sm text-center pt-1.5 mr-3" style="padding: 6px; height: 35px; width: 50px; border-radius: 8px; background: rgb(43, 148, 137);"><i class="fas fa-search" style="color: white; font-size: 15px; margin-top: 0px;"></i></button>
+                        </form>
+                    </li>
+
+                    <li class="nav-item menu-option">
+                        <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" href="{{url_for('users.logout')}}">Logout</a>
+                    </li>
+                    
+                    {% else %}
+                    <li class="nav-item menu-option">
+                        <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" href="{{url_for('users.login')}}" >Login</a>
+                    </li>
+                    <li class="nav-item menu-option">
+                        <a class="nav-link" style="color: crimson; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'crimson'" href="{{url_for('users.register')}}" >Register</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                </div>
+            </nav>
+            <!--/.Navbar -->
+  
+
+
+
+
+        
+        <div class="_container">
+            
+                <div class="input-1">
+                    {% if searched_users|length == 0 and searched_posts|length == 0 and not (follow_page) %}
+                        <div class="card" style="background: transparent; box-shadow: 0 0 0 0; width: 100%; border-radius: 10px;">
+                            <div class="card-header text-muted" style="font-size: 40px;">
+                                No results
+                            </div>
+                            <div class="card-body text-muted text-left">
+                                <ul style="margin-left: 10px;">
+                                    <li>Check if the username/email is valid or not.</li>
+                                    <li>Usernames/Emails are case sensitive.</li>
+                                    <li>If you are searching a post then enter the full title properly.</li>
+                                    <li>If you are searching a post and you know the author's name you can search for that user instead.And then visit his profile and tap the more option and then tap on my posts.Then you will be able to see all his posts.</li><br>
+                                    <li>If you still face any problem you can email us.We are here to help you out.</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    {% else %}
+                        {% for user in searched_users %}
+                                
+                                <div class="form-1">
+                                    <div class="card" style="background: transparent; box-shadow: 0 0 0 0; width: 100%; border-radius: 10px;">
+                                        <div class="card-header">
+                                            {% if current_user.is_authenticated %}
+                                                <a href="{{ url_for('users.account',user_id = user.id) }}"><img src="{{ url_for('static',filename = 'images/'+user.profile_pic)}}" class="profile-pic-1" alt="Profile Picture">
+                                            {% else %}
+                                                <a href="{{ url_for('users.login') }}"><img src="{{ url_for('static',filename = 'images/'+user.profile_pic)}}" class="profile-pic-1" alt="Profile Picture">
+                                            {% endif %}
+                                                </a>
+                                            <div style="width: 40%; padding-left: 2px; height: 28px; margin-left: 65px; margin-top: -45px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                            {% if current_user.is_authenticated %}
+                                                <a href="{{ url_for('users.account',user_id = user.id) }}" style="font-size: 16px; margin-left: -1px; font-weight: 510; color: dimgray;">
+                                            {% else %}
+                                                <a href="{{ url_for('users.login') }}" style="font-size: 16px; margin-left: -1px; font-weight: 510; color: dimgray;">
+                                            {% endif %}
+                                                {{ user.username }}</a></div>
+
+                                                <div class="text-right" style="width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -40px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #fff;">
+                                                    {% if user.active == "active" %}
+                                                        <span title="{{ user.skills }} is active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: lime; text-shadow: 0px 0px 5px rgba(124,252,0,0.3),0px 0px 10px rgba(124,252,0,0.3),0px 0px 15px rgba(124,252,0,0.3); "></i><span style="color: limegreen;">active now</span></span>
+                                                    {% else %}
+                                                    <span title="{{ user.username }} isn't active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: rgb(70, 105, 35);"></i><span style="color: rgb(70, 105, 35);">not active&nbsp;&nbsp;</span></span>
+                                                    {% endif %}
+                                                </div>
+
+                                        </div>
+                                        <div class="card-body text-center">
+                                        <a class="btn btn-primary btn-sm" href="{{url_for('users.chat_room',user_id = user.id)}}">Message</a>
+                                        <a class="btn btn-lime btn-sm" href="{{url_for('users.account',user_id = user.id)}}">Visit Profile</a>
+                                        
+
+
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                    
+                            {% endfor %}
+                            {% for post in searched_posts %}
+                                
+                                <div class="form-1">
+                                    <div class="card" style="background: transparent; box-shadow: 0 0 0 0; width: 100%; border-radius: 10px;">
+                                        
+                                        <div class="card-body" style="text-align: left; ">
+                                        
+                                                
+                                                {% if current_user.is_authenticated %}
+                                                    <a href="{{url_for('posts.post', post_id = post.id)}}" ><p class="post_title" style="color: rgb(43, 148, 137); font-size: 15px; font-weight: 600;display: block; width: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(43, 148, 137)'">
+                                                {% else %}
+                                                    <a href="{{url_for('users.login')}}" ><p class="post_title" style="color: rgb(43, 148, 137); font-size: 15px; font-weight: 600; display: block; width: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'rgb(43, 148, 137)'">
+                                                {% endif %}
+                                                        
+                                                    {{ post.title }}
+                                                    </p></a>
+                                                {% if current_user.is_authenticated %}
+                                                    <a href="{{url_for('posts.post', post_id = post.id)}}" ><p class="post_title" style="color: grey; font-size: 15px; font-weight: 600;display: block; width: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'grey'">
+                                                {% else %}
+                                                    <a href="{{url_for('users.login')}}" ><p class="post_title" style="color: grey; font-size: 15px; font-weight: 600;display: block; width: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" onmouseover="this.style.color = 'grey'" onmouseout="this.style.color = 'grey'">
+                                                {% endif %}
+                                                        
+                                                    {{ post.content }}
+                                                    </p></a>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                    
+                            {% endfor %}
+                    {% endif %}
+                        
+                </div>
+            
+        </div>
+
+</div>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+    
+    
+    
+  <!-- jQuery -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/jquery.min.js')}}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/popper.min.js')}}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/bootstrap.min.js')}}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/mdb.min.js')}}"></script>
+  <!-- Your custom scripts (optional) -->
+  
+  <script>
+          $(function() {
+
+      $(".get-nicer").niceScroll("div.nice-wrapper", {
+        cursorwidth: "12px"
+      });
+
+      $(".get-nicer").scroll(function() {
+        $("#scroll-info-value").val($(".get-nicer").scrollTop());
+      });
+
+      $("a.btn").click(function(e) {
+        e.preventDefault();
+
+        console.log('click', e.target);
+
+        $('#nice-modal1').modal();
+      });
+
+    });
+
+  </script>
+{% endblock content %}

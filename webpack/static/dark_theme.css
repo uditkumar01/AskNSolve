@@ -298,9 +298,9 @@ header,.cardbody{
 }
 
 .post_title:hover{
-    text-shadow: 0px 0px 5px rgba(124,252,0,0.6),
-                0px 0px 10px rgba(124,252,0,0.6),
-                0px 0px 15px rgba(124,252,0,0.6);     
+    text-shadow: 0px 0px 5px rgba(124,252,0,0.4),
+                0px 0px 10px rgba(124,252,0,0.4),
+                0px 0px 15px rgba(124,252,0,0.4);     
 }
 .my_message-1,.my_message-2{
     color: #fff;
