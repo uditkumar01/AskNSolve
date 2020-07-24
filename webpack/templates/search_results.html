@@ -151,7 +151,9 @@
 
                                         </div>
                                         <div class="card-body text-center">
-                                        <a class="btn btn-primary btn-sm" href="{{url_for('users.chat_room',user_id = user.id)}}">Message</a>
+                                        {% if user.id != current_user.id %}
+                                            <a class="btn btn-primary btn-sm" href="{{url_for('users.chat_room',user_id = user.id)}}">Message</a>
+                                        {% endif %}
                                         <a class="btn btn-lime btn-sm" href="{{url_for('users.account',user_id = user.id)}}">Visit Profile</a>
                                         
 

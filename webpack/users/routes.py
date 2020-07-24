@@ -117,12 +117,16 @@ def search():
         return redirect(url_for('users.login'))
     if request.form['search_keyword'] != None:
         search_me = request.form['search_keyword']
-        searched_users_1 = User.query.filter_by(username = search_me).all()
-        searched_users_2 = User.query.filter_by(email = search_me).all()
-        searched_users = searched_users_1 + searched_users_2
-        searched_post_1 = Post.query.filter_by(title = search_me).all()
-        searched_post_2 = Post.query.filter_by(content = search_me).all()
-        searched_posts = searched_post_1 + searched_post_2
+        search_me = '%'+ search_me +'%'
+        searched_users_1 = User.query.filter(User.username.ilike(search_me)).all()
+        searched_users_2 = User.query.filter(User.email.ilike(search_me)).all()
+        searched_users = list(set(searched_users_1 + searched_users_2))
+        searched_post_1 = Post.query.filter(Post.title.ilike(search_me)).all()
+        searched_post_2 = Post.query.filter(Post.content.ilike(search_me)).all()
+        searched_posts = list(set(searched_post_1 + searched_post_2))
+        if searched_posts:
+            flash(f'If you are searching for post then it is suggested to the post\'s author instead.And on his account you can check his posts.','info')
+        search_me = search_me[1:-1]
         if current_user.theme == "NULL":
             return render_template('search_results.html',follow_page=False, title = search_me + ' results', searched_users = searched_users, searched_posts = searched_posts)
         else:
