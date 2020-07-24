@@ -4,6 +4,52 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='my_style.css')}}">
     
     <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.css') }}">
+    <style>
+        .letter-1 {
+             position: relative;
+             text-transform: uppercase;
+             letter-spacing: 2px;
+             font-size: 23px;
+             font-weight: 800;
+             text-decoration: none;
+             color: white;
+             display: inline-block;
+             background-size: 120% 100%;
+             -webkit-background-clip: text;
+             -webkit-text-fill-color: transparent;
+             -moz-background-clip: text;
+             -moz-text-fill-color: transparent;
+             -ms-background-clip: text;
+             -ms-text-fill-color: transparent;
+             background-clip: text;
+             color: transparent;
+             background-image: linear-gradient(45deg, #b9ff77, #1a6a79, #ff1361, #fff800);
+             animation: 2s shake infinite alternate;
+             animation-delay: 2s;
+        }
+         @keyframes shake {
+             0% {
+                 transform: skewX(-15deg);
+            }
+             2% {
+                 transform: skewX(15deg);
+            }
+             4% {
+                 transform: skewX(-15deg);
+            }
+             6% {
+                 transform: skewX(15deg);
+            }
+             8% {
+                 transform: skewX(0deg);
+                 
+            }
+             100% {
+                 transform: skewX(0deg);
+            }
+        }
+         
+        </style>
 
 {% endblock files %}
 {% block content %}
@@ -40,7 +86,9 @@
             
             <!--Navbar -->
             <nav class="mb-1 navbar navbar-expand-lg navbar-dark">
-                <a class="navbar-brand" href="#" style="color: rgb(43, 148, 137); font-size: 20px; font-weight: 600;">AskNSolve</a>
+                <a class="navbar-brand" href="#" style="color: rgb(43, 148, 137); font-size: 20px; font-weight: 600;">
+                    <span class="letter-1">A</span>skNSolve
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
                 aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -88,7 +136,7 @@
             </nav>
             <!--/.Navbar -->
   
-
+            
 
 
 

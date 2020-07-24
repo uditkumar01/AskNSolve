@@ -622,7 +622,7 @@ header,.cardbody{
 
 }
 .circle-3:nth-child(3){
-    float: inline-end;
+    
     margin-top: -60px;
     margin-right: -80px;
     width: 90px;
