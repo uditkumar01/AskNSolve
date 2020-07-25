@@ -269,15 +269,14 @@ def chat_room(user_id):
     if form.validate_on_submit() and request.method == "POST":
         text_1 = Chat(user_start_id = current_user.id, user__id = user_id, messages = form.message.data)
         db.session.add(text_1)
-        print('text_1',text_1)
         flash(f"{all_messages}")
         db.session.commit()
         form.message.data = ""
     if my_chat != None and his_chat != None:
         if current_user.theme == "NULL":
-            return render_template('chat_room_light.html',title = 'Chat', form = form, messages = all_messages ,user_id = user_id, _user = _user)
+            return render_template('chat_room_light.html',title = 'Chat', form = form, messages = all_messages ,_user = _user)
         else:
-            return render_template('chat_room.html',title = 'Chat', form = form, messages = all_messages ,user_id = user_id, _user = _user)
+            return render_template('chat_room.html',title = 'Chat', form = form, messages = all_messages ,_user = _user)
     return redirect(url_for('users.account', user_id = user_id))
 
 
