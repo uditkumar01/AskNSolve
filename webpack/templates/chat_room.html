@@ -37,7 +37,7 @@
 
             
             <!--Navbar -->
-            <nav class="mb-1 navbar navbar-expand-lg navbar-dark" style="background: #131419; margin-top: -10px;">
+            <nav class="mb-1 navbar navbar-expand-lg navbar-dark" style="background: #131419; margin-top: -1px;">
                 <span class="my-brand" style="color: #fff; font-size: 20px; font-weight: 600; cursor: pointer; margin-right: 20px;">AskNSolve</span>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
                 aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,16 +80,16 @@
 
 
 
-            <form action="" method = "POST" style="margin-top: 40px;">
+            <form action="{{ url_for('users.chat_room',user_id = _user.id) }}" method = "POST" style="margin-top: 40px;">
                 {{ form.hidden_tag() }}
                 <fieldset class="post_form">
                   <h2 style="color: rgb(0, 255, 229); text-align: center;text-shadow: 0px 0px 5px rgba(0, 255, 229,0.7),0px 0px 10px rgba(0, 255, 229,0.7);">{{ form_title_webpage }}</h2>
-                  <div class="post_title" style="margin: 10px; margin-top: 30px;">
-                    {{ form.message(class = "form-control-1",placeholder = "Type here...", style="border: 2px solid rgba(0, 255, 229,0.3);") }}
+                  <div class="post_title text-center" style="margin: 10px; margin-top: 0px;">
+                    {{ form.message(class = "form-control-1",placeholder = "Type here...", style="margin-left: 0px; border: 2px solid rgba(0, 255, 229,0.3);") }}
+                    
                   </div>
-                  
-                  <div class="text-right mr-3">
-                    {{ form.submit(class = "ask_button", style = "padding: 8px;") }}
+                  <div class="text-center" style="margin-bottom: 40px;">
+                  <button  class="ask_button" style="padding: 7px; width: auto; cursor: pointer; margin-right: -5px;"><span style="font-weight: 100;">SEND</span> &nbsp;<i class="fas fa-paper-plane my_plane"></i></button>
                   </div>
                 </fieldset>
             </form>
@@ -177,7 +177,7 @@
     document.getElementById('chats').innerHTML = req.responseText;
     }
     }
-    req.open("GET", "{{ url_for('users.all_chats', user_id = user_id) }}", true);
+    req.open("GET", "{{ url_for('users.all_chats', user_id = _user.id) }}", true);
     req.send();
     }
     setInterval(function(){ajax()}, 2000);

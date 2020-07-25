@@ -10,7 +10,44 @@
 body{
     background: #131419;
 }
+.ask_button:hover .my_plane{
+    animation: .5s shakeD infinite alternate;
+}
+.ask_button:focus .my_plane{
+    animation: 1s move_plane;
+}
+@keyframes move_plane {
+    0%{
+        transform: rotate(45deg);
+    }
+    100%{
+        transform: translate(800%,0%);
+        opacity: 0;
+    }
+    
+}
 
+@keyframes shakeD {
+    0% {
+        transform: skewX(-15deg);
+   }
+    20% {
+        transform: skewX(15deg);
+   }
+    40% {
+        transform: skewX(-15deg);
+   }
+    60% {
+        transform: skewX(15deg);
+   }
+    80% {
+        transform: skewX(0deg);
+        
+   }
+    100% {
+        transform: skewX(0deg);
+   }
+}
 ._container{
     display: flex;
     justify-content: center;
