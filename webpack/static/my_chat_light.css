@@ -21,7 +21,7 @@ body{
         transform: rotate(45deg);
     }
     100%{
-        transform: translate(1000%,0%);
+        transform: translate(800%,0%);
         opacity: 0;
     }
     

@@ -69,17 +69,17 @@
             <!--/.Navbar -->
         
 
-            <form action="{{ url_for('users.chat_room',user_id = _user.id) }}" method = "POST" style="margin-top: 40px;">
+            <form action="{{ url_for('users.chat_room',user_id = _user.id) }}" method = "POST" style="margin-top: 40px; display: flex;">
                 {{ form.hidden_tag() }}
-                <fieldset class="post_form">
+                <fieldset class="post_form" style="width: 100%;">
                   <h2 style="color: rgb(0, 255, 229); text-align: center;text-shadow: 0px 0px 5px rgba(0, 255, 229,0.7),0px 0px 10px rgba(0, 255, 229,0.7);">{{ form_title_webpage }}</h2>
-                  <div class="post_title text-center" style="margin: 10px; margin-top: 30px;">
-                    {{ form.message(class = "form-control-1",placeholder = "Type here...", style="border: 2px solid rgba(0, 255, 229,0.3); margin-left: -10px;") }}
+                  <div class="post_title text-center" style="margin: 10px; margin-top: 30px; margin-bottom: 30px; width: 100%;">
+                    {{ form.message(class = "form-control-1",placeholder = "Type here...", style="width:80%; border: 2px solid rgba(0, 255, 229,0.3); margin-left: -10px;") }}
                     
-                  
-                  <div class="text-center">
-                    <button  class="ask_button" style="padding: 7px; width: auto; cursor: pointer; margin-right: -5px;"><span style="font-weight: 100;">SEND</span> &nbsp;<i class="fas fa-paper-plane my_plane"></i></button>
+                        <button  class="ask_button" style="padding: 7px; width: auto; cursor: pointer; margin-right: -5px;"><span style="font-weight: 100;">SEND</span> &nbsp;<i class="fas fa-paper-plane my_plane"></i></button>
+                      
                   </div>
+                  
                 </fieldset>
             </form>
 
