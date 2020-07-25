@@ -211,7 +211,7 @@ box-shadow:inset -5px -5px 15px rgba(255,255,255,1),
     box-shadow:-5px -5px 15px rgba(255,255,255,1),
                5px 5px 10px rgba(0,0,0,0.2);
 }
-.menu-option:hover,.menu-option:focus,.menu-option:active, .page-i:hover, .page-i:focus, .profile-pic-1:active,.profile-pic-1:hover, .profile-pic-1:focus, .page-i:active,.form-control-1:focus{
+.menu-option:hover,.menu-option:focus,.menu-option:active, .page-i:hover, .page-i:focus, .profile-pic-1:active,.profile-pic-1:hover, .profile-pic-1:focus, .page-i:active{
     text-align: center;
     color: rgb(0, 172, 172);
     border-color: transparent;
@@ -233,7 +233,8 @@ box-shadow:inset -5px -5px 15px rgba(255,255,255,1),
 .form-control-1:focus{
     text-align: left;
     margin-left: 0px;
-
+    box-shadow:inset -5px -5px 15px rgba(255,255,255,1),
+               inset 5px 5px 10px rgba(0,0,0,0.2);
 }
 .form-1,.form-2,.from-3{
     position: relative;
@@ -423,6 +424,9 @@ header,.cardbody{
     .form-control-1{
         margin-left: 10%;
         width: 80%;
+    }
+    .form-control-1:focus{
+        margin-left: 10%;
     }
     .ask_button{
         margin-right:10%;
