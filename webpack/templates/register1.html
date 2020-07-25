@@ -8,6 +8,7 @@
   {% endblock files %}
   {% block content %}
 <div class="__container">
+  <div id="loader" class="center"></div> 
   {% with messages = get_flashed_messages(with_categories = true) %}
       {% if messages %}
           {% for category,message in messages%}
