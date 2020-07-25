@@ -142,14 +142,15 @@
                             <i style="color: #ffc400;margin: 4px; font-size: 20px;" class="devicon-swift-plain"></i>
                           {% endif %}
                       {% endfor %}
-                      <div>
+                      <div class="text-center">
                         {% if current_user.id == _user.id %}
-                            <div style="transform: translate(0%,100%); margin-top: 40px; margin-bottom: -40px;"><a class="ask_button" style="font-family: Aldrich,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #fff; font-size: 13px; border: 2px solid #fff; border-radius: 5px; text-shadow: 0px 0px 5px rgba(33,156,243,0.5),0px 0px 10px rgba(33,156,243,0.5); box-shadow:   0px 0px 5px rgba(33,156,243,0.5),0px 0px 10px rgba(33,156,243,0.5),0px 0px 15px rgba(33,156,243,0.5),inset 0px 0px 10px rgba(33,156,243,1);" onmouseover="this.style.color = '#fff'" onmouseout="this.style.color = '#fff'" href="{{url_for('users.theme_select')}}">
+                            <div style="margin-top: 40px; margin-bottom: -40px; width: 100%;"><a class="ask_button" style="font-family: Aldrich,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #fff; font-size: 13px; border: 2px solid #fff; border-radius: 5px; text-shadow: 0px 0px 5px rgba(33,156,243,0.5),0px 0px 10px rgba(33,156,243,0.5); box-shadow:   0px 0px 5px rgba(33,156,243,0.5),0px 0px 10px rgba(33,156,243,0.5),0px 0px 15px rgba(33,156,243,0.5),inset 0px 0px 10px rgba(33,156,243,1);" onmouseover="this.style.color = '#fff'" onmouseout="this.style.color = '#fff'" href="{{url_for('users.theme_select')}}">
                             {% if current_user.theme == 'NULL' %}
-                              DARK MODE</a></div>
+                              DARK MODE</a>
                             {% else %}
-                              LIGHT MODE</a></div>
+                              LIGHT MODE</a>
                             {% endif %}
+                          </div>
                         {% endif %}
 
                             <div class="dropdown" style=" margin-top: 80px; float: right; margin-right: 10px;">

@@ -495,6 +495,9 @@ header,.cardbody{
         width: 200%;
         
     }
+    .ask_button{
+        margin-left: 30px;
+    }
     .__container-1{
         width: 150%;
         margin-left: -25%;
@@ -507,6 +510,9 @@ header,.cardbody{
     .form-control-1{
         margin-left: 10%;
         width: 80%;
+    }
+    .form-control-1:focus{
+        margin-left: 10%;
     }
     .ask_button{
         margin-right:10%;
