@@ -5,7 +5,7 @@
 {% endblock files %}
 {% block content %}
 <div id="loader" class="center"></div> 
-    <div class="__container">
+    
         {% with messages = get_flashed_messages(with_categories = true) %}
             {% if messages %}
                 {% for category,message in messages%}
@@ -67,23 +67,7 @@
                 </div>
             </nav>
             <!--/.Navbar -->
-        
-
-            <form action="{{ url_for('users.chat_room',user_id = _user.id) }}" method = "POST" style="margin-top: 40px;">
-                {{ form.hidden_tag() }}
-                <fieldset class="post_form">
-                  <h2 style="color: rgb(0, 255, 229); text-align: center;text-shadow: 0px 0px 5px rgba(0, 255, 229,0.7),0px 0px 10px rgba(0, 255, 229,0.7);">{{ form_title_webpage }}</h2>
-                  <div class="post_title" style="margin: 10px; margin-top: 0px;">
-                    {{ form.message(class = "form-control-1",placeholder = "Type here...", style="border: 2px solid rgba(0, 255, 229,0.3);") }}
-                  </div>
-                  
-                  <div class="text-center ml-3" style="margin-bottom: 45px;">
-                    <button type="submit" class="ask_button" style="padding: 7px; width: auto; cursor: pointer;"><span style="font-weight: 100;">SEND</span> &nbsp;<i class="fas fa-paper-plane my_plane"></i></button>
-                  </div>
-                </fieldset>
-            </form>
-
-
+        <div class="__container scroll" id="messageBody">
             <div class="_container" style="margin-top: 0px; background: transparent;">
              
             
@@ -147,12 +131,19 @@
 
             
     </div>
-        
-
-
-
-
-    </div>
+    <form action="{{ url_for('users.chat_room',user_id = _user.id) }}" method = "POST" style="margin-top: 10px;">
+        {{ form.hidden_tag() }}
+        <fieldset class="post_form text-center">
+          <h2 style="color: rgb(0, 255, 229); text-align: center;text-shadow: 0px 0px 5px rgba(0, 255, 229,0.7),0px 0px 10px rgba(0, 255, 229,0.7);">{{ form_title_webpage }}</h2>
+          <div class="post_title text-center" style="margin: 10px; margin-top: 0px;">
+            {{ form.message(class = "form-control-1",placeholder = "Type here...", style="width: 90%; border: 2px solid rgba(0, 255, 229,0.3);") }}
+          </div>
+          
+          <div class="text-center ml-3" style="margin-bottom: 40px;">
+            <button type="submit" class="ask_button" style="padding: 7px; width: auto; cursor: pointer;"><span style="font-weight: 100;">SEND</span> &nbsp;<i class="fas fa-paper-plane my_plane"></i></button>
+          </div>
+        </fieldset>
+    </form>
 
     
 
@@ -202,7 +193,14 @@
         }
         req.open("GET", "{{ url_for('users.all_chats', user_id = _user.id) }}", true);
         req.send();
+        var messageBody = document.querySelector('#messageBody');
+        messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
         }
-        setInterval(function(){ajax()}, 2000);
+        setInterval(function(){ajax()}, 1000);
+    </script>
+
+    <script>
+        var messageBody = document.querySelector('#messageBody');
+        messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
     </script>
 {% endblock content %}

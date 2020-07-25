@@ -7,6 +7,13 @@
 .__container,.__container-1{
     color: #ebf5fc;
 }
+.scroll {
+    height: 57vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-color: rgba(47, 192, 192,0.5) rgba(255,255,255,0.5);
+    scroll-behavior: smooth;
+}
 body{
     background: #ebf5fc;
 }
@@ -408,6 +415,9 @@ header,.cardbody{
         width: 200%;
         
     }
+    .ask_button{
+        margin-left: 35px;
+    }
     .input-3{
         width: 120%;
         margin-left: -7%;
@@ -422,7 +432,7 @@ header,.cardbody{
         margin-left: -20px;
     }
     .form-control-1{
-        margin-left: 10%;
+        margin-left: 0%;
         width: 80%;
     }
     .form-control-1:focus{

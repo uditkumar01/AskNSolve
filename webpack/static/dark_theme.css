@@ -4,6 +4,13 @@
     box-sizing: border-box;
     font-family: 'Poppins',sans-serif,Arial, Helvetica;
 }
+.scroll {
+    height: 57vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-color: aqua rgba(0,0,0,0.5);
+    scroll-behavior: smooth;
+}
 .__container,.__container-1{
     color: #131419;
 }
@@ -508,7 +515,7 @@ header,.cardbody{
         margin-left: -20px;
     }
     .form-control-1{
-        margin-left: 10%;
+        margin-left: 0%;
         width: 80%;
     }
     .form-control-1:focus{
@@ -665,7 +672,7 @@ header,.cardbody{
 
 }
 .circle-3:nth-child(3){
-    
+    float: right;
     margin-top: -60px;
     margin-right: -80px;
     width: 90px;
