@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+  {% block files %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='my_style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/fontawesome.min.css')}}">
+  {% endblock files %}
+  {% block content %}
+  <div id="loader" class="center"></div> 
+      <div class="__container">
+        {% with messages = get_flashed_messages(with_categories = true) %}
+            {% if messages %}
+                {% for category,message in messages%}
+                    <div>
+                        {% if category == "info" %}
+                            <div class = "alert alert-info" ><i class="fas fa-bell fl-fw icon_bell"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button></div>
+                        {% elif category == "success" %}
+                            <div class = "alert alert-success" ><i class="fas fa-check-circle fl-fw icon_tick"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button></div>
+                        {% elif category == "danger" %}
+                            <div class = "alert alert-danger" ><i class="fas fa-times-circle fl-fw icon_danger"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button></div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+
+        <!-- form -->
+            
+              <div class="_container">
+                <form action="" method="POST">
+                  {{ form.hidden_tag() }}
+                  <div class="form">
+                  <div class="input">
+                  <h2 class="text-center mb-10" style="font-size: 180%;">REQUEST RESET</h2>
+                  <div class="inputbox">
+                    {{ form.email(class = "input",placeholder = "Email") }}
+                    {% if form.email.errors %}
+                      {% for error in form.email.errors%}
+                        <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
+                      {% endfor %}
+                    {% endif %}
+                    
+                  </div>
+                  
+                  
+                  <div class="inputbox">
+                    {{ form.submit(class="input text-center") }}
+                  </div>
+                  
+                  {% if form.email.errors %}
+                        <div class="text-center mt-3">
+                          <a href="{{ url_for('users.register') }}" class="forget">Need An Account ?</a>
+                        </div>
+                    {% endif %}
+                  </div>
+                </div>
+                </form>
+              </div>
+        <!-- end -->
+      </div>
+      </div>
+
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/jquery.min.js')}}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/popper.min.js')}}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/bootstrap.min.js')}}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/mdb.min.js')}}"></script>
+  <!-- Your custom scripts (optional) -->
+  <script type="text/javascript"></script>
+  {% endblock content %}

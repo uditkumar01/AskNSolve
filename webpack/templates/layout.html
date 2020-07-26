@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="AskNSolve" content="You can ask and help others clear doubts related to programming ...">
+    <meta name="keywords" content="code,coding,programming,programmer,hack,hacker,questions">
+    <meta http-equiv="content-language" content="en-us">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Plz give a title</title>
+    {% endif %}
+
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ url_for('static', filename = 'images/favicon/apple-icon-57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ url_for('static', filename = 'images/favicon/apple-icon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ url_for('static', filename = 'images/favicon/apple-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename = 'images/favicon/apple-icon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ url_for('static', filename = 'images/favicon/apple-icon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ url_for('static', filename = 'images/favicon/apple-icon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ url_for('static', filename = 'images/favicon/apple-icon-144x144.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ url_for('static', filename = 'images/favicon/apple-icon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename = 'images/favicon/apple-icon-180x180.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{ url_for('static', filename = 'images/favicon/android-icon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename = 'images/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename = 'images/favicon/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename = 'images/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename = 'images/favicon/manifest.json') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    
+    <script src="https://kit.fontawesome.com/f88d2fa247.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'fontawesome.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'fontawesome.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'all.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'all.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'alert_styles.css') }}">
+    <style>
+        
+        .letter-1 {
+             position: relative;
+             text-transform: uppercase;
+             letter-spacing: 2px;
+             font-size: 23px;
+             font-weight: 800;
+             text-decoration: none;
+             color: white;
+             display: inline-block;
+             background-size: 120% 100%;
+             -webkit-background-clip: text;
+             -webkit-text-fill-color: transparent;
+             -moz-background-clip: text;
+             -moz-text-fill-color: transparent;
+             -ms-background-clip: text;
+             -ms-text-fill-color: transparent;
+             background-clip: text;
+             color: transparent;
+             background-image: linear-gradient(45deg, #b9ff77, #1a6a79, #ff1361, #fff800);
+             animation: 2s shakeA infinite alternate;
+             animation-delay: 2s;
+        }
+         @keyframes shakeA {
+             0% {
+                 transform: skewX(-15deg);
+            }
+             2% {
+                 transform: skewX(15deg);
+            }
+             4% {
+                 transform: skewX(-15deg);
+            }
+             6% {
+                 transform: skewX(15deg);
+            }
+             8% {
+                 transform: skewX(0deg);
+                 
+            }
+             100% {
+                 transform: skewX(0deg);
+            }
+        }
+         
+    </style>
+    <style> 
+        #loader { 
+            border: 3px solid rgb(1, 97, 97); 
+            border-radius: 50%; 
+            border-top: 3px solid aqua;
+            width: 70px; 
+            height: 70px; 
+            animation: spin 1s linear infinite; 
+        } 
+          
+        @keyframes spin { 
+            100% { 
+                transform: rotate(360deg); 
+            } 
+        } 
+          
+        .center { 
+            position: absolute; 
+            top: 0; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            margin: auto; 
+        } 
+    </style> 
+    {% block files %}
+    {% endblock files%}
+</head>
+    <body>
+        
+        {% block content %}
+        {% endblock content%}
+        <script> 
+            document.onreadystatechange = function() { 
+                if (document.readyState !== "complete") { 
+                    document.querySelector( 
+                      "body").style.visibility = "hidden"; 
+                    document.querySelector( 
+                      "#loader").style.visibility = "visible"; 
+                } else { 
+                    document.querySelector( 
+                      "#loader").style.display = "none"; 
+                    document.querySelector( 
+                      "body").style.visibility = "visible"; 
+                } 
+            }; 
+        </script> 
+        <script type="text/javascript">
+            window.setTimeout(function() {
+              $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                  $(this).remove(); 
+              });
+          }, 3000);
+        </script>
+    </body>
+</html>
