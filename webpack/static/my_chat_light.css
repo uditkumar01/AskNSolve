@@ -121,17 +121,7 @@ body{
 
 
 
-.sendbutton-1{
-    height: 50px;
-    width: 50px;
-    border: 2px solid rgb(0, 160, 160);
-    color: aqua;
-    border-color: aqua;
-    background: rgb(0, 121, 121);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.2s ease;
-}
+
 .sendbutton-1:hover,.sendbutton-1:active{
     color: rgb(0, 121, 121);
     background: aqua;
@@ -346,7 +336,7 @@ header,.cardbody{
 .form-2{
     padding: 30px;
 }
-.form-control-1,.form-control-3{
+.form-control-1{
     color: rgb(163, 162, 162);
     width: 100%;
     background: transparent;
