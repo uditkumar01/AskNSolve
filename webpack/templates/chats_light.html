@@ -13,7 +13,7 @@
             {%for message in messages[:1]%}
             
                 {% if message[0] == current_user.id %}
-                    <div style="text-align: right; margin-top: 200px;">
+                    <div style="text-align: right; margin-top: 250px;">
                         {% if message[1] != "No message" %}
                             <div class="card text-left my_card_message-1" style="background: transparent; box-shadow: 0 0 0 0;">
                                 <div class="card-title my_message_name">
@@ -35,7 +35,7 @@
                     </div>
                 {% else %}
 
-                        <div class="text-left" style="margin-top: 3px;">
+                        <div class="text-left" style="margin-top: 250px;">
                             {% if message[1] != "No message" %}
                                 
                                 <div class="card text-left my_card_message" style="background: transparent; box-shadow: 0 0 0 0;">
@@ -66,7 +66,7 @@
             {%for message in messages[1:]%}
             
                 {% if message[0] == current_user.id %}
-                    <div style="text-align: right; margin-top: 200px;">
+                    <div style="text-align: right; margin-top: 3px;">
                         {% if message[1] != "No message" %}
                             <div class="card text-left my_card_message-1" style="background: transparent; box-shadow: 0 0 0 0;">
                                 <div class="card-title my_message_name">
