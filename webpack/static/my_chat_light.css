@@ -17,7 +17,7 @@
 body{
     background: #ebf5fc;
 }
-.sendbutton:hover .my_plane,.sendbutton:focus .my_plane{
+.sendbutton-1:hover .my_plane,.sendbutton-1:focus .my_plane{
     animation: .5s shakeB infinite alternate;
 }
 
@@ -121,7 +121,7 @@ body{
 
 
 
-.sendbutton{
+.sendbutton-1{
     height: 50px;
     width: 50px;
     border: 2px solid rgb(0, 160, 160);
@@ -132,7 +132,7 @@ body{
     cursor: pointer;
     transition: 0.2s ease;
 }
-.sendbutton:hover,.sendbutton:active{
+.sendbutton-1:hover,.sendbutton-1:active{
     color: rgb(0, 121, 121);
     background: aqua;
 }
