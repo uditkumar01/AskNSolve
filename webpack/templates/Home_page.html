@@ -1,0 +1,161 @@
+{% extends "layout.html" %}
+{% block files %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='sep_post.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.lite.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.lite.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/modules/animations-extended.min.css') }}">
+
+{% endblock files %}
+{% block content %}
+    
+    <div class="__container">
+            
+            {% with messages = get_flashed_messages(with_categories = true) %}
+                {% if messages %}
+                    {% for category,message in messages%}
+                        <div>
+                            {% if category == "info" %}
+                                <div class = "alert alert-info" ><i class="fas fa-bell fl-fw icon_bell"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button></div>
+                            {% elif category == "success" %}
+                                <div class = "alert alert-success" ><i class="fas fa-check-circle fl-fw icon_tick"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button></div>
+                            {% elif category == "danger" %}
+                                <div class = "alert alert-danger" ><i class="fas fa-times-circle fl-fw icon_danger"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button></div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <div class="sub-container">
+                <div class="headerr">
+                    <div class="menuu">
+                        {% if current_user.is_authenticated: %}
+                            <header class="header" style="background: rgba(255,255,255,0.8);">
+                                <a href="{{ url_for('users.account',user_id = current_user.id) }}" class="logo"><div class="hello" style="display: flex;"><img src = "{{ url_for('static',filename = 'images/' + current_user.profile_pic) }}" alt = "{{ username_menu }}" class = "profile-pic" style="border-radius: 5px;"><div style="display: flex; margin-top: 1px; margin-left: -6px;"><p class="user1">{{ username_menu }}</p><br><p style="margin-left: 15px; margin-top: 5px; font-size: 7px;color: rgb(204, 117, 58)">{{ present_time.strftime('%H hr  %M min  %S sec') }}<br>{{ present_time.strftime('%a %B %Y') }}</p></div></div></a>
+                                <input class="menu-btn" type="checkbox" id="menu-btn" />
+                                <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                                <ul class="menu" style="margin-left: -10px; margin-top: 20px; background: rgba(255,255,255,0.4);">
+                                    <li class="account_btn" style="padding-left: 10px;"><a href="{{url_for('users.account',user_id = current_user.id)}}" style="color: #FA0509;">Account</a></li>
+                                    <li class="ask_btn" style="padding-left: 10px;"><a href="{{url_for('posts.create_post')}}" style="color: #FA0509;">Ask</a></li>
+                                    <li class="logout_btn" style="padding-left: 10px;"><a href="{{url_for('users.logout')}}" style="color: #FA0509;">Logout</a></li>
+                                </ul>
+                            </header>
+                        {% else %}
+                            <header class="header" style="background: rgba(255,255,255,0.8);">
+                                <a href="{{ url_for('users.login') }}" class="logo"><div class="hello"><img src = "{{ profile_pic }}" alt = "{{ username_menu }}" class = "profile-pic"><p class="user1">{{ username_menu }}</p></div></a>
+                                <input class="menu-btn" type="checkbox" id="menu-btn" />
+                                <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                                <ul class="menu" style="margin-left: -10px; margin-top: 20px; background: rgba(255,255,255,0.4);">
+                                    <li class="login_btn" style="padding-left: 10px;"><a href="{{url_for('users.login')}}" style="color: #FA0509;">Login</a></li>
+                                    <li class="register_btn" style="padding-left: 10px;"><a href="{{url_for('users.register')}}" style="color: #FA0509;">Register</a></li>
+                                </ul>
+                            </header>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="question-box">
+                    <div class="questions">
+                        {% for post in posts.items %}
+                            <div class="col-md-14 mb-4" style="color: rgba(0,0,0,0.6); opacity: 0.9;">
+                        
+                                <div class="card">
+                                    <div class="card-header">
+                                        {% if current_user.is_authenticated %}
+                                            <a href="{{ url_for('users.account',user_id = post.author.id) }}"><img src="{{ url_for('static',filename = 'images/'+post.author.profile_pic)}}" class="profile-pic-1" alt="Profile Picture">
+                                        {% else %}
+                                            <a href="{{ url_for('users.login',user_id = post.author.id) }}"><img src="{{ url_for('static',filename = 'images/'+post.author.profile_pic)}}" class="profile-pic-1" alt="Profile Picture">
+                                        {% endif %}
+                                            </a>
+                                        
+                                        {% if current_user.is_authenticated %}
+                                            <a href="{{ url_for('users.account',user_id = post.author.id) }}" style="font-size: 16px; margin-left: -1px; font-weight: 510; color: dimgray; overflow: hidden; text-overflow: ellipsis;">
+                                        {% else %}
+                                            <a href="{{ url_for('users.login') }}" style="font-size: 16px; margin-left: -1px; font-weight: 510; color: dimgray;  overflow: hidden; text-overflow: ellipsis;">
+                                        {% endif %}
+                                            {{ post.author.username }}</a>
+                                        
+                                        <div class="text-right mt-n4" style="font-size: 10px;">{{ post.date_posted.strftime('%H:%M:%S') }} &nbsp;&nbsp;&nbsp;{{ post.date_posted.strftime('%d/%m/%Y') }}</div>
+                                    </div>
+                                    <div class="card-body">
+                                    {% if current_user.is_authenticated %}
+                                        <a href="{{url_for('posts.post', post_id = post.id)}}" ><p class="post_title" style="margin-top: -10px; height: 30px; border: 2px solid transparent; font-size: 15px;">
+                                    {% else %}
+                                        <a href="{{url_for('users.login')}}" ><p class="post_title" style="margin-top: -10px; height: 30px; border: 2px solid transparent; font-size: 15px;">
+                                    {% endif %}
+                                            {% if post.title|length < 30 %}
+                                                {{ post.title }}
+                                            {% else %}
+                                                {{ post.title[:28] }} ...
+                                            {% endif %}
+                                        </p></a>
+                                    
+
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="text-center">
+                            <div class="btn-group">
+                                {% for no in posts.iter_pages(left_edge = 1,right_edge = 1, left_current = 1, right_current = 2) %}
+                                    {% if no %}
+                                        {% if posts.page == no %}
+                                            <a href="{{ url_for('main.home',page = no) }}" class="btn btn-light btn-sm">{{ no }}</a>
+                                        {% else %}
+                                            <a href="{{ url_for('main.home',page = no) }}" class="btn btn-danger btn-sm">{{ no }}</a>
+                                        {% endif %}
+                                    {% else %}
+                                        <a href="#" class="btn btn-secondary btn-sm">...</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+    </div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+    
+    
+    
+  <!-- jQuery -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/jquery.min.js')}}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/popper.min.js')}}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/bootstrap.min.js')}}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/mdb.min.js')}}"></script>
+  <!-- Your custom scripts (optional) -->
+{% endblock content %}

@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+  {% block files %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='my_style1.css')}}">
+    
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/fontawesome.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.lite.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.lite.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/modules/animations-extended.min.css') }}">
+  {% endblock files %}
+  {% block content %}
+      <div class="__container">
+        {% with messages = get_flashed_messages(with_categories = true) %}
+            {% if messages %}
+                {% for category,message in messages%}
+                    <div>
+                        {% if category == "info" %}
+                            <div class = "alert alert-info" ><i class="fas fa-bell fl-fw icon_bell"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button></div>
+                        {% elif category == "success" %}
+                            <div class = "alert alert-success" ><i class="fas fa-check-circle fl-fw icon_tick"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button></div>
+                        {% elif category == "danger" %}
+                            <div class = "alert alert-danger" ><i class="fas fa-times-circle fl-fw icon_danger"></i>{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button></div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+
+        <!-- form -->
+            <div class="box-1">
+              <div class="my_container">
+                <form action="" method="POST">
+                  {{ form.hidden_tag() }}
+                  <p class="text-center mb-10" style="font-size: 180%; color: firebrick;">REGISTER</p>
+                  <div class="form-group mb-4 mt-4">
+                    {{ form.username(class = "form-control",placeholder = "Username") }}
+                    {% if form.username.errors %}
+                      {% for error in form.username.errors%}
+                        <small class="form-text text-danger">{{ error }}</small>
+                      {% endfor %}
+                    {% endif %}
+                    
+                  </div>
+                  <div class="form-group mb-4">
+                    {{ form.email(class = "form-control",placeholder = "Email") }}
+                    {% if form.email.errors %}
+                      {% for error in form.email.errors%}
+                        <small class="form-text text-danger">{{ error }}</small>
+                      {% endfor %}
+                    {% endif %}
+                    
+                  </div>
+                  <div class="form-group mb-4">
+                    {{ form.password(class = "form-control",placeholder = "Password")}}
+
+                    {% if form.password.errors %}
+                      {% for error in form.password.errors%}
+                        <small class="form-text text-danger">{{ error }}</small>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                  <div class="form-group">
+                    {{ form.confirm_password(class = "form-control",placeholder = "Confirm Password")}}
+
+                    {% if form.confirm_password.errors %}
+                      {% for error in form.confirm_password.errors%}
+                        <small class="form-text text-danger">{{ error }}</small>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                  <div class="custom-control custom-checkbox mb-4 mt-3">
+                    {{ form.checkbox(class = "custom-control-input",  id="defaultUnchecked") }}
+                    {% if form.checkbox.errors %}
+                      {% for error in form.checkbox.errors%}
+                        <small class="form-text text-danger">{{ error }}</small>
+                      {% endfor %}
+                    {% endif %}
+                    <label class="custom-control-label" for="defaultUnchecked">I agree to all terms & conditions.</label>
+                  </div>
+                  <div class="text-center">
+                    {{ form.submit(class="purple-gradient btn btn-primary", placeholder = "Login") }}
+                  </div>
+                  <div class="text-center mt-4 mb-3">
+                    <a href="{{ url_for('users.login') }}" class="link_">Have An Account ?</a>
+                  </div>
+                </form>
+              </div>
+        <!-- end -->
+      </div>
+      </div>
+
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/jquery.min.js')}}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/popper.min.js')}}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/bootstrap.min.js')}}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/mdb.min.js')}}"></script>
+  <!-- Your custom scripts (optional) -->
+  <script type="text/javascript"></script>
+  {% endblock content %}
