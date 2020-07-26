@@ -266,6 +266,11 @@ def chat_room(user_id):
     for chat in his_chat:
         all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat])
     all_messages.sort(reverse=False, key = lambda x:x[2])
+    if len(all_messages) > 21:
+        for i in all_messages[:11]:
+            Chat.query.filter_by(id=i[-1]).delete()
+        db.session.commit()
+    print(len(all_messages))
     if form.validate_on_submit() and request.method == "POST":
         text_1 = Chat(user_start_id = current_user.id, user__id = user_id, messages = form.message.data)
         db.session.add(text_1)
@@ -287,10 +292,16 @@ def all_chats(user_id):
     _user = User.query.filter_by(id = user_id).first()
     all_messages = []
     for chat in my_chat:
-        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat])
+        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat,chat.id])
     for chat in his_chat:
-        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat])
+        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat,chat.id])
     all_messages.sort(reverse=False, key = lambda x:x[2])
+    if len(all_messages) > 21:
+        for i in all_messages[:11]:
+            Chat.query.filter_by(id=i[-1]).delete()
+        db.session.commit()
+        
+
     if my_chat != None and his_chat != None:
         if current_user.theme == "NULL":
             return render_template('chats_light.html',title = 'Chat', messages = all_messages ,user_id = user_id, _user = _user)

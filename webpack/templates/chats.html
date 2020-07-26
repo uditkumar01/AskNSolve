@@ -10,7 +10,60 @@
              
             
                 <div class="input-3" style="background: transparent;">
-                    {%for message in messages%}
+                    {%for message in messages[:1]%}
+                    
+                        {% if message[0] == current_user.id %}
+                            <div style="text-align: right; margin-top: 250px;">
+                                {% if message[1] != "No message" %}
+                                    <div class="card text-left my_card_message-1" style="background: transparent; box-shadow: 0 0 0 0;">
+                                        <div class="card-title my_message_name">
+                                            {{current_user.username}}
+                                            <div class="text-right" style="width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -0px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #fff;">
+                                                <mark style="background: #131419;padding: 4px; border-radius: 30px; padding-right: 10px;">
+                                                {% if _user.active == "active" %}
+                                                    <span title="{{ _user.active }} is active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: lime; text-shadow: 0px 0px 5px rgba(124,252,0,0.6),0px 0px 10px rgba(124,252,0,0.6),0px 0px 15px rgba(124,252,0,0.6); "></i><span style="color: limegreen;">active now</span></span>
+                                                {% else %}
+                                                <span title="{{ _user.active }} isn't active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: rgb(70, 105, 35);"></i><span style="color: rgb(70, 105, 35);">not active</span></span>
+                                                {% endif %}
+                                                </mark>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="card-text" style="background: transparent; width: auto;margin-left: 50%;"><p class="my_message-1">{{ message[1] }}</p></div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% else %}
+
+                                <div class="text-left" style="margin-top: 250px;">
+                                    {% if message[1] != "No message" %}
+                                        
+                                        <div class="card text-left my_card_message" style="background: transparent; ">
+                                            <div class="card-title my_message_name-1">
+                                                {% if _user.username|length > 14 %}
+                                                    {{_user.username[:15]}}...
+                                                {% else %}
+                                                    {{_user.username}}
+                                                {% endif %}
+                                                <div class="text-right" style="width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -0px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #fff;">
+                                                    <mark style="background: #131419;padding: 4px; border-radius: 30px; padding-right: 10px;">
+                                                    {% if _user.active == "active" %}
+                                                        <span title="{{ _user.active }} is active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: lime; text-shadow: 0px 0px 5px rgba(124,252,0,0.6),0px 0px 10px rgba(124,252,0,0.6),0px 0px 15px rgba(124,252,0,0.6); "></i><span style="color: limegreen;">active now</span></span>
+                                                    {% else %}
+                                                    <span title="{{ _user.active }} isn't active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: rgb(70, 105, 35);"></i><span style="color: rgb(70, 105, 35);">not active</span></span>
+                                                    {% endif %}
+                                                    </mark>
+                                                </div>
+                                            </div>
+                                            <div class="card-text" style="background: transparent; width: auto;margin-left: 0%;"><p class="my_message-2">{{ message[1] }}</p></div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            
+                        {% endif %}
+                
+                    {%endfor%}
+                    {%for message in messages[1:]%}
                     
                         {% if message[0] == current_user.id %}
                             <div style="text-align: right; margin-top: 3px;">

@@ -86,9 +86,46 @@
             <div class="_container" style="margin-top: 0px; background: transparent;">
                 
                 <div class="input-3" id="chats" style="background: transparent;">
-                    {%for message in messages%}
+                    {%for message in messages[:1]%}
                     
                         {% if message[0] == current_user.id %}
+                            
+                            <div style="text-align: right; margin-top: 250px;">
+                                {% if message[1] != "No message" %}
+                                    <div class="card text-left my_card_message-1" style="background: transparent; box-shadow: 0 0 0 0;">
+                                        <div class="card-title my_message_name">
+                                            {{current_user.username}}
+                                        </div>
+
+                                        <div class="card-text" style="background: transparent; width: auto;margin-left: 50%;"><p class="my_message-1">{{ message[1] }}</p></div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% else %}
+
+                                <div class="text-left" style="margin-top: 250px;">
+                                    {% if message[1] != "No message" %}
+                                        
+                                        <div class="card text-left my_card_message" style="background: transparent; ">
+                                            <div class="card-title my_message_name-1">
+                                                {% if _user.username|length > 14 %}
+                                                    {{_user.username[:15]}}...
+                                                {% else %}
+                                                    {{_user.username}}
+                                                {% endif %}
+                                            </div>
+                                            <div class="card-text" style="background: transparent; width: auto;margin-left: 0%;"><p class="my_message-2">{{ message[1] }}</p></div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            
+                        {% endif %}
+                
+                    {%endfor%}
+                    {%for message in messages[1:]%}
+                    
+                        {% if message[0] == current_user.id %}
+                            
                             <div style="text-align: right; margin-top: 3px;">
                                 {% if message[1] != "No message" %}
                                     <div class="card text-left my_card_message-1" style="background: transparent; box-shadow: 0 0 0 0;">
@@ -131,7 +168,6 @@
               <h2 style="color: rgb(0, 255, 229); text-align: center;text-shadow: 0px 0px 5px rgba(0, 255, 229,0.7),0px 0px 10px rgba(0, 255, 229,0.7);">{{ form_title_webpage }}</h2>
               <div class="post_title" style="margin: 10px; margin-top: 0px;">
                 {{ form.message(class = "form-control-1",placeholder = "Type here...", style="width: 90%; border: 2px solid rgba(0, 255, 229,0.3);") }}
-                
               </div>
               <div class="text-center" style="margin-bottom: 0px;">
               <button type="submit"  class="ask_button" style="padding: 7px; width: auto; cursor: pointer;"><span style="font-weight: 100;">SEND</span> &nbsp;<i class="fas fa-paper-plane my_plane"></i></button>
