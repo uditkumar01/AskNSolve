@@ -197,6 +197,40 @@
           </div>
         </fieldset>
     </form>
+    <div id="circularMenu" class="circular-menu">
+
+        <a class="floating-btn" onclick="document.getElementById('circularMenu').classList.toggle('active');">
+          <i class="fa fa-plus" style="color: #ebf5fc;"></i>
+        </a>
+      
+        <menu class="items-wrapper">
+          <a href="https://www.facebook.com/login" class="menu-item fa fa-facebook"></a>
+          <a href="https://www.twitter.com/login" class="menu-item fa fa-twitter"></a>
+          <a href="https://plus.google.com/login" class="menu-item fa fa-google-plus"></a>
+          <a href="https://www.linkedin.com/login" class="menu-item fa fa-linkedin"></a>
+        </menu>
+      
+      </div>
+      
+      
+      <div id="circularMenu1" class="circular-menu circular-menu-left active">
+      
+        <a class="floating-btn" onclick="document.getElementById('circularMenu1').classList.toggle('active');">
+          <div class="hamburger">
+                <div class="hamburger hamburger-1"></div>
+                <div class="hamburger hamburger-2"></div>
+                <div class="hamburger hamburger-3"></div>
+          </div>
+        </a>
+      
+        <menu class="items-wrapper">
+          <a href="{{url_for('main.home')}}" class="menu-item fa fa-home"></a>
+          <a href="{{url_for('users.account',user_id = current_user.id)}}" class="menu-item fa fa-user"></a>
+          <a href="{{url_for('posts.create_post')}}" class="menu-item fa fa-question"></a>
+          <a href="#" class="menu-item fa fa-cog"></a>
+        </menu>
+      
+      </div>
 
     
 
