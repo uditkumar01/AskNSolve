@@ -165,31 +165,16 @@
         <form action="{{ url_for('users.chat_room',user_id = _user.id) }}" method = "POST" style="margin-top: 0px;">
             {{ form.hidden_tag() }}
             <fieldset class="post_form text-center">
-              <h2 style="color: rgb(0, 255, 229); text-align: center;text-shadow: 0px 0px 5px rgba(0, 255, 229,0.7),0px 0px 10px rgba(0, 255, 229,0.7);">{{ form_title_webpage }}</h2>
+              
               <div class="post_title" style="margin: 10px; margin-top: 0px;">
-                {{ form.message(class = "form-control-1",placeholder = "Type here...", style="width: 90%; border: 2px solid rgba(0, 255, 229,0.3);") }}
+                {{ form.message(class = "form-control-2",placeholder = "Type here...", style="border-radius: 50px; padding-left:20px; padding-right:20px; width: 80%;") }}
+                <button type="submit"  class="sendbutton">&nbsp;<i class="fas fa-paper-plane my_plane" style="margin-left: -5px;"></i></button>
               </div>
-              <div class="text-center" style="margin-bottom: 0px;">
-              <button type="submit"  class="ask_button" style="padding: 7px; width: auto; cursor: pointer;"><span style="font-weight: 100;">SEND</span> &nbsp;<i class="fas fa-paper-plane my_plane"></i></button>
-              </div>
+              
+              
+              
             </fieldset>
         </form>
-          
-          
-          <div id="circularMenu1" class="circular-menu circular-menu-right active">
-          
-            <a class="floating-btn" onclick="document.getElementById('circularMenu1').classList.toggle('active');">
-              <i class="fa fa-bars" style="color: #fff;"></i>
-            </a>
-          
-            <menu class="items-wrapper">
-              <a href="{{url_for('main.home')}}" class="menu-item fa fa-home"></a>
-              <a href="{{url_for('users.account',user_id = current_user.id)}}" class="menu-item fa fa-user"></a>
-              <a href="{{url_for('posts.create_post')}}" class="menu-item fa fa-question"></a>
-              <a href="#" class="menu-item fa fa-cog"></a>
-            </menu>
-          
-          </div>
     
 
 
