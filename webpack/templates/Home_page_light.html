@@ -165,6 +165,85 @@
             
         </div>
 
+
+                <!-- Button trigger modal -->
+        <button type="button" class="btn btn-sm" style="position:fixed;width:60px;height:60px;bottom:40px;right:40px;background-color:rgb(51, 177, 164);color:#FFF;border-radius:50px;text-align:center;box-shadow: 2px 2px 3px #999;" data-toggle="modal" data-target="#exampleModalLong">
+            <i class="fas fa-bell my_bell"></i>
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h6 class="modal-title text-muted" id="exampleModalLongTitle">Notifications</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <button class="tablink" onclick="openPage('Home', this, 'transparent')">Likes</button>
+                    <button class="tablink" onclick="openPage('News', this, 'transparent')" id="defaultOpen">Inbox</button>
+                    <button class="tablink" onclick="openPage('Contact', this, 'transparent')">Your Comments</button>
+                    <button class="tablink" onclick="openPage('About', this, 'transparent')">Got Comments</button>
+                    
+                    <div id="Home" class="tabcontent">
+                      <h6 class="text-center mt-n3" style="background: teal; border-radius: 10px; padding: 10px; margin-bottom: 30px;">Likes on your posts</h6>
+                        {% for like in all_likes %}
+                            <div class="card mb-4">
+                                
+                                <div class="card-body text-muted">
+                                    <a href="{{ url_for('users.account',user_id = like[1]) }}" style="color: teal;">{{like[0]}}</a> liked your <a href="{{ url_for('posts.post',post_id = like[2]) }}" style="color: teal;">post</a><a href="{{ url_for('posts.post',post_id = like[2]) }}"><i class="fas fa-arrow-right" style="float: right; color: teal;"></i></a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div id="News" class="tabcontent">
+                        <h6 class="text-center mt-n3" style="background: red; border-radius: 10px; padding: 10px; margin-bottom: 30px;">Chats alerts</h6>
+                        {% for chat in all_chats %}
+                            <div class="card mb-4">
+                                
+                                <div class="card-body text-muted">
+                                    <a href="{{ url_for('users.account',user_id = chat[1]) }}" style="color: red;">{{chat[0]}}</a> have sent you a message.<a href="{{ url_for('users.chat_room',user_id = chat[1]) }}"><i class="fas fa-arrow-right" style="float: right; color: red;"></i></a>
+                                </div>
+                            </div>
+                            
+                        {% endfor %}
+                    </div>
+                    
+                    <div id="Contact" class="tabcontent">
+                        <h6 class="text-center mt-n3" style="background: rgb(137, 0, 201); border-radius: 10px; padding: 10px; margin-bottom: 30px;">Your Comments on Posts</h6>
+                        {% for comment in all_his_comments %}
+                            <div class="card mb-4">
+                                    
+                                <div class="card-body text-muted">
+                                    <a href="{{ url_for('users.account',user_id = current_user.id) }}" style="color: rgb(137, 0, 201);">You</a> commented on this <a href="{{ url_for('posts.post',post_id = comment[1]) }}" style="color: rgb(137, 0, 201);">post</a> by <a href="{{ url_for('users.account',user_id = comment[0].id) }}" style="color: rgb(137, 0, 201);">{{ comment[0].username }}</a><a href="{{ url_for('posts.post',post_id = comment[1]) }}"><i class="fas fa-arrow-right" style="float: right; color: rgb(137, 0, 201);"></i></a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div id="About" class="tabcontent">
+                        
+                            <h6 class="text-center mt-n3" style="background: rgb(38, 127, 165);border-radius: 10px; padding: 10px; margin-bottom: 30px;">Comments on Your Posts</h6>
+                            {% for comment in all_got_comments %}
+                                <div class="card mb-4">
+                                        
+                                    <div class="card-body text-muted">
+                                        <a href="{{ url_for('users.account',user_id = current_user.id) }}" style="color: rgb(38, 127, 165);">You</a> got comment on this <a href="{{ url_for('posts.post',post_id = comment.post__id) }}" style="color: rgb(38, 127, 165);">post</a><a href="{{ url_for('posts.post',post_id = comment.post__id) }}"><i class="fas fa-arrow-right" style="float: right; color: rgb(38, 127, 165);"></i></a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin: auto;">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
 </div>
 
 
@@ -192,7 +271,24 @@
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/mdb.min.js')}}"></script>
   <!-- Your custom scripts (optional) -->
-  
+  <script>
+    function openPage(pageName,elmnt,color) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+      }
+      document.getElementById(pageName).style.display = "block";
+      elmnt.style.backgroundColor = color;
+    }
+    
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+    </script>
   <script>
           $(function() {
 

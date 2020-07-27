@@ -279,19 +279,19 @@
 
     <div class="modal left fade" id="exampleModal" tabindex="" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="background: transparent;">
+            <div class="modal-content" style="background: transparent; box-shadow: 0 0 0 0;">
                 
-                <div class="modal-body" style="overflow-x: hidden;scrollbar-color: rgba(0,0,0,0.6) rgba(255,255,255,0);scroll-behavior: smooth;">
+                <div class="modal-body my_comment_box" style="overflow-x: hidden;scrollbar-color: rgba(0,0,0,0.6) rgba(255,255,255,0);scroll-behavior: smooth;">
                     <div class="nav flex-sm-column flex-row">
                                    <!--Grid row-->
-                        <div class="row">
+                        <div class="row" style="background: transparent; box-shadow: 0 0 0 0;">
                         
                             <!--Grid column-->
                             <div class="col-md-15 mb-4">
                                 
                                 
                                 {% for comment in _comments %}
-                                    <div class="card mb-4 ml-2" style="width: 335px;">
+                                    <div class="card mb-4" style="width: 335px;">
                                         <div class="card-header">
                                             Commented by {{comment.commentor}}
                                         </div>

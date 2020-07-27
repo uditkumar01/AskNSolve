@@ -22,6 +22,74 @@
                 5px 5px 10px rgba(0,0,0,0.2);
 }
 
+.tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 11px;
+    width: 25%;
+  }
+  
+  .tablink:hover {
+    background-color: #777;
+  }
+  
+  /* Style the tab content (and add height:100% for full page content) */
+  .tabcontent {
+    color: white;
+    display: none;
+    padding: 100px 20px;
+    height: 100%;
+  }
+  
+  #Home {background-color: #55efc4;}
+  #News {background-color: #ff7675;}
+  #Contact {background-color: #a29bfe;}
+  #About {background-color: #34ace0;}
+
+
+.my_comment_box{
+    margin: auto;
+}
+
+
+.my_bell{
+    color: #ebf5fc;
+    animation: 2s shakeBell infinite alternate;
+    font-size: large;
+    margin-left: -3px;
+}
+@keyframes shakeBell {
+    0% {
+        transform: rotate(35deg);
+    }
+    12.5% {
+        transform: rotate(-30deg);
+    }
+    25% {
+        transform: rotate(25deg);
+    }
+    37.5% {
+        transform: rotate(-20deg);
+    }
+    50% {
+        transform: rotate(15deg);
+    }
+    62.5% {
+        transform: rotate(-10deg);
+    }
+    75% {
+        transform: rotate(5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
 .profile-pic-1{
     height: 40px;
     width: 40px;

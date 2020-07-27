@@ -28,7 +28,7 @@ def like(post_id):
     post = Post.query.get_or_404(post_id)
     user_exist = Post_like.query.filter_by(post__id = post_id,user__id = current_user.id).first()
     if post and (not user_exist):
-        like = Post_like(post__id = post_id, user__id = current_user.id)
+        like = Post_like(post__id = post_id, user_post = post.author.id, user__id = current_user.id)
         db.session.add(like)
         db.session.commit()
     elif post and user_exist:
@@ -57,7 +57,7 @@ def post(post_id):
     if form.validate_on_submit and request.method == 'POST':
         # flash('Not ommented successfully!!!', 'success')
         if current_user.username == form.commentor.data:
-            comment = Comment(commentor = form.commentor.data,comment = form.comment.data, post__id = post_id, profile_pic = current_user.profile_pic)
+            comment = Comment(commentor = form.commentor.data,comment = form.comment.data, post_writer = post.author.username, post__id = post_id, profile_pic = current_user.profile_pic)
             db.session.add(comment)
             db.session.commit()
             flash('Commented successfully!!!', 'success')

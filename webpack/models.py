@@ -24,7 +24,7 @@ class User(db.Model,UserMixin):
     profile_pic = db.Column(db.String(100), nullable = False, default = "default_profile_pic.jpg")
     theme = db.Column(db.Integer, default  = "NULL")
     active = db.Column(db.Integer, default  = "NULL")
-    total_time_spent = db.Column(db.Integer, default  = "NULL")
+    logout_time = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
     posts = db.relationship('Post', backref = 'author', lazy = True)
 
 
@@ -59,6 +59,7 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     commentor = db.Column(db.String(30), nullable = False)
     comment = db.Column(db.String(100000), nullable = False)
+    post_writer = db.Column(db.String(30), nullable = False)
     post__id = db.Column(db.Integer, nullable = False)
     profile_pic = db.Column(db.String(100), nullable = False, default = "default_profile_pic.jpg")
     timestamp = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
@@ -69,7 +70,9 @@ class Comment(db.Model):
 class Post_like(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     post__id = db.Column(db.Integer, nullable = False)
+    user_post = db.Column(db.Integer, nullable = False)
     user__id = db.Column(db.Integer, nullable = False)
+    timestamp = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
 
 
     def __repr__(self):
@@ -80,6 +83,7 @@ class Chat(db.Model):
     user_start_id = db.Column(db.Integer, nullable = False)
     user__id = db.Column(db.Integer, nullable = False)
     time_of_chat = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
+    seen = db.Column(db.Integer, default = "0")
     messages = db.Column(db.String(10000),nullable = False, default = "No message")
 
     def __repr__(self):
@@ -89,6 +93,7 @@ class Follow(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, nullable = False)
     current_user_id = db.Column(db.Integer, nullable = False)
+    time_of_follow = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
 
     def __repr__(self):
         return f"Follow('{self.user_id}','{self.current_user_id}')"
