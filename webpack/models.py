@@ -24,7 +24,8 @@ class User(db.Model,UserMixin):
     profile_pic = db.Column(db.String(100), nullable = False, default = "default_profile_pic.jpg")
     theme = db.Column(db.Integer, default  = "NULL")
     active = db.Column(db.Integer, default  = "NULL")
-    logout_time = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
+    chat_in = db.Column(db.String(100), default  = "0 0 0 0 0 0")
+    chat_out = db.Column(db.String(100), default  = "0 0 0 0 0 0")
     posts = db.relationship('Post', backref = 'author', lazy = True)
 
 

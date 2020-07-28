@@ -82,7 +82,7 @@
                                             {{current_user.username}}
                                             <div class="text-right" style="width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -0px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #fff;">
                                                 <mark style="background: #ebf5fc;padding: 4px; border-radius: 30px; padding-right: 10px;">
-                                                {% if _user.active == "active" %}
+                                                {% if current_user.active == "active" %}
                                                     <span title="{{ current_user.username }} is active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: lime; text-shadow: 0px 0px 5px rgba(124,252,0,0.6),0px 0px 10px rgba(124,252,0,0.6),0px 0px 15px rgba(124,252,0,0.6); "></i><span style="color: limegreen;">active now</span></span>
                                                 {% else %}
                                                 <span title="{{ current_user.username }} isn't active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: rgb(70, 105, 35);"></i><span style="color: rgb(70, 105, 35);">not active</span></span>
@@ -135,7 +135,7 @@
                                             {{current_user.username}}
                                             <div class="text-right" style="width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -0px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #fff;">
                                                 <mark style="background: #ebf5fc;padding: 4px; border-radius: 30px; padding-right: 10px;">
-                                                {% if _user.active == "active" %}
+                                                {% if current_user.active == "active" %}
                                                     <span title="{{ current_user.username }} is active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: lime; text-shadow: 0px 0px 5px rgba(124,252,0,0.6),0px 0px 10px rgba(124,252,0,0.6),0px 0px 15px rgba(124,252,0,0.6); "></i><span style="color: limegreen;">active now</span></span>
                                                 {% else %}
                                                 <span title="{{ current_user.username }} isn't active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: rgb(70, 105, 35);"></i><span style="color: rgb(70, 105, 35);">not active</span></span>

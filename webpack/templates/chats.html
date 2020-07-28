@@ -20,7 +20,7 @@
                                             {{current_user.username}}
                                             <div class="text-right" style="width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -0px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #fff;">
                                                 <mark style="background: #131419;padding: 4px; border-radius: 30px; padding-right: 10px;">
-                                                {% if _user.active == "active" %}
+                                                {% if current_user.active == "active" %}
                                                     <span title="{{ _user.active }} is active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: lime; text-shadow: 0px 0px 5px rgba(124,252,0,0.6),0px 0px 10px rgba(124,252,0,0.6),0px 0px 15px rgba(124,252,0,0.6); "></i><span style="color: limegreen;">active now</span></span>
                                                 {% else %}
                                                 <span title="{{ _user.active }} isn't active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: rgb(70, 105, 35);"></i><span style="color: rgb(70, 105, 35);">not active</span></span>
@@ -30,6 +30,26 @@
                                         </div>
                                         
                                         <div class="card-text" style="background: transparent; width: auto;margin-left: 50%;"><p class="my_message-1">{{ message[1] }}</p></div>
+                                        {% if _user.active == "active" and current_user.active == "active" %}
+                                    <div class="card-footer" style="background: transparent; border-color: transparent; margin-top: -40px; transform: translate(1%,-30%);">
+                                        <div class="text-right text-muted" style="padding-left: 2px; float: right;"><i class="fas fa-envelope-open-text" style="color: aqua;"></i></div>
+                                    </div>
+                                {% else %}
+                                    {% if message[4] == 1 %}
+                                        <div class="card-footer" style="background: transparent; border-color: transparent; margin-top: -40px; transform: translate(1%,-30%);">
+                                            <div class="text-right text-muted" style="padding-left: 2px; float: right;"><i class="fas fa-envelope-open-text" style="color: aqua;"></i></div>
+                                        </div>
+                                    {% elif message[4] == 0 and _user.active == "active" %}
+                                        <div class="card-footer" style="background: transparent; border-color: transparent; margin-top: -40px; transform: translate(1%,-30%);">
+                                            <div class="text-right text-muted" style="padding-left: 2px; float: right;"><i class="fas fa-envelope text-muted"></i></div>
+                                        </div>
+                                        
+                                    {% else %}
+                                            <div class="card-footer" style="background: transparent; border-color: transparent; margin-top: -40px; transform: translate(1%,-30%);">
+                                                <div class="text-right text-muted" style="padding-left: 2px; float: right;"><i class="fas fa-envelope" style="color: silver;"></i></div>
+                                            </div>
+                                    {% endif %}
+                                {% endif %}
                                     </div>
                                 {% endif %}
                             </div>
@@ -56,6 +76,7 @@
                                                 </div>
                                             </div>
                                             <div class="card-text" style="background: transparent; width: auto;margin-left: 0%;"><p class="my_message-2">{{ message[1] }}</p></div>
+                                            
                                         </div>
                                     {% endif %}
                                 </div>
@@ -73,7 +94,7 @@
                                             {{current_user.username}}
                                             <div class="text-right" style="width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -0px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #fff;">
                                                 <mark style="background: #131419;padding: 4px; border-radius: 30px; padding-right: 10px;">
-                                                {% if _user.active == "active" %}
+                                                {% if current_user.active == "active" %}
                                                     <span title="{{ _user.active }} is active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: lime; text-shadow: 0px 0px 5px rgba(124,252,0,0.6),0px 0px 10px rgba(124,252,0,0.6),0px 0px 15px rgba(124,252,0,0.6); "></i><span style="color: limegreen;">active now</span></span>
                                                 {% else %}
                                                 <span title="{{ _user.active }} isn't active" style="cursor: pointer;"><i class="fas fa-circle" style="margin-top: 0px; padding: 7px; color: rgb(70, 105, 35);"></i><span style="color: rgb(70, 105, 35);">not active</span></span>
@@ -83,6 +104,26 @@
                                         </div>
                                         
                                         <div class="card-text" style="background: transparent; width: auto;margin-left: 50%;"><p class="my_message-1">{{ message[1] }}</p></div>
+                                        {% if _user.active == "active" and current_user.active == "active" %}
+                                            <div class="card-footer" style="background: transparent; border-color: transparent; margin-top: -40px; transform: translate(1%,-30%);">
+                                                <div class="text-right text-muted" style="padding-left: 2px; float: right;"><i class="fas fa-envelope-open-text" style="color: aqua;"></i></div>
+                                            </div>
+                                        {% else %}
+                                            {% if message[4] == 1 %}
+                                                <div class="card-footer" style="background: transparent; border-color: transparent; margin-top: -40px; transform: translate(1%,-30%);">
+                                                    <div class="text-right text-muted" style="padding-left: 2px; float: right;"><i class="fas fa-envelope-open-text" style="color: aqua;"></i></div>
+                                                </div>
+                                            {% elif message[4] == 0 and _user.active == "active" %}
+                                                <div class="card-footer" style="background: transparent; border-color: transparent; margin-top: -40px; transform: translate(1%,-30%);">
+                                                    <div class="text-right text-muted" style="padding-left: 2px; float: right;"><i class="fas fa-envelope text-muted"></i></div>
+                                                </div>
+                                                
+                                            {% else %}
+                                                    <div class="card-footer" style="background: transparent; border-color: transparent; margin-top: -40px; transform: translate(1%,-30%);">
+                                                        <div class="text-right text-muted" style="padding-left: 2px; float: right;"><i class="fas fa-envelope" style="color: silver;"></i></div>
+                                                    </div>
+                                            {% endif %}
+                                        {% endif %}
                                     </div>
                                 {% endif %}
                             </div>

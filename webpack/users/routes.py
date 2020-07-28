@@ -143,6 +143,7 @@ def account(user_id):
     followers = Follow.query.filter_by(user_id = user_id).all()
     following = Follow.query.filter_by(current_user_id = user_id).all()
     follow_checking = Follow.query.filter_by(user_id = user_id,current_user_id = current_user.id).first()
+    print("CHECK HERE",current_user.chat_in)
     name_of_follow = ""
     if follow_checking:
         name_of_follow = "Unfollow"
@@ -260,17 +261,23 @@ def chat_room(user_id):
     my_chat = Chat.query.filter_by(user_start_id = user_id, user__id = current_user.id).all()
     his_chat = Chat.query.filter_by(user_start_id = current_user.id, user__id = user_id).all()
     _user = User.query.filter_by(id = user_id).first()
+    
     all_messages = []
+    if request.method == "GET":
+        current_user.chat_in = datetime.utcnow().strftime('%Y %m %d %H %M %S')
+        db.session.commit()
     for chat in my_chat:
-        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat])
+        if _user.chat_in and chat.time_of_chat.strftime('%Y %m %d %H %M %S') <= _user.chat_in:
+            chat.seen = '1'
+            db.session.commit()
+        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat, chat.seen])
     for chat in his_chat:
-        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat])
+        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat, chat.seen])
     all_messages.sort(reverse=False, key = lambda x:x[2])
     if len(all_messages) > 21:
         for i in all_messages[:11]:
             Chat.query.filter_by(id=i[-1]).delete()
         db.session.commit()
-    print(len(all_messages))
     if form.validate_on_submit() and request.method == "POST":
         text_1 = Chat(user_start_id = current_user.id, user__id = user_id, messages = form.message.data)
         db.session.add(text_1)
@@ -292,9 +299,9 @@ def all_chats(user_id):
     _user = User.query.filter_by(id = user_id).first()
     all_messages = []
     for chat in my_chat:
-        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat,chat.id])
+        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat,chat.id, chat.seen])
     for chat in his_chat:
-        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat,chat.id])
+        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat,chat.id, chat.seen])
     all_messages.sort(reverse=False, key = lambda x:x[2])
     if len(all_messages) > 21:
         for i in all_messages[:11]:
