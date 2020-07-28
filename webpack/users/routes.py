@@ -143,7 +143,6 @@ def account(user_id):
     followers = Follow.query.filter_by(user_id = user_id).all()
     following = Follow.query.filter_by(current_user_id = user_id).all()
     follow_checking = Follow.query.filter_by(user_id = user_id,current_user_id = current_user.id).first()
-    print("CHECK HERE",current_user.chat_in)
     name_of_follow = ""
     if follow_checking:
         name_of_follow = "Unfollow"
@@ -245,7 +244,8 @@ def request_token(token):
 @login_required
 @users.route("/logout")
 def logout():
-    
+    current_user.chat_in = '0 0 0 0 0 0'
+    current_user.chat_in = '0 0 0 0 0 0'
     current_user.active = "notactive"
     current_user.total_time_spent = datetime.utcnow()
     db.session.commit()
@@ -263,9 +263,7 @@ def chat_room(user_id):
     _user = User.query.filter_by(id = user_id).first()
     
     all_messages = []
-    if request.method == "GET":
-        current_user.chat_in = datetime.utcnow().strftime('%Y %m %d %H %M %S')
-        db.session.commit()
+    
     for chat in my_chat:
         if _user.chat_in and chat.time_of_chat.strftime('%Y %m %d %H %M %S') <= _user.chat_in:
             chat.seen = '1'
