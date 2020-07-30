@@ -252,13 +252,14 @@ def logout():
     flash(f'Logout Successfull!','success')
     return redirect(url_for('users.login'))
 
-@users.route("/chat_room/delete_chat/<int:chat_id>" , methods = ['POST'])
-def chat_del(chat_id):
+@users.route("/chat_room/delete_chat/<int:chat_id>/<int:user_id>" , methods = ['GET'])
+def chat_del(chat_id,user_id):
     text_1 = Chat.query.get(chat_id)
     if text_1:
         db.session.delete(text_1)
         db.session.commit()
         flash('Deleted !','success')
+    return redirect(url_for('users.chat_room',user_id = user_id))
 
 
 @users.route("/chat_room/<int:user_id>" , methods = ['GET','POST'])
@@ -271,9 +272,9 @@ def chat_room(user_id):
     all_messages = []
     
     for chat in my_chat:
-        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat, chat.seen])
+        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat,chat.id, chat.user__id])
     for chat in his_chat:
-        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat, chat.seen])
+        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat,chat.id, chat.user__id])
     all_messages.sort(reverse=False, key = lambda x:x[2])
     if len(all_messages) > 21:
         for i in all_messages[:11]:
@@ -300,9 +301,9 @@ def all_chats(user_id):
     _user = User.query.filter_by(id = user_id).first()
     all_messages = []
     for chat in my_chat:
-        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat,chat.id, chat.seen])
+        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat,chat.id, chat.user__id])
     for chat in his_chat:
-        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat,chat.id, chat.seen])
+        all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat,chat.id, chat.user__id])
     all_messages.sort(reverse=False, key = lambda x:x[2])
     if len(all_messages) > 21:
         for i in all_messages[:11]:
