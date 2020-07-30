@@ -493,7 +493,9 @@ header,.cardbody{
                    
 }
 @media (max-width: 48em) {
-    
+    .input-1{
+        width: 100%;
+    }
     .ask_button{
         margin-left: 30px;
     }
