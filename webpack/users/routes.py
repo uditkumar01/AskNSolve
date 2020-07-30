@@ -241,6 +241,7 @@ def request_token(token):
         return redirect(url_for('users.login'))
     return render_template('password_reset.html', title = "Password Reset", form = form)
 
+
 @login_required
 @users.route("/logout")
 def logout():
