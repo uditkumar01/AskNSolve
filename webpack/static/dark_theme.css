@@ -384,9 +384,6 @@ header,.cardbody{
     border-radius: 10px;
     text-align: center;
 }
-.input-4{
-    width: 78%;
-}
 .input-3{
     width: 100%;
     height: 500px;
@@ -496,9 +493,7 @@ header,.cardbody{
                    
 }
 @media (max-width: 48em) {
-    .input-1,.input-4{
-        width: 100%;
-    }
+    
     .ask_button{
         margin-left: 30px;
     }
@@ -589,7 +584,7 @@ header,.cardbody{
     .form-1,.form-3{
         width: 105%;
     }
-    .input-1,.input-4{
+    .input-1{
         margin-top: -300px;
     }
     ._container{
