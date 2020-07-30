@@ -22,8 +22,8 @@ class User(db.Model,UserMixin):
     email = db.Column(db.String(150), unique = True, nullable = False)
     password = db.Column(db.String(60), nullable = False)
     profile_pic = db.Column(db.String(100), nullable = False, default = "default_profile_pic.jpg")
-    theme = db.Column(db.Integer, default  = 0)
-    active = db.Column(db.Integer, default  = 0)
+    theme = db.Column(db.String(15), default  = "NULL")
+    active =  db.Column(db.String(15), default  = "NULL")
     posts = db.relationship('Post', backref = 'author', lazy = True)
 
 
