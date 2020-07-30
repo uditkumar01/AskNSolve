@@ -31,4 +31,7 @@ def create_app(config_class = Config):
     app.register_blueprint(posts)
     app.register_blueprint(main)
 
+    
+
     return app
+
