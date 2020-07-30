@@ -22,10 +22,8 @@ class User(db.Model,UserMixin):
     email = db.Column(db.String(150), unique = True, nullable = False)
     password = db.Column(db.String(60), nullable = False)
     profile_pic = db.Column(db.String(100), nullable = False, default = "default_profile_pic.jpg")
-    theme = db.Column(db.Integer, default  = "NULL")
-    active = db.Column(db.Integer, default  = "NULL")
-    chat_in = db.Column(db.String(100), default  = "0 0 0 0 0 0")
-    chat_out = db.Column(db.String(100), default  = "0 0 0 0 0 0")
+    theme = db.Column(db.Integer, default  = 0)
+    active = db.Column(db.Integer, default  = 0)
     posts = db.relationship('Post', backref = 'author', lazy = True)
 
 
@@ -84,7 +82,7 @@ class Chat(db.Model):
     user_start_id = db.Column(db.Integer, nullable = False)
     user__id = db.Column(db.Integer, nullable = False)
     time_of_chat = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
-    seen = db.Column(db.Integer, default = "0")
+    seen = db.Column(db.Integer, default = 0)
     messages = db.Column(db.String(10000),nullable = False, default = "No message")
 
     def __repr__(self):
