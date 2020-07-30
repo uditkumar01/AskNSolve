@@ -2,6 +2,13 @@
 {% block files %}
     <link rel="stylesheet" href="{{ url_for('static',filename='dark_theme.css')}}">
     <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.css') }}">
+    <style>
+        @media (max-width: 48em){
+            .input-1{
+                width: 100%;
+            }
+        }
+    </style>
 
 {% endblock files %}
 {% block content %}
