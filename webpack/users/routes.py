@@ -244,8 +244,6 @@ def request_token(token):
 @login_required
 @users.route("/logout")
 def logout():
-    current_user.chat_in = '0 0 0 0 0 0'
-    current_user.chat_in = '0 0 0 0 0 0'
     current_user.active = "notactive"
     current_user.total_time_spent = datetime.utcnow()
     db.session.commit()
