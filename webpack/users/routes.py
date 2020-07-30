@@ -271,7 +271,6 @@ def chat_room(user_id):
     all_messages = []
     
     for chat in my_chat:
-            db.session.commit()
         all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat, chat.seen])
     for chat in his_chat:
         all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat, chat.seen])
