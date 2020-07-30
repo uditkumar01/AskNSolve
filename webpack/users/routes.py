@@ -253,6 +253,13 @@ def logout():
     flash(f'Logout Successfull!','success')
     return redirect(url_for('users.login'))
 
+@users.route("/chat_room/delete_chat/<int:chat_id>" , methods = ['POST'])
+def chat_del(chat_id):
+    text_1 = Chat.query.get(chat_id)
+    if text_1:
+        db.session.delete(text_1)
+        db.session.commit()
+        flash('Deleted !','success')
 
 
 @users.route("/chat_room/<int:user_id>" , methods = ['GET','POST'])
