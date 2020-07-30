@@ -376,13 +376,16 @@ header,.cardbody{
                 inset 0px 0px 10px rgba(0, 255, 229,1);
 }
 
-.input-1,.input-3,.input-4{
+.input-1,.input-3{
     position: relative;
     width: 78%;
     padding: 40px 40px 60px;
     background: #131419;
     border-radius: 10px;
     text-align: center;
+}
+.input-4{
+    width: 78%;
 }
 .input-3{
     width: 100%;
