@@ -272,8 +272,6 @@ def chat_room(user_id):
     all_messages = []
     
     for chat in my_chat:
-        if _user.chat_in and chat.time_of_chat.strftime('%Y %m %d %H %M %S') <= _user.chat_in:
-            chat.seen = '1'
             db.session.commit()
         all_messages.append([chat.user_start_id, chat.messages, chat.time_of_chat, chat.seen])
     for chat in his_chat:
