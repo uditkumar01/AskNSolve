@@ -47,9 +47,10 @@ def send_post_delete_email(user,post):
     html = u"""\
     <html>
     <body>
-        <h6>Your post with title <h6>"""+str(post.title)+"""</h6> was deleted</h6>
+        <h4 style="color: orange;"> We, are really sorry to say that one of your post was delete by the admin. Your post should be valid and should contain valid content.</h4>
+        <h4>Your post with title """+str(post.title)+""" was deleted</h4>
         <h3>Code of Conduct that each post shold follow </h3>
-        <ul>
+        <ul style="list-style-type: circle;">
             <li>Title should be clear and specific</li>
             <li>No abusive lang allowed</li>
             <li>Content should contain clear explaination of the problem written in the title.</li>
@@ -77,6 +78,7 @@ def send_post_delete_email(user,post):
         server.sendmail(
             Config.MAIL_USERNAME, user.email, message.as_string()
         )
+    flash("Mail Sent!",'success')
 
 def send_request_email(user):
 
