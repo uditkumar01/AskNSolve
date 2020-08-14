@@ -32,6 +32,51 @@ def add_profile_pic(pic):
 # '''
 #     mail.send(msg)
 
+def send_post_delete_email(user,post):
+
+    token = user.get_reset_token()
+    message = MIMEMultipart("alternative")
+    message["Subject"] = "Your post was deleted !"
+    message["From"] = "AskNsolve Team <Config.MAIL_USERNAME>"
+    message["To"] = user.email
+
+    # Create the plain-text and HTML version of your message
+    text = """\
+        We, are really sorry to say that one of your post was delete by the admin. Your post should be valid and should contain valid content.
+    """
+    html = u"""\
+    <html>
+    <body>
+        <h6>Your post with title <h6>"""+str(post.title)+"""</h6> was deleted</h6>
+        <h3>Code of Conduct that each post shold follow </h3>
+        <ul>
+            <li>Title should be clear and specific</li>
+            <li>No abusive lang allowed</li>
+            <li>Content should contain clear explaination of the problem written in the title.</li>
+        </ul>
+        <br><br>
+        <p style="color: green;">If you think you made any mistake while posting then don't worry you can again post your question(with proper explaination).</p><br><br>
+        <p>Thanks,<br><br>AskNSolve Team</p>
+    </body>
+    </html>
+    """
+
+    # Turn these into plain/html MIMEText objects
+    part1 = MIMEText(text, "plain")
+    part2 = MIMEText(html, "html")
+
+    # Add HTML/plain-text parts to MIMEMultipart message
+    # The email client will try to render the last part first
+    message.attach(part1)
+    message.attach(part2)
+
+    # Create secure connection with server and send email
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+        server.login(Config.MAIL_USERNAME, Config.MAIL_PASSWORD)
+        server.sendmail(
+            Config.MAIL_USERNAME, user.email, message.as_string()
+        )
 
 def send_request_email(user):
 

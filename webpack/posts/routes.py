@@ -4,6 +4,7 @@ from webpack import db
 from webpack.models import Post,Comment,User,Post_like
 from webpack.posts.forms import Post_form, Comment_form
 from datetime import datetime
+from webpack.users.utils import send_post_delete_email
 
 posts = Blueprint('posts',__name__)
 
@@ -133,10 +134,13 @@ def update_post(post_id):
 def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
     post_comments = Comment.query.filter_by(post__id = post_id).all()
-    if post.author != current_user:
-        abort(403)
+    if current_user.username != "ADMIN01":
+        if post.author != current_user:
+            abort(403)
     for comment in post_comments:
         db.session.delete(comment)
+    if current_user.username == "ADMIN01":
+        send_post_delete_email(post.author,post)
     db.session.delete(post)
     db.session.commit()
     flash('Your question is deleted successfully!','success')
