@@ -15,6 +15,8 @@ def login():
         return redirect(url_for('main.home'))
     if form.validate_on_submit():
         user = User.query.filter_by(email = form.email.data).first()
+        if not user:
+            user = User.query.filter_by(username = form.email.data).first()
         if user and bcrypt.check_password_hash(user.password,form.password.data):
             login_user(user, remember=form.checkbox.data)
             flash("{} logined successfully!".format(user.username),'success')

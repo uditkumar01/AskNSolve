@@ -206,12 +206,17 @@ box-shadow: inset -2px -2px 6px rgba(0,0,0,0.1),
     box-shadow:-2px -2px 6px rgba(255,255,255,0.1),
                2px 2px 6px rgba(0,0,0,0.8);
 }
-.menu-option:hover,.menu-option:focus,.menu-option:active, .page-i:hover, .page-i:focus, .profile-pic-1:active,.profile-pic-1:hover, .profile-pic-1:focus, .page-i:active,.form-control-1:focus{
+.menu-option:hover,.menu-option:focus,.menu-option:active, .page-i:hover, .page-i:focus, .profile-pic-1:active,.profile-pic-1:hover, .profile-pic-1:focus, .page-i:active{
     text-align: center;
     color: rgb(0,255,255);
     border-radius: 5px;
     margin-left: 20px;
     margin-bottom: 5px;
+    box-shadow:-2px -2px 6px rgba(255,255,255,0.1),
+            2px 2px 6px rgba(0,0,0,0.8);
+}
+.form-control-1:focus{
+    color: rgb(0,255,255);
     box-shadow:-2px -2px 6px rgba(255,255,255,0.1),
             2px 2px 6px rgba(0,0,0,0.8);
 }
@@ -243,7 +248,7 @@ box-shadow: inset -2px -2px 6px rgba(0,0,0,0.1),
 
 }
 .form-control-1:focus{
-    text-align: left;
+    text-align: center;
     margin-left: 0px;
 
 }
@@ -391,13 +396,20 @@ header,.cardbody{
 .form-2{
     padding: 30px;
 }
-.form-control-1,.form-control-2{
+.form-control-2{
     color: rgb(163, 162, 162);
     width: 100%;
     background: transparent;
     border: 1px solid transparent;
     border-radius: 5px;
     padding: 10px;
+    border: 2px solid rgba(0, 255, 229,0.3);
+    box-shadow: -2px -2px 6px rgba(255,255,255,0.1),
+                    2px 2px 6px rgba(0,0,0,0.8);
+}
+.form-control-1{
+    color: rgba(163, 162, 162,0.5);
+    
     border: 2px solid rgba(0, 255, 229,0.3);
     box-shadow: -2px -2px 6px rgba(255,255,255,0.1),
                     2px 2px 6px rgba(0,0,0,0.8);
@@ -513,7 +525,7 @@ header,.cardbody{
         width: 80%;
     }
     .form-control-1:focus{
-        margin-left: 10%;
+        margin-left: 0%;
     }
     .ask_button{
         margin-right:10%;

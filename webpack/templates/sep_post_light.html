@@ -125,17 +125,17 @@
                                                 <i class="fas fa-ellipsis-v" style="color: white; font-size: 15px; margin-top: -1px;"></i>
                                             </button>
                                         
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: -100px; margin-top: 10px;">
                                                 <button class="btn btn-info btn-sm text-center pt-2 mr-3" style="padding: 6px; height: 30px; width: 30px; font-size: 0px;border-radius: 50%;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-comment-dots" style="color: white; font-size: 15px; margin-top: -1px;"></i></button>
                                                 <button type="button" class="btn btn-success btn-sm text-center pt-2 mr-3" style="padding: 6px; height: 30px; width: 30px; font-size: 0px;border-radius: 50%;" data-toggle="modal" data-target="#exampleModal">
                                                     <i class="fas fa-comments" style="color: white; font-size: 15px; margin-top: -1px;"></i>
                                                 </button>
-                                                {% if post.author.username == current_user.username %}
+                                                {% if post.author.username == current_user.username or current_user.username == "ADMIN01" %}
                                                     <button type="button"  class="btn btn-danger btn-sm text-center pt-2 mr-3" style="padding: 6px; height: 30px; width: 30px; font-size: 0px;border-radius: 50%;" data-toggle="modal" data-target="#DELETE">
                                                         <i class="fas fa-trash-alt" style="color: white; font-size: 15px; margin-top: -1px;"></i>
                                                     </button>
                                                 {% endif %}
-                                                {% if post.author.username == current_user.username %}
+                                                {% if post.author.username == current_user.username or current_user.username == "ADMIN01" %}
                                                     <form action="{{ url_for('posts.update_post', post_id = post.id) }}" method="POST">
                                                     <button type="submit" class="btn btn-warning btn-sm text-center pt-2 mr-3" style="padding: 6px; height: 30px; width: 30px; font-size: 0px;border-radius: 50%;"><i class="fas fa-edit" style="color: white; font-size: 15px; margin-top: -1px;"></i></button></form>
                                                 {% endif %}
