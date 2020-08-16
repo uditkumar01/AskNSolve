@@ -70,7 +70,7 @@
                     {% if current_user.is_authenticated %}
                     <li class="nav-item">
                         <form style="display: flex;" action="{{ url_for('users.search') }}" method="POST">
-                        <input type="text" name="search_keyword" class="form-control-1 search-bar" style="margin-top: 5px; width: 90%; height: 35px;border: 1.5px solid grey;color: rgb(117, 117, 117); margin-left: 20px;" placeholder="Search" onmouseover="this.style.border = '1.5px solid aqua'" onfocus="this.style.color='aqua'" onblur="this.style.color='grey'" onmouseout="this.style.border = '1.5px solid grey'">
+                        <input type="text" name="search_keyword" class="form-control-1 search-bar" style="margin-top: 5px; width: 90%; height: 35px;border: 1.5px solid grey;color: rgb(117, 117, 117); margin-left: 20px; background: #131419; padding: 5px; text-align: left; border-radius: 5px;" placeholder="Search" onmouseover="this.style.border = '1.5px solid aqua'" onfocus="this.style.color='aqua'" onblur="this.style.color='grey'" onmouseout="this.style.border = '1.5px solid grey'">
                         <button type="submit" class="btn btn-sm text-center pt-1.5 mr-3" style="padding: 6px; height: 35px; width: 50px; border-radius: 8px; background: #131419; border: 1.5px solid grey;"><i class="fas fa-search" style="color: white; font-size: 15px; margin-top: 0px;"></i></button>
                         </form>
                     </li>
