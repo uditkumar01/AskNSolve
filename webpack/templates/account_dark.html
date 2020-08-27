@@ -165,7 +165,9 @@
                                 <button class="btn" data-toggle="modal" style="font-size: 11px; width: 92%; background: #131419; color: rgb(0, 255, 229); font-weight: 600; box-shadow: -2px -2px 6px rgba(255,255,255,0.1),2px 2px 6px rgba(0,0,0,0.8); text-shadow: 0px 0px 5px rgba(0, 255, 229,0.4),0px 0px 10px rgba(0, 255, 229,0.4); border: 2px solid #fff; border-radius: 5px;" data-target="#modalLoginAvatar" >Update info</button>
                                 
                               {% endif %}
-                              
+                              {% if current_user.username == "ADMIN01" %}
+                                <a href="{{ url_for('users.delete_user', user_id = _user.id) }}" class="btn" style="font-size: 11px; width: 92%; background: #131419; font-weight: 600; box-shadow: -2px -2px 6px rgba(255,255,255,0.1),2px 2px 6px rgba(0,0,0,0.8); color: rgb(0, 255, 229); border: 2px solid #fff; border-radius: 5px;">Delete User</a>
+                              {% endif %}
                                 <a href="{{ url_for('users.all_user_post', username = _user.username) }}" class="btn" style="font-size: 11px; width: 92%; background: #131419; font-weight: 600; box-shadow: -2px -2px 6px rgba(255,255,255,0.1),2px 2px 6px rgba(0,0,0,0.8); color: rgb(0, 255, 229); border: 2px solid #fff; border-radius: 5px;">My Posts</a>
                               {% if form == "NULL" %}
                                 <a href="{{url_for('users.follow_me',user_id = _user.id)}}" class="btn" style="font-size: 11px; width: 92%; background: #131419; color: rgb(0, 255, 229); font-weight: 600; border: 2px solid #fff;">{{ name_of_follow }}</a>

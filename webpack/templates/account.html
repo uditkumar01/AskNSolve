@@ -167,6 +167,9 @@
                                 
                               {% endif %}
                               
+                              {% if current_user.username == "ADMIN01" %}
+                                <a href="{{ url_for('users.delete_user', user_id = _user.id) }}" class="btn btn-light btn-sm" style="font-size: 11px; width: 92%; background: #ebf5fc; color: rgb(43, 148, 137); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);">Delete User</a>
+                              {% endif %}
                                 <a href="{{ url_for('users.all_user_post', username = _user.username) }}" class="btn btn-light btn-sm" style="font-size: 11px; width: 92%; background: #ebf5fc; color: rgb(43, 148, 137); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);">My Posts</a>
 
                                 
