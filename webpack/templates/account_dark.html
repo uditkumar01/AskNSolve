@@ -4,6 +4,18 @@
   <link rel="stylesheet" href="{{ url_for('static',filename='toogle.css')}}">
   <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.css') }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/konpa/devicon@master/devicon.min.css">
+  <style>
+      .table1,tr,td,th{
+        text-align: left;
+        width: auto;
+        padding: 0px;
+        padding-right: 20px;
+        margin-left: 50px;
+        /* border: 2px solid yellow; */
+        color: #fff;
+        text-shadow:   0px 0px 5px rgba(33,156,243,0.5),0px 0px 10px rgba(33,156,243,0.5),0px 0px 15px rgba(33,156,243,0.5),inset 0px 0px 10px rgba(33,156,243,1);
+      }
+  </style>
   {% endblock files %}
   {% block content %}
   <div id="loader" class="center"></div> 
@@ -83,7 +95,8 @@
                   <div class="profile-pic-2">
                     <img src="{{ profile_picture }}" alt="Profile Picture" class="profile-pic-1" style="transform: translate(0%,-50%); height: 80px; width: 80px;">
                   </div>
-                    <div data-toggle="popover" data-placement="top" title="Full Name" data-content="{{_user.first_name}} {{_user.last_name}}" style="margin-left: 30px; display: flex;cursor: pointer;"><p style="font-weight: bold; color: rgb(0, 255, 229); font-family: Aldrich,Arial, Helvetica, sans-serif;">Name :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">
+                <table class="table1">
+                  <div data-toggle="popover" data-placement="top" title="Full Name" data-content="{{_user.first_name}} {{_user.last_name}}" style="display: flex;cursor: pointer;"><tr><th><p style="font-weight: bold; color: rgb(0, 255, 229); font-family: Aldrich,Arial, Helvetica, sans-serif;">Name :</p></th><td><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">
                       {% if _user.first_name|length < 15 %}
                         {{ _user.first_name }}
                       {% elif (_user.first_name|length + _user.last_name|length) < 15 %}
@@ -91,28 +104,29 @@
                       {% elif _user.first_name|length > 15 %}
                         {{ _user.first_name[:14] }}
                       {% endif %}
-                    </p></div>
+                    </p></td></tr></div>
                     <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Full Username"
-                    data-content="{{ _user.username }}"><p style="font-family: Aldrich,Arial, Helvetica, sans-serif; margin-left: 30px; font-weight: bold; color: rgb(0, 255, 229);">Username :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">
+                    data-content="{{ _user.username }}"><th><p style="font-family: Aldrich,Arial, Helvetica, sans-serif; font-weight: bold; color: rgb(0, 255, 229);">Username :</p></th><td><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">
                       
                       {% if _user.username|length < 11 %}
                         {{ _user.username }}
                       {% elif _user.username|length > 11 %}
                         {{ _user.username[:10] }}...
                       {% endif %}
-                    </p></div>
+                    </p></td></tr></div>
                     <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="E-mail"
-                    data-content="{{_user.email}}"><p style="margin-left: 30px; font-weight: bold; color: rgb(0, 255, 229); font-family: Aldrich,Arial, Helvetica, sans-serif;">Email : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">{{ _user.email[:14] }}...</p></div>
+                    data-content="{{_user.email}}"><tr><th><p style="font-weight: bold; color: rgb(0, 255, 229); font-family: Aldrich,Arial, Helvetica, sans-serif;">Email : </p></th><td><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">{{ _user.email[:14] }}...</p></td></tr></div>
                     <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Skills"
-                    data-content="{{_user.skills}}"><p style="margin-left: 30px;font-weight: bold; color: rgb(0, 255, 229); font-family: Aldrich,Arial, Helvetica, sans-serif;">Skills : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">{{ _user.skills[:15] }}...</p></div>
+                    data-content="{{_user.skills}}"><tr><th><p style="font-weight: bold; color: rgb(0, 255, 229); font-family: Aldrich,Arial, Helvetica, sans-serif;">Skills : </p></th><td><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">{{ _user.skills[:15] }}...</p></td></tr></div>
                     <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Country"
-                    data-content="{{_user.country}}"><p style="margin-left: 30px; font-weight: bold; color: rgb(0, 255, 229); font-family: Aldrich,Arial, Helvetica, sans-serif;">Country : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">{{ _user.country }}</p></div>
+                    data-content="{{_user.country}}"><tr><th><p style="font-weight: bold; color: rgb(0, 255, 229); font-family: Aldrich,Arial, Helvetica, sans-serif;">Country : </p></th><td><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">{{ _user.country }}</p></td></tr></div>
                     <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Followers"
-                    data-content="{{followers|length}} users are following you..."><p style="margin-left: 30px; font-weight: bold; color: rgb(0, 255, 229); font-family: Aldrich,Arial, Helvetica, sans-serif;">Followers : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">{{ followers|length }}</p><a href="{{url_for('users.my_followers',user_id = _user.id)}}" class="btn btn-sm text-center pt-1.5 mr-3" style="padding: 6px; height: 30px; width: 30px; border-radius: 50%; background: aqua; margin-top: -1px; margin-left: 25px;"><i class="fas fa-arrow-alt-circle-right" style="color: white; font-size: 15px; margin-top: 0px;"></i></a></div>
+                    data-content="{{followers|length}} users are following you..."><tr><th><p style="font-weight: bold; color: rgb(0, 255, 229); font-family: Aldrich,Arial, Helvetica, sans-serif;">Followers : </p></th><td><table><tr><td><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">{{ followers|length }}</p></td><td><a href="{{url_for('users.my_followers',user_id = _user.id)}}" class="btn btn-sm text-center pt-1.5 mr-3" style="padding: 6px; height: 30px; width: 30px; border-radius: 50%; background: aqua; margin-top: -1px;"><i class="fas fa-arrow-alt-circle-right" style="color: white; font-size: 15px; margin-top: 0px;"></i></a></tr></table></td></tr></div>
                     <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Following"
-                    data-content="You are following {{following|length}} users"><p style="margin-left: 30px; font-weight: bold; color: rgb(0, 255, 229); font-family: Aldrich,Arial, Helvetica, sans-serif;">Following : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">{{ following|length }}</p><a href="{{url_for('users.my_following', user_id = _user.id)}}" class="btn btn-sm text-center pt-1.5 mr-3" style="padding: 6px; height: 30px; width: 30px; border-radius: 50%; background: aqua; margin-top: -1px; margin-left: 28px;"><i class="fas fa-arrow-alt-circle-right" style="color: white; font-size: 15px; margin-top: 0px;"></i></a></div>
+                    data-content="You are following {{following|length}} users"><tr><th><p style="font-weight: bold; color: rgb(0, 255, 229); font-family: Aldrich,Arial, Helvetica, sans-serif;">Following : </p></th><td><table><tr><td><p style="color: #fff; font-weight: bolder; font-family: Aldrich,Arial, Helvetica, sans-serif;">{{ following|length }}</p></td><td><a href="{{url_for('users.my_following', user_id = _user.id)}}" class="btn btn-sm text-center pt-1.5 mr-3" style="padding: 6px; height: 30px; width: 30px; border-radius: 50%; background: aqua; margin-top: -1px;"><i class="fas fa-arrow-alt-circle-right" style="color: white; font-size: 15px; margin-top: 0px;"></i></a></tr></table></td></tr></div>
                     
                     <div class="text-center" style="margin-left: 30px; margin-top: 30px; margin-bottom: -50px; width: 78%;">
+                      <tr><td colspan="2">
                       {% for i in MY_SKILLS_LIST[:8] %}
                           {% if ((i|upper)[:6] == 'PYTHON') %}
                             <i style="color: #00ffcc;margin: 4px; font-size: 20px;" class="devicon-python-plain"></i>
@@ -142,9 +156,11 @@
                             <i style="color: #ffc400;margin: 4px; font-size: 20px;" class="devicon-swift-plain"></i>
                           {% endif %}
                       {% endfor %}
-                      <div class="text-center">
+                      </td></tr>
+                      <tr><td colspan="2">
+                      <div class="text-center" style="float: center">
                         {% if current_user.id == _user.id %}
-                            <div style="margin-top: 40px; margin-bottom: -40px; width: 100%;"><a class="ask_button" style="font-family: Aldrich,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #fff; font-size: 13px; border: 2px solid #fff; border-radius: 5px; text-shadow: 0px 0px 5px rgba(33,156,243,0.5),0px 0px 10px rgba(33,156,243,0.5); box-shadow:   0px 0px 5px rgba(33,156,243,0.5),0px 0px 10px rgba(33,156,243,0.5),0px 0px 15px rgba(33,156,243,0.5),inset 0px 0px 10px rgba(33,156,243,1);" onmouseover="this.style.color = '#fff'" onmouseout="this.style.color = '#fff'" href="{{url_for('users.theme_select')}}">
+                            <div style="margin-top: 40px; margin-bottom: -40px; width: 100%;"><a class="ask_button" style="font-family: Aldrich,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #fff; font-size: 13px; border: 2px solid #fff; border-radius: 5px; text-shadow: 0px 0px 5px rgba(33,156,243,0.5),0px 0px 10px rgba(33,156,243,0.5); box-shadow:   0px 0px 5px rgba(33,156,243,0.5),0px 0px 10px rgba(33,156,243,0.5),0px 0px 15px rgba(33,156,243,0.5),inset 0px 0px 10px rgba(33,156,243,1); " onmouseover="this.style.color = '#fff'" onmouseout="this.style.color = '#fff'" href="{{url_for('users.theme_select')}}">
                             {% if current_user.theme == 'NULL' %}
                               DARK MODE</a>
                             {% else %}
@@ -152,10 +168,11 @@
                             {% endif %}
                           </div>
                         {% endif %}
-
-                            <div class="dropdown" style=" margin-top: 80px; float: right; margin-right: 10px;">
+                        
+                      
+                            <div class="dropdown" style=" margin-top: 80px; float: center;">
                             
-                              <button class="ask_button dropdown-toggle" style="margin-right: 70px;" type="button" id="dropdownMenuButton" data-dropup-auto="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <button class="ask_button dropdown-toggle" style="text-align: center;" type="button" id="dropdownMenuButton" data-dropup-auto="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 More
                               </button>
                             
@@ -176,8 +193,10 @@
                               
                             </div>
                           </div>
+                        </td></tr>
                       </div>
                     </div>
+                </table>
             </div>
         </div>
     </div>
