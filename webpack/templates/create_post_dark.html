@@ -74,7 +74,7 @@
               <fieldset class="post_form">
                 <h2 style="color: rgb(0, 255, 229); text-align: center;text-shadow: 0px 0px 5px rgba(0, 255, 229,0.7),0px 0px 10px rgba(0, 255, 229,0.7);">{{ form_title_webpage }}</h2>
                 <div class="post_title" style="margin: 10px; margin-top: 30px;">
-                  {{ form.post_title(class = "form-control-1", style = "margin:0;",placeholder = "Title should be clear and specific ") }}
+                  {{ form.post_title(class = "form-control-2", style = "margin:0;",placeholder = "Title should be clear and specific ") }}
                   {% if form.post_title.errors %}
                     {%for error in form.post_title.errors%}
                       <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
@@ -82,7 +82,7 @@
                   {% endif %}
                 </div>
                 <div class="post_content" style="margin: 10px; margin-top: 30px;">
-                  {{ form.content(class="form-control-1",style = "margin:0;", id="exampleFormControlTextarea4", rows="3", placeholder = "Explain your doubt ") }}
+                  {{ form.content(class="form-control-2",style = "margin:0;", id="exampleFormControlTextarea4", rows="3", placeholder = "Explain your doubt ") }}
                   {% if form.content.errors %}
                     {%for error in form.content.errors%}
                       <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
