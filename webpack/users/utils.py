@@ -141,10 +141,10 @@ def set_password_request(user):
     <body>
         <p>Hi """+str(user.username)+""",</p>
         <p>You requested to set the password for your AskNSolve account with the e-mail address <mark style = "background: aqua; color: green;">"""+str(user.email)+"""</mark>.<br>Please click this link to reset your password.</p>
-        <a href = '"""+str(url_for('users.set_account_password', token = token, _external = True))+"""'><h3>SET PASSWORD</h3></a>
+        <a href = '"""+str(url_for('users.set_account_password', user_email = user.email, token = token, _external = True))+"""'><h3>SET PASSWORD</h3></a>
         <br>
         <p>Here, is the link in case set Password Button above is not working</p><br>
-        <u>"""+str(url_for('users.set_account_password', token = token, _external = True))+"""</u><br><br>
+        <u>"""+str(url_for('users.set_account_password', user_email = user.email, token = token, _external = True))+"""</u><br><br>
         <p>Thanks,<br><br>AskNSolve Team</p>
 
     </body>

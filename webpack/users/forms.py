@@ -36,8 +36,8 @@ class Update_Form(FlaskForm):
     last_name = StringField('Last',validators = [DataRequired()])
     country = StringField('Country',validators = [DataRequired()])
     skills = StringField('Skills',validators = [DataRequired()])
-    username = StringField('Username',validators = [DataRequired(),Length(min = 3 , max = 20,message="Length should be between 3 to 20")])
-    email = StringField('Email', validators = [DataRequired(), Email()])
+    # username = StringField('Username',validators = [DataRequired(),Length(min = 3 , max = 20,message="Length should be between 3 to 20")])
+    # email = StringField('Email', validators = [DataRequired(), Email()])
     profile_pic = FileField('Update Profile Picture' , validators= [FileAllowed(['jpg','png'])])
     submit = SubmitField('Update')
 
@@ -66,7 +66,7 @@ class Request_reset_form(FlaskForm):
 class Change_password(FlaskForm):
     password = PasswordField('Password',validators = [DataRequired()])
     confirm_password = PasswordField('Password',validators = [DataRequired(),EqualTo('password')])
-    submit = SubmitField('Reset Password')
+    submit = SubmitField('Set Password')
 
 class Chatting(FlaskForm):
     message = StringField('Type here ...',validators = [DataRequired()])

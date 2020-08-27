@@ -138,7 +138,17 @@ def search():
         else:
             return render_template('search_results_dark.html',follow_page=False, title = search_me + ' results', searched_users = searched_users, searched_posts = searched_posts)
 
-
+@login_required
+@users.route("/account/delete_user/<int:user_id>", methods = ['POST','GET'])
+def delete_user(user_id):
+    if current_user.username != "ADMIN01":
+        flash(f"Only Admin have these permissions")
+        return redirect(url_for('users.login'))
+    else:
+        user = User.query.get_or_404(user_id)
+        db.session.delete(user)
+        db.session.commit()
+        return redirect(url_for('users.login'))
 
 
 @login_required
@@ -163,22 +173,22 @@ def account(user_id):
         else:
             return render_template('account_dark.html',title = _user.username + '\'s Account Info',name_of_follow = name_of_follow,followers = followers,following=following, profile_picture = profile_image, form = "NULL", MY_SKILLS_LIST = MY_SKILLS_LIST, _user = _user)
     else:
-        if current_user.skills != 'Unknown':
-                MY_SKILLS_LIST = (current_user.skills).split(',')
+        # flash(f'Updated {form.validate_on_submit()} {form.errors}','info')
         if form.validate_on_submit():
-            flash(f'Updated','info')
+            
             if form.profile_pic.data:
                 pic_name = add_profile_pic(form.profile_pic.data)
                 current_user.profile_pic = pic_name
-            if form.username.data:
-                current_user.username = form.username.data
-            if form.email.data:
-                current_user.email = form.email.data
+            # if form.username.data:
+            #     current_user.username = form.username.data
+            # if form.email.data:
+            #     current_user.email = form.email.data
             if form.country.data:
                 current_user.country = form.country.data
             if form.skills.data:
                 current_user.skills = form.skills.data
                 MY_SKILLS_LIST = (form.skills.data).split(',')
+            
             current_user.first_name = form.first_name.data.title()
             current_user.last_name = form.last_name.data.title()
             current_user.country = form.country.data.title()
@@ -193,8 +203,8 @@ def account(user_id):
                 form.last_name.data = current_user.last_name
             if current_user.skills != 'Unknown':
                 form.skills.data = current_user.skills
-            form.username.data = current_user.username
-            form.email.data = current_user.email
+            # form.username.data = current_user.username
+            # form.email.data = current_user.email
         profile_image = url_for('static',filename = 'images/' + current_user.profile_pic)
 
         if current_user.theme == 'NULL':
@@ -247,15 +257,19 @@ def request_token(token):
         return redirect(url_for('users.login'))
     return render_template('password_reset.html', title = "Password Reset", form = form, form_name = "Password Reset")
 
-@users.route("/set_password/<token>", methods = ['GET','POST'])
-def set_account_password(token):
+@users.route("/set_password/<user_email>/<token>", methods = ['GET','POST'])
+def set_account_password(user_email,token):
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
     user = User.verify_reset_token(token)
-    if user:
+    if user == None:
+        user = User.query.filter_by(email = user_email).first()
+    # print("OOOOOOOOOOOOOOOOOOOOOOOOOO",user,user_email)
+    if user == None:
         flash('Invalid Token','warning')
+    
     form = Change_password()
-    if form.validate_on_submit():
+    if user and form.validate_on_submit():
         hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user.password = hashed_pw
         db.session.commit()
