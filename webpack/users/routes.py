@@ -28,7 +28,6 @@ def login():
             flash("{}, please check your password!".format(user.username),'danger')
         elif user == None:
             flash("Your E-mail is not registered!",'danger')
-    return render_template('info_pass.html' , title = "Login Page")
     return render_template('login_page.html' , title = "Login Page", form = form)
 
 
