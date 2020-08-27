@@ -144,7 +144,7 @@ def set_password_request(user):
         <a href = '"""+str(url_for('users.set_account_password', token = token, _external = True))+"""'><h3>SET PASSWORD</h3></a>
         <br>
         <p>Here, is the link in case set Password Button above is not working</p><br>
-        <u>"""+str(url_for('users.request_token', token = token, _external = True))+"""</u><br><br>
+        <u>"""+str(url_for('users.set_account_password', token = token, _external = True))+"""</u><br><br>
         <p>Thanks,<br><br>AskNSolve Team</p>
 
     </body>

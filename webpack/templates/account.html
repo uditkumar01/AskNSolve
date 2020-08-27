@@ -190,7 +190,7 @@
           aria-hidden="true">
           <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
             <!--Content-->
-            <div class="modal-content" style="height: 620px; margin-bottom: 100px;">
+            <div class="modal-content" style="margin-bottom: 100px;">
 
               <!--Header-->
               <div class="modal-header" >
@@ -211,14 +211,7 @@
                       {{ form.last_name(class="form-control form-control-sm validate ml-0", id = "form29") }}
                       <label data-error="wrong" data-success="right" for="form29" class="ml-0" style="box-shadow: 0 0 0 0 ;">Last Name</label>
                     </div>
-                    <div class="md-form ml-0 mr-0">
-                      {{ form.username(class="form-control form-control-sm validate ml-0", id = "form29") }}
-                      <label data-error="wrong" data-success="right" for="form29" class="ml-0" style="box-shadow: 0 0 0 0 ;">Username</label>
-                    </div>
-                    <div class="md-form ml-0 mr-0">
-                      {{ form.email(class="form-control form-control-sm validate ml-0", id = "form29") }}
-                      <label data-error="wrong" data-success="right" for="form29" class="ml-0" style="box-shadow: 0 0 0 0 ;">E-mail</label>
-                    </div>
+                    
                     <div class="md-form ml-0 mr-0">
                       
                       <div class="input-group mb-3">
@@ -475,6 +468,8 @@
                     <div class="md-form ml-0 mr-0">
                       {{ form.skills(class="form-control form-control-sm validate ml-0", id = "form29") }}
                       <label data-error="wrong" data-success="right" for="form29" class="ml-0" style="box-shadow: 0 0 0 0 ;">Skills</label>
+                      <p style="color: grey; font-size: 10px; text-align: left; margin-top: -30px;">Please write you skills seperated by comma (without using spaces before and after comma)</p>
+                      <p style="color: grey; font-size: 10px; text-align: left;">For Eg. python,java,c</p>
                     </div>
 
                     <div class="md-form ml-0 mr-0">
