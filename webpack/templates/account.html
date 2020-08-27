@@ -206,16 +206,27 @@
                     <div class="md-form ml-0 mr-0">
                       {{ form.first_name(class="form-control form-control-sm validate ml-0", id = "form29") }}
                       <label data-error="wrong" data-success="right" for="form29" class="ml-0" style="box-shadow: 0 0 0 0 ;">First Name</label>
+                      {% if form.first_name.errors %}
+                        {% for error in form.first_name.errors%}
+                          <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
+                        {% endfor %}
+                      {% endif %}
                     </div>
                     <div class="md-form ml-0 mr-0">
                       {{ form.last_name(class="form-control form-control-sm validate ml-0", id = "form29") }}
                       <label data-error="wrong" data-success="right" for="form29" class="ml-0" style="box-shadow: 0 0 0 0 ;">Last Name</label>
+                      {% if form.last_name.errors %}
+                        {% for error in form.last_name.errors%}
+                          <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
+                        {% endfor %}
+                      {% endif %}
                     </div>
+                    
                     
                     <div class="md-form ml-0 mr-0">
                       
                       <div class="input-group mb-3">
-                        <select class="custom-select" id="inputGroupSelect02" value = "{{ form.country() }}">
+                        <select class="custom-select" id="inputGroupSelect02" value = "{{ form.country }}">
                           <option selected>Choose Country</option>
                           <option value="Afghanistan">Afghanistan</option>
                           <option value="Åland Islands">Åland Islands</option>
@@ -468,6 +479,11 @@
                     <div class="md-form ml-0 mr-0">
                       {{ form.skills(class="form-control form-control-sm validate ml-0", id = "form29") }}
                       <label data-error="wrong" data-success="right" for="form29" class="ml-0" style="box-shadow: 0 0 0 0 ;">Skills</label>
+                      {% if form.skills.errors %}
+                        {% for error in form.skills.errors%}
+                          <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
+                        {% endfor %}
+                      {% endif %}
                       <p style="color: grey; font-size: 10px; text-align: left; margin-top: -30px;">Please write you skills seperated by comma (without using spaces before and after comma)</p>
                       <p style="color: grey; font-size: 10px; text-align: left;">For Eg. python,java,c</p>
                     </div>
