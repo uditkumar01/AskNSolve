@@ -1,2 +1,2 @@
 # AskNSolve
-try it out https://asknsolve.herkuapp.com
+try it out https://asknsolve.herokuapp.com
