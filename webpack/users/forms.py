@@ -9,8 +9,8 @@ class Registration_Form(FlaskForm):
 
     username = StringField('Username',validators = [DataRequired(),Length(min = 3 , max = 20,message="Length should be between 3 to 20")])
     email = StringField('Email', validators = [DataRequired(), Email()])
-    password = PasswordField('Password',validators = [DataRequired()])
-    confirm_password = PasswordField('Password',validators = [DataRequired(),EqualTo('password')])
+    # password = PasswordField('Password',validators = [DataRequired()])
+    # confirm_password = PasswordField('Password',validators = [DataRequired(),EqualTo('password')])
     submit = SubmitField('Register')
     checkbox = BooleanField('checkbox',validators=[DataRequired()])
 

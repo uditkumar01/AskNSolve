@@ -31,52 +31,24 @@
       {% endif %}
     {% endwith %}
     <div class="_container">
-        <form action="" method="POST">
-          {{ form.hidden_tag() }}
           <div class="form">
             <div class="input">
-              <h2 style="color: rgb(0, 189, 189);">REGISTER</h2>
+              <h4 style="color: rgb(0, 189, 189);">Check Your Email Inbox And Spam Folder Also</h4>
+              <br/>
+                <ul style="color: grey;">
+                    <li>If you have not recieved email yet then check your spam folder.</li>
+                    <li>Please unspam our mails so that you don't face any problem later.</li>
+                    <li>Please don't share your password with anybody</li>
+                </ul>
 
-              <div class="inputbox">
-                {{ form.username(class = "input",placeholder = "Username") }}
-                    {% if form.username.errors %}
-                      {% for error in form.username.errors%}
-                        <small class="form-text text-danger">{{ error }}</small>
-                      {% endfor %}
-                    {% endif %}
-              </div>
-
-              <div class="inputbox mt-n1">
-                {{ form.email(class = "input",placeholder = "Email") }}
-                {% if form.email.errors %}
-                {% for error in form.email.errors%}
-                  <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
-                {% endfor %}
-              {% endif %}
-              </div>
-            
+                <div class="inputbox text-center">
+                    <a href="url_for('users.login')" class="btn btn-dark mt-3">Go to Login</a>
+                </div>
               
-          
-              
-              <div class="custom-control custom-checkbox mb-4 mt-4">
-                {{ form.checkbox(class = "custom-control-input", style = "background: red;", type = "checkbox",  id="defaultUnchecked") }}
-                {% if form.checkbox.errors %}
-                  {% for error in form.checkbox.errors%}
-                    <small class="form-text text-danger" style="margin-left: 10px;">{{ error }}</small>
-                  {% endfor %}
-                {% endif %}
-                <label class="custom-control-label forget-3" for="defaultUnchecked" style="margin-left: 10px;">I agree to all <a href="#" class="forget">Terms & Conditions</a></label>
-              </div>
-
-
-              <div class="inputbox" style="margin-bottom: 30px;">
-                {{ form.submit(type = "submit", placeholder = "Login") }}
-              </div>
             </div>
-            <a href="{{ url_for('users.login') }}" class="forget">Have An Account ?</a>
+            
           </div>
-        </form>
-      </div>
+        </div>
 </div>
 <script type="text/javascript" src="{{ url_for('static',filename='MDB/js/jquery.min.js')}}"></script>
   <!-- Bootstrap tooltips -->

@@ -4,7 +4,7 @@ from webpack import db,bcrypt
 from webpack.models import User, Post, Chat, Follow
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
-from webpack.users.utils import add_profile_pic, send_request_email
+from webpack.users.utils import add_profile_pic, send_request_email, set_password_request
 
 users = Blueprint('users',__name__)
 
@@ -28,6 +28,7 @@ def login():
             flash("{}, please check your password!".format(user.username),'danger')
         elif user == None:
             flash("Your E-mail is not registered!",'danger')
+    return render_template('info_pass.html' , title = "Login Page")
     return render_template('login_page.html' , title = "Login Page", form = form)
 
 
@@ -104,12 +105,16 @@ def register():
         return redirect(url_for('main.home'))
     form = Registration_Form()
     if form.validate_on_submit():
-        hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        hashed_pw = bcrypt.generate_password_hash("set_your_password").decode('utf-8')
         user = User(username = form.username.data, email = form.email.data, password = hashed_pw)
+        if user.email!=None:
+            set_password_request(user)
+        else:
+            flash("Please enter valid email")
         db.session.add(user)
         db.session.commit()
         flash("{}'s account created successfully!".format(form.username.data),'success')
-        return redirect(url_for('users.login'))
+        return render_template('info_pass.html' , title = "Check Mail")
     return render_template('register1.html' , title = "Register", form = form)
 
 @login_required
@@ -241,7 +246,23 @@ def request_token(token):
         db.session.commit()
         flash("{}'s password is updated successfully!".format(user.username),'success')
         return redirect(url_for('users.login'))
-    return render_template('password_reset.html', title = "Password Reset", form = form)
+    return render_template('password_reset.html', title = "Password Reset", form = form, form_name = "Password Reset")
+
+@users.route("/set_password/<token>", methods = ['GET','POST'])
+def set_account_password(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('main.home'))
+    user = User.verify_reset_token(token)
+    if user:
+        flash('Invalid Token','warning')
+    form = Change_password()
+    if form.validate_on_submit():
+        hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user.password = hashed_pw
+        db.session.commit()
+        flash("{}'s password is updated successfully!".format(user.username),'success')
+        return redirect(url_for('users.login'))
+    return render_template('password_reset.html', title = "Password Reset", form = form, form_name = "Set Password")
 
 
 @login_required

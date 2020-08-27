@@ -96,10 +96,54 @@ def send_request_email(user):
     <html>
     <body>
         <p>Hi """+str(user.username)+""",</p>
-        <p>You requested to reset the password for your AskNSolve account with the e-mail address <mark style = "background: red; color: white;">"""+str(user.email)+"""</mark>.<br>Please click this link to reset your password.</p>
+        <p>You requested to reset the password for your AskNSolve account with the e-mail address <mark style = "background: aqua; color: green;">"""+str(user.email)+"""</mark>.<br>Please click this link to reset your password.</p>
         <a href = '"""+str(url_for('users.request_token', token = token, _external = True))+"""'><h3>PASSWORD RESET</h3></a>
         <br>
         <p>Here, is the link in case Password Reset above is not working</p><br>
+        <u>"""+str(url_for('users.request_token', token = token, _external = True))+"""</u><br><br>
+        <p>Thanks,<br><br>AskNSolve Team</p>
+
+    </body>
+    </html>
+    """
+
+    # Turn these into plain/html MIMEText objects
+    part1 = MIMEText(text, "plain")
+    part2 = MIMEText(html, "html")
+
+    # Add HTML/plain-text parts to MIMEMultipart message
+    # The email client will try to render the last part first
+    message.attach(part1)
+    message.attach(part2)
+
+    # Create secure connection with server and send email
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+        server.login(Config.MAIL_USERNAME, Config.MAIL_PASSWORD)
+        server.sendmail(
+            Config.MAIL_USERNAME, user.email, message.as_string()
+        )
+
+def set_password_request(user):
+
+    token = user.get_reset_token()
+    message = MIMEMultipart("alternative")
+    message["Subject"] = "Set Password"
+    message["From"] = "AskNsolve Team <Config.MAIL_USERNAME>"
+    message["To"] = user.email
+
+    # Create the plain-text and HTML version of your message
+    text = """\
+        Please ignore if you have not requested set your password.
+    """
+    html = u"""\
+    <html>
+    <body>
+        <p>Hi """+str(user.username)+""",</p>
+        <p>You requested to set the password for your AskNSolve account with the e-mail address <mark style = "background: aqua; color: green;">"""+str(user.email)+"""</mark>.<br>Please click this link to reset your password.</p>
+        <a href = '"""+str(url_for('users.set_account_password', token = token, _external = True))+"""'><h3>SET PASSWORD</h3></a>
+        <br>
+        <p>Here, is the link in case set Password Button above is not working</p><br>
         <u>"""+str(url_for('users.request_token', token = token, _external = True))+"""</u><br><br>
         <p>Thanks,<br><br>AskNSolve Team</p>
 
