@@ -26,3 +26,14 @@
  </div>
 <h4 align = "center"><- More Features are there check it out -></h4>
 <a href="https://asknsolve.herokuapp.com" title = "Visit AskNSolve"><p align="center"><img src="https://image.flaticon.com/icons/png/512/120/120905.png" height="50px"/></p></a>
+  <br/><br/>
+<h3 align="center">How to contribute?</h3>
+
+<ul>
+  <li>There are some bugs in it which you can rectify.</li>
+  <li>The like button reloads the whole webpage when pressed. You can use AJAX and other things to rectify this.</li>
+  <li>Chat page needs a lot of improvement.</li>
+  <li>Account page needs a lot of improvement.</li>
+  <li>On chat page when we send a message the whole page reloads which isn't good thing so if you can do something check it out.</li>
+  <li>You can even add new features to it.</li>
+</ul>
