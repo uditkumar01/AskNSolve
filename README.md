@@ -15,7 +15,7 @@
 <a href="https://asknsolve.herokuapp.com"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Ask(1).png"></a>
 <br/><br/>
 <a href="https://asknsolve.herokuapp.com"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Chat(1).png"></a>
-<a href="https://asknsolve.herokuapp.com"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Chat.png" height="220px"></a>
+<a href="https://asknsolve.herokuapp.com"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Chat.png"></a>
 <br/><br/>
 <a href="https://asknsolve.herokuapp.com"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Your Account Info.png" ></a>
 <a href="https://asknsolve.herokuapp.com"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Your Account Info(1).png" ></a>
