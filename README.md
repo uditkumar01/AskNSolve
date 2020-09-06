@@ -8,7 +8,8 @@
 <br/><br/>
 
 <div align="center">
-<a href="https://asknsolve.herokuapp.com">![AskNSolve Screenshots](webpack/images/static/my_screenshots.gif)</a>
+<a href="https://asknsolve.herokuapp.com"><img src = "webpack/static/images/my_screenshots.gif"></a>
+  
 
  </div>
 <h4 align = "center"><- More Features are there check it out -></h4>
