@@ -8,20 +8,20 @@
 <br/><br/>
 
 <div align="center">
-<a href="https://uditkumar11.github.io/Golden-Theory"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Home Page(1).png" height="220px"></a>
-<a href="https://uditkumar11.github.io/Golden-Theory"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Home Page.png" height="220px"></a>
+<a href="https://asknsolve.herokuapp.com"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Home Page(1).png"></a>
+<a href="https://asknsolve.herokuapp.com"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Home Page.png"></a>
 <br/><br/>
-<a href="https://uditkumar11.github.io/Golden-Theory"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Ask.png" height="220px"></a>
-<a href="https://uditkumar11.github.io/Golden-Theory"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Ask(1).png" height="220px"></a>
+<a href="https://asknsolve.herokuapp.com"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Ask.png"></a>
+<a href="https://asknsolve.herokuapp.com"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Ask(1).png"></a>
 <br/><br/>
-<a href="https://uditkumar11.github.io/Golden-Theory"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Chat(1).png" height="220px"></a>
-<a href="https://uditkumar11.github.io/Golden-Theory"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Chat.png" height="220px"></a>
+<a href="https://asknsolve.herokuapp.com"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Chat(1).png"></a>
+<a href="https://asknsolve.herokuapp.com"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Chat.png"></a>
 <br/><br/>
-<a href="https://uditkumar11.github.io/Golden-Theory"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Your Account Info.png" height="220px"></a>
-<a href="https://uditkumar11.github.io/Golden-Theory"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Your Account Info(1).png" height="220px"></a>
+<a href="https://asknsolve.herokuapp.com"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Your Account Info.png" ></a>
+<a href="https://asknsolve.herokuapp.com"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 Your Account Info(1).png" ></a>
 <br/><br/>
-<a href="https://uditkumar11.github.io/Golden-Theory"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 a results(1).png" height="220px"></a>
-<a href="https://uditkumar11.github.io/Golden-Theory"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 a results.png" height="220px"></a>
+<a href="https://asknsolve.herokuapp.com"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 a results(1).png"></a>
+<a href="https://asknsolve.herokuapp.com"><img src="webpack/static/images/screenshots/Screenshot_2020-08-27 a results.png"></a>
 <br/><br/>
  </div>
 <h4 align = "center"><- More Features are there check it out -></h4>
