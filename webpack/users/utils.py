@@ -14,7 +14,7 @@ def add_profile_pic(pic):
     NAME,EXT = os.path.splitext(pic.filename)
     picture_name = name + '.webp'
     profile_pic_path = os.path.join(current_app.root_path,'static/images', picture_name)
-    size = (80,80)
+    size = (280,280)
     img1 = Image.open(pic)
     img1.thumbnail(size)
     img1.save(profile_pic_path)
