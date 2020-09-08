@@ -1,7 +1,7 @@
 from flask import render_template, flash,redirect,url_for,request, abort, Blueprint
 from webpack.users.forms import Login_form,Registration_Form, Update_Form, Request_reset_form, Change_password, Chatting
 from webpack import db,bcrypt
-from webpack.models import User, Post, Chat, Follow
+from webpack.models import User, Post, Chat, Follow,Comment
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
 from webpack.users.utils import add_profile_pic, send_request_email, set_password_request
@@ -169,13 +169,17 @@ def account(user_id):
     else:
         name_of_follow = "Follow"
     _user = User.query.get_or_404(user_id)
+    all_post = Post.query.order_by(Post.date_posted.desc()).filter_by(user_id = user_id).all()
+    all_answers = Comment.query.order_by(Comment.timestamp.desc()).filter_by(commentor = _user.username).all()
+    MY_SKILLS_LIST = (_user.skills).split(',')
+    print(all_post,all_answers)
     if current_user.id != _user.id:
-        MY_SKILLS_LIST = (_user.skills).split(',')
+        
         profile_image = url_for('static',filename = 'images/' + _user.profile_pic)
         if current_user.theme == 'NULL':
-            return render_template('account.html',title = _user.username + '\'s Account Info',name_of_follow = name_of_follow,followers = followers,following=following, profile_picture = profile_image, form = "NULL", MY_SKILLS_LIST = MY_SKILLS_LIST, _user = _user)
+            return render_template('account.html',title = _user.username + '\'s Account Info',name_of_follow = name_of_follow,followers = followers,following=following, profile_picture = profile_image, form = "NULL", MY_SKILLS_LIST = MY_SKILLS_LIST, _user = _user,all_posts = all_post, all_answers = all_answers)
         else:
-            return render_template('account_dark.html',title = _user.username + '\'s Account Info',name_of_follow = name_of_follow,followers = followers,following=following, profile_picture = profile_image, form = "NULL", MY_SKILLS_LIST = MY_SKILLS_LIST, _user = _user)
+            return render_template('account_dark.html',title = _user.username + '\'s Account Info',name_of_follow = name_of_follow,followers = followers,following=following, profile_picture = profile_image, form = "NULL", MY_SKILLS_LIST = MY_SKILLS_LIST, _user = _user,all_posts = all_post, all_answers = all_answers)
     else:
         # flash(f'Updated {form.validate_on_submit()} {form.errors}','info')
         if form.validate_on_submit():
@@ -191,7 +195,7 @@ def account(user_id):
                 current_user.country = form.country.data
             if form.skills.data:
                 current_user.skills = form.skills.data
-                MY_SKILLS_LIST = (form.skills.data).split(',')
+                
             
             current_user.first_name = form.first_name.data.title()
             current_user.last_name = form.last_name.data.title()
@@ -211,10 +215,12 @@ def account(user_id):
             # form.email.data = current_user.email
         profile_image = url_for('static',filename = 'images/' + current_user.profile_pic)
 
+        MY_SKILLS_LIST = _user.skills.split(',')
+
         if current_user.theme == 'NULL':
-            return render_template('account.html',title = 'Your Account Info',followers=followers,name_of_follow = name_of_follow,following=following, profile_picture = profile_image, form = form, MY_SKILLS_LIST = MY_SKILLS_LIST, _user = current_user)
+            return render_template('account.html',title = 'Your Account Info',followers=followers,name_of_follow = name_of_follow,following=following, profile_picture = profile_image, form = form, MY_SKILLS_LIST = MY_SKILLS_LIST, _user = current_user,all_posts = all_post, all_answers = all_answers)
         else:
-            return render_template('account_dark.html',title = 'Your Account Info',followers=followers,name_of_follow = name_of_follow,following=following, profile_picture = profile_image, form = form, MY_SKILLS_LIST = MY_SKILLS_LIST, _user = current_user)
+            return render_template('account_dark.html',title = 'Your Account Info',followers=followers,name_of_follow = name_of_follow,following=following, profile_picture = profile_image, form = form, MY_SKILLS_LIST = MY_SKILLS_LIST, _user = current_user,all_posts = all_post, all_answers = all_answers)
 
 @login_required
 @users.route("/user/<string:username>")

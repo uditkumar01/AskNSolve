@@ -1,22 +1,475 @@
 {% extends "layout.html" %}
   {% block files %}
-  <link rel="stylesheet" href="{{ url_for('static',filename='light_theme.css')}}">
-  <link rel="stylesheet" href="{{ url_for('static',filename='my_style.css')}}">
-  <link rel="stylesheet" href="{{ url_for('static',filename='account_style.css')}}">
   <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.css') }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/konpa/devicon@master/devicon.min.css">
-  <style>
-    .table1,tr,td,th{
-      text-align: left;
-      width: auto;
-      padding: 0px;
-      padding-right: 20px;
-      margin-left: 50px;
-      /* border: 2px solid yellow; */
-      color: #fff;
-      text-shadow: -5px -5px 15px rgba(255,255,255,0.9),
-                  5px 5px 10px rgba(0,0,0,0.2);
-    }
+  <!-- <link rel="stylesheet" href="{{ url_for('static',filename='my_style.css')}}"> -->
+  <link rel="stylesheet" href="{{ url_for('static',filename='light_theme.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/ionicons.min.css')}}">
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700&subset=latin-ext');
+html {
+ position: relative;
+ overflow-x: hidden !important;
+}
+* {
+ box-sizing: border-box;
+}
+body {
+ font-family: 'Quicksand', sans-serif;
+ color: #324e63;
+}
+a, a:hover {
+ text-decoration: none;
+}
+.icon {
+ display: inline-block;
+ width: 1em;
+ height: 1em;
+ stroke-width: 0;
+ stroke: currentColor;
+ fill: currentColor;
+}
+body {
+  background: linear-gradient(270deg, #ebf5fc, #b3dfff, #ebf5fc, #f8acac, #ebf5fc, #98fafa, #ebf5fc, #ffe19e, #d7c3ff, #fbc896);
+  background-size: 2000% 2000%;
+
+  -webkit-animation: back_animation 24s ease infinite;
+  -moz-animation: back_animation 24s ease infinite;
+  animation: back_animation 24s ease infinite;
+}
+
+@-webkit-keyframes back_animation {
+  0%{background-position:0% 52%}
+  50%{background-position:100% 49%}
+  100%{background-position:0% 52%}
+}
+@-moz-keyframes back_animation {
+  0%{background-position:0% 52%}
+  50%{background-position:100% 49%}
+  100%{background-position:0% 52%}
+}
+@keyframes back_animation {
+  0%{background-position:0% 52%}
+  50%{background-position:100% 49%}
+  100%{background-position:0% 52%}
+}
+@keyframes my_background{
+  0%{
+      box-shadow: 0px 5px 50px 0px #6c44fc, 0px 0px 0px 7px rgba(107, 74, 255, 0.5);
+  }
+  10%{
+      box-shadow: 0px 5px 50px 0px rgb(243, 107, 107), 0px 0px 0px 7px rgba(243, 107, 107, 0.5);
+  }
+  20%{
+      box-shadow: 0px 5px 50px 0px rgb(52, 160, 160), 0px 0px 0px 7px rgba(106, 243, 243, 0.5);
+  }
+  30%{
+      box-shadow: 0px 5px 50px 0px rgb(192, 157, 80), 0px 0px 0px 7px rgba(253, 209, 114, 0.5);
+  }
+  40%{
+      box-shadow: 0px 5px 50px 0px #6c44fc, 0px 0px 0px 7px rgba(107, 74, 255, 0.5);
+  }
+  50%{
+      box-shadow: 0px 5px 50px 0px rgb(243, 107, 107), 0px 0px 0px 7px rgba(243, 107, 107, 0.5);
+  }
+  60%{
+      box-shadow: 0px 5px 50px 0px rgb(60, 155, 155), 0px 0px 0px 7px rgba(106, 243, 243, 0.5);
+  }
+  70%{
+      box-shadow: 0px 5px 50px 0px rgb(184, 147, 69), 0px 0px 0px 7px rgba(253, 209, 114, 0.5);
+  }
+  80%{
+      box-shadow: 0px 5px 50px 0px #6448ca, 0px 0px 0px 7px rgba(107, 74, 255, 0.5);
+  }
+  90%{
+      box-shadow: 0px 5px 50px 0px rgb(211, 79, 79), 0px 0px 0px 7px rgba(243, 107, 107, 0.5);
+  }
+  100%{
+      box-shadow: 0px 5px 50px 0px rgb(60, 168, 168), 0px 0px 0px 7px rgba(106, 243, 243, 0.5);
+  }
+}
+.wrapper {
+ width: 100%;
+ width: 100%;
+ height: auto;
+ min-height: 100vh;
+ padding: 50px 20px;
+ padding-top: 100px;
+ display: flex;
+ background: transparent;
+ display: flex;
+}
+@media screen and (max-width: 768px) {
+ .wrapper {
+   height: auto;
+   min-height: 100vh;
+   padding-top: 100px;
+}
+}
+.profile-card {
+ width: 100%;
+ min-height: 460px;
+ margin: auto;
+ box-shadow: 0px 8px 60px -10px rgba(13, 28, 39, 0.6);
+ background: #fff;
+ border-radius: 12px;
+ max-width: 700px;
+ position: relative;
+}
+.profile-card.active .profile-card__cnt {
+ filter: blur(6px);
+}
+.profile-card.active .profile-card-message, .profile-card.active .profile-card__overlay {
+ opacity: 1;
+ pointer-events: auto;
+ transition-delay: 0.1s;
+}
+.profile-card.active .profile-card-form {
+ transform: none;
+ transition-delay: 0.1s;
+}
+.profile-card__img {
+ width: 150px;
+ height: 150px;
+ margin-left: auto;
+ margin-right: auto;
+ transform: translateY(-50%);
+ border-radius: 50%;
+ overflow: hidden;
+ position: relative;
+ z-index: 4;
+   box-shadow: 0px 5px 50px 0px #6c44fc, 0px 0px 0px 7px rgba(107, 74, 255, 0.5);
+   animation: my_background 20s infinite;
+}
+@media screen and (max-width: 576px) {
+ .profile-card__img {
+   width: 120px;
+   height: 120px;
+}
+}
+.profile-card__img img {
+ display: block;
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
+ border-radius: 50%;
+}
+.profile-card__cnt {
+ margin-top: -35px;
+ text-align: center;
+ padding: 0 20px;
+ padding-bottom: 40px;
+ transition: all 0.3s;
+}
+.profile-card__name {
+ font-weight: 700;
+ font-size: 24px;
+ color: #eb4d4b;
+ margin-bottom: 15px;
+}
+.profile-card__txt {
+ font-size: 18px;
+ font-weight: 500;
+ color: #324e63;
+ margin-bottom: 15px;
+}
+.profile-card__txt strong {
+ font-weight: 700;
+}
+.profile-card-loc {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-size: 18px;
+ font-weight: 600;
+}
+.profile-card-loc__icon {
+ display: inline-flex;
+ font-size: 27px;
+ margin-right: 10px;
+}
+.profile-card-inf {
+ display: flex;
+ justify-content: center;
+ flex-wrap: wrap;
+ align-items: flex-start;
+ margin-top: 35px;
+}
+.profile-card-inf__item {
+ padding: 10px 35px;
+ min-width: 150px;
+}
+@media screen and (max-width: 768px) {
+ .profile-card-inf__item {
+   padding: 10px 20px;
+   min-width: 120px;
+}
+}
+.profile-card-inf__title {
+ font-weight: 700;
+ font-size: 27px;
+ color: #324e63;
+}
+.profile-card-inf__txt {
+ font-weight: 500;
+ margin-top: 7px;
+}
+.profile-card-social {
+ margin-top: 25px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-wrap: wrap;
+}
+.profile-card-social__item {
+ display: inline-flex;
+ width: 55px;
+ height: 55px;
+ margin: 15px;
+ border-radius: 50%;
+ align-items: center;
+ justify-content: center;
+ color: #fff;
+ background: #405de6;
+ box-shadow: 0px 7px 30px rgba(43, 98, 169, 0.5);
+ position: relative;
+ font-size: 21px;
+ flex-shrink: 0;
+ transition: all 0.3s;
+}
+@media screen and (max-width: 768px) {
+ .profile-card-social__item {
+   width: 50px;
+   height: 50px;
+   margin: 10px;
+}
+}
+@media screen and (min-width: 768px) {
+ .profile-card-social__item:hover {
+   transform: scale(1.2);
+}
+}
+.profile-card-social__item.facebook {
+ background: linear-gradient(45deg, #3b5998, #0078d7);
+ box-shadow: 0px 4px 30px rgba(43, 98, 169, 0.5);
+}
+.profile-card-social__item.twitter {
+  background-image: linear-gradient(to top, #5f72bd 0%, #9b23ea 100%);
+ box-shadow: 0px 4px 30px rgba(135, 77, 162, 0.7);
+}
+.profile-card-social__item.instagram {
+  background-image: linear-gradient(to top, #ff0844 0%, rgb(255, 133, 96) 100%);
+ box-shadow: 0px 4px 30px rgba(255, 177, 153, 0.6);
+}
+.profile-card-social__item.behance {
+  background-image: linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%);
+ box-shadow: 0px 4px 30px rgba(59, 65, 197, 0.7);
+}
+.profile-card-social__item.github {
+ background: linear-gradient(45deg, #333, #626b73);
+ box-shadow: 0px 4px 30px rgba(63, 65, 67, 0.6);
+}
+.profile-card-social__item.codepen {
+ background: linear-gradient(45deg, #324e63, #414447);
+ box-shadow: 0px 4px 30px rgba(55, 75, 90, 0.6);
+}
+.profile-card-social__item.link {
+ background: linear-gradient(45deg, #d5135a, #f05924);
+ box-shadow: 0px 4px 30px rgba(223, 45, 70, 0.6);
+}
+.profile-card-social__item.link1 {
+  background-image: linear-gradient(to right, #243949 0%, rgb(81, 127, 164) 100%);
+ box-shadow: 0px 4px 30px rgba(81, 127, 164, 0.6);
+}
+.profile-card-social__item.link2 {
+ background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+ box-shadow: 0px 4px 30px rgba(120, 64, 190, 0.6);
+}
+.profile-card-social__item.link3 {
+  background-image: linear-gradient(to right, rgb(249, 212, 35) 0%, #ff4e50 100%);
+ box-shadow: 0px 4px 30px rgba(249, 212, 35, 0.6);
+}
+.profile-card-social__item.link4 {
+  background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, rgb(44, 172, 209) 65%, #35eb93 100%);
+ box-shadow: 0px 4px 30px rgba(44, 172, 209, 0.6);
+}
+.profile-card-social__item.link5 {
+  background-image: linear-gradient(-225deg, #D4FFEC 0%, rgb(87, 242, 204) 48%, #4596FB 100%);
+ box-shadow: 0px 4px 30px rgba(87, 242, 204, 0.6);
+}
+.profile-card-social__item.link6 {
+  background-image: linear-gradient(-225deg, #69EACB 0%, rgb(234, 204, 248) 48%, #6654F1 100%);
+ box-shadow: 0px 4px 30px rgba(234, 204, 248, 0.6);
+ color: white;
+}
+.profile-card-social .icon-font {
+ display: inline-flex;
+}
+.profile-card-ctr {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin-top: 40px;
+}
+@media screen and (max-width: 576px) {
+ .profile-card-ctr {
+   flex-wrap: wrap;
+}
+}
+.profile-card__button {
+ background: none;
+ border: none;
+ font-family: 'Quicksand', sans-serif;
+ font-weight: 700;
+ font-size: 19px;
+ margin: 15px 35px;
+ padding: 15px 40px;
+ min-width: 201px;
+ border-radius: 50px;
+ min-height: 55px;
+ color: #fff;
+ cursor: pointer;
+ backface-visibility: hidden;
+ transition: all 0.3s;
+}
+@media screen and (max-width: 768px) {
+ .profile-card__button {
+   min-width: 170px;
+   margin: 15px 25px;
+}
+}
+@media screen and (max-width: 576px) {
+ .profile-card__button {
+   min-width: inherit;
+   margin: 0;
+   margin-bottom: 16px;
+   width: 100%;
+   max-width: 300px;
+}
+ .profile-card__button:last-child {
+   margin-bottom: 0;
+}
+}
+.profile-card__button:focus {
+ outline: none !important;
+}
+@media screen and (min-width: 768px) {
+ .profile-card__button:hover {
+   transform: translateY(-5px);
+}
+}
+.profile-card__button:first-child {
+ margin-left: 0;
+}
+.profile-card__button:last-child {
+ margin-right: 0;
+}
+.profile-card__button.button--blue {
+ background: linear-gradient(45deg, #1da1f2, #0e71c8);
+ box-shadow: 0px 4px 30px rgba(19, 127, 212, 0.4);
+}
+.profile-card__button.button--blue:hover {
+ box-shadow: 0px 7px 30px rgba(19, 127, 212, 0.75);
+}
+.profile-card__button.button--orange {
+ background: linear-gradient(45deg, #d5135a, #f05924);
+ box-shadow: 0px 4px 30px rgba(223, 45, 70, 0.35);
+}
+.profile-card__button.button--orange:hover {
+ box-shadow: 0px 7px 30px rgba(223, 45, 70, 0.75);
+}
+.profile-card__button.button--gray {
+ box-shadow: none;
+ background: #dcdcdc;
+ color: #142029;
+}
+.profile-card-message {
+ width: 100%;
+ height: 100%;
+ position: absolute;
+ top: 0;
+ left: 0;
+ padding-top: 130px;
+ padding-bottom: 100px;
+ opacity: 0;
+ pointer-events: none;
+ transition: all 0.3s;
+}
+.profile-card-form {
+ box-shadow: 0 4px 30px rgba(15, 22, 56, 0.35);
+ max-width: 80%;
+ margin-left: auto;
+ margin-right: auto;
+ height: 100%;
+ background: #fff;
+ border-radius: 10px;
+ padding: 35px;
+ transform: scale(0.8);
+ position: relative;
+ z-index: 3;
+ transition: all 0.3s;
+}
+@media screen and (max-width: 768px) {
+ .profile-card-form {
+   max-width: 90%;
+   height: auto;
+}
+}
+@media screen and (max-width: 576px) {
+ .profile-card-form {
+   padding: 20px;
+}
+}
+.profile-card-form__bottom {
+ justify-content: space-between;
+ display: flex;
+}
+@media screen and (max-width: 576px) {
+ .profile-card-form__bottom {
+   flex-wrap: wrap;
+}
+}
+.profile-card textarea {
+ width: 100%;
+ resize: none;
+ height: 210px;
+ margin-bottom: 20px;
+ border: 2px solid #dcdcdc;
+ border-radius: 10px;
+ padding: 15px 20px;
+ color: #324e63;
+ font-weight: 500;
+ font-family: 'Quicksand', sans-serif;
+ outline: none;
+ transition: all 0.3s;
+}
+.profile-card textarea:focus {
+ outline: none;
+ border-color: #8a979e;
+}
+.profile-card__overlay {
+ width: 100%;
+ height: 100%;
+ position: absolute;
+ top: 0;
+ left: 0;
+ pointer-events: none;
+ opacity: 0;
+ background: rgba(22, 33, 72, 0.35);
+ border-radius: 12px;
+ transition: all 0.3s;
+}
+.profile-card{
+  background: #ebf5fc;
+  
+}
+a{
+  color: unset;
+}
+a:hover{
+  color: unset;
+}
 </style>
   {% endblock files %}
   {% block content %}
@@ -44,7 +497,7 @@
       {% endif %}
     {% endwith %}
     <!--Navbar -->
-      <nav class="mb-1 navbar navbar-expand-lg navbar-dark">
+      <nav class="mb-1 navbar navbar-expand-lg navbar-dark" style="background: #ebf5fc;">
         <a class="navbar-brand" href="#" style="color: rgb(43, 148, 137); font-size: 20px; font-weight: 600;"><span class="letter-1">A</span>skNSolve</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
         aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,131 +535,189 @@
         </div>
     </nav>
     <!--/.Navbar -->
-    <div class="container-i">
-        <div class="container-ii">
-            <div class="sub-container-i">
-                  <span class="circle-1">.</span>
-                  <span class="circle-2">.</span>
-                  <span class="circle-3">.</span>
-                  <span class="circle-4">.</span>
-                  <span class="circle-5">.</span>
-                  <span class="circle-6">.</span>
-            </div>
-            <div class="sub-container-ii text-center">
-                
-                  <div class="profile-pic-2">
-                    <img src="{{ profile_picture }}" alt="Profile Picture" class="profile-pic-1" style="transform: translate(0%,-50%);">
-                  </div>
-                <table class="table1">
-                    <div data-toggle="popover" data-placement="top" title="Full Name" data-content="{{_user.first_name}} {{_user.last_name}}" style="display: flex;cursor: pointer;"><tr><th><p style="font-weight: bold; color: rgb(43, 148, 137);">Name :</p></th><td><p style="color: rgb(136, 136, 136); font-weight: bolder;">
-                      {% if _user.first_name|length < 15 %}
-                        {{ _user.first_name }}
-                      {% elif (_user.first_name|length + _user.last_name|length) < 15 %}
-                        {{ _user.first_name }} {{ _user.last_name }}
-                      {% elif _user.first_name|length > 15 %}
-                        {{ _user.first_name[:14] }}
-                      {% endif %}
-                    </p></td></tr></div>
-                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Full Username"
-                    data-content="{{ _user.username }}"><tr><th><p style="font-weight: bold; color: rgb(43, 148, 137);">Username :</p></th><td><p style="color: rgb(136, 136, 136); font-weight: bolder;">
-                      
-                      {% if _user.username|length < 15 %}
-                        {{ _user.username }}
-                      {% elif _user.username|length > 15 %}
-                        {{ _user.username[:14] }}
-                      {% endif %}
-                    </p></td></tr></div>
-                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="E-mail"
-                    data-content="{{_user.email}}"><tr><th><p style="font-weight: bold; color: rgb(43, 148, 137);">Email :</p></th><td><p style="color: rgb(136, 136, 136); font-weight: bolder;">{{ _user.email[:14] }}...</p></td></tr></div>
-                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Skills"
-                    data-content="{{_user.skills}}"><tr><th><p style="font-weight: bold; color: rgb(43, 148, 137);">Skills :</p></th><td><p style="color: rgb(136, 136, 136); font-weight: bolder;">{{ _user.skills[:15] }}...</p></td></tr></div>
-                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Country"
-                    data-content="{{_user.country}}"><tr><th><p style="font-weight: bold; color: rgb(43, 148, 137);">Country :</p></th><td><p style="color: rgb(136, 136, 136); font-weight: bolder;">{{ _user.country }}</p></td></tr></div>
-                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Followers"
-                    data-content="{{followers|length}} users are following you..."><tr><th><p style="font-weight: bold; color: rgb(43, 148, 137);">Followers :</p></th><td><table><tr><td><p style="color: rgb(136, 136, 136); font-weight: bolder;">{{ followers|length }}</p></td><td><a href="{{url_for('users.my_followers', user_id = _user.id)}}" class="btn btn-sm text-center pt-1.5" style="padding: 6px; height: 30px; width: 30px; border-radius: 50%; background: rgb(43, 148, 137); margin-top: -6px;"><i class="fas fa-arrow-alt-circle-right" style="color: white; font-size: 15px; margin-top: 0px;"></i></a></td></tr></table></td></tr></div>
-                    <div style="display: flex; cursor: pointer;" data-toggle="popover" data-placement="top" title="Following"
-                    data-content="You are following {{following|length}} users"><tr><th><p style="font-weight: bold; color: rgb(43, 148, 137);">Following :</p></th><td><table><tr><td><p style="color: rgb(136, 136, 136); font-weight: bolder;">{{ following|length }}</p></td><td><a href="{{url_for('users.my_following', user_id = _user.id)}}" class="btn btn-sm text-center pt-1.5" style="padding: 6px; height: 30px; width: 30px; border-radius: 50%; background: rgb(43, 148, 137); margin-top: -6px;"><i class="fas fa-arrow-alt-circle-right" style="color: white; font-size: 15px; margin-top: 0px;"></i></a></td></tr></table></td></tr></div>
-                    
+    <div class="wrapper">
 
-                    <div class="text-center" style="margin-top: 30px; margin-bottom: -50px; width: 78%;">
-                      <tr><td colspan="2">
-                      {% for i in MY_SKILLS_LIST[:8] %}
-                          {% if ((i|upper)[:6] == 'PYTHON') %}
-                            <i style="color: #1abc9c;margin: 4px; font-size: 20px;" class="devicon-python-plain"></i>
-                          {% elif ((i|upper)[:10] == 'JAVASCRIPT') %}
-                            <i style="color: #e67e22;margin: 4px; font-size: 20px;" class="fab fa-js-square skill_icon-1"></i>
-                          {% elif ((i|upper)[:4] == 'JAVA') %}
-                            <i style="color: #3498db;margin: 4px; font-size: 20px;" class="devicon-java-plain" ></i>
-                          {% elif ((i|upper)[:3] == 'CSS') %}
-                            <i style="color: #e74c3c;margin: 4px; font-size: 20px;" class="devicon-javascript-plain" ></i>
-                          {% elif ((i|upper)[:3] == 'C++') %}
-                            <i style="color: #f1c40f;margin: 4px; font-size: 20px;" class="devicon-cplusplus-plain skill_icon-1" ></i>
-                          {% elif ((i|upper)[:1] == 'C') %}
-                            <i style="color: #27ae60;margin: 4px; font-size: 20px;" class="devicon-c-plain skill_icon-1" ></i>
-                          {% elif ((i|upper)[:7] == 'ANDROID') %}
-                            <i style="color: #34495e;margin: 4px; font-size: 20px;" class="devicon-android-plain skill_icon-1" ></i>
-                          {% elif ((i|upper)[:7] == 'ANGULAR') %}
-                            <i style="color: #8e44ad;margin: 4px; font-size: 20px;" class="devicon-angularjs-plain skill_icon-1" ></i>
-                          {% elif ((i|upper)[:4] == 'HTML') %}
-                            <i style="color: #0652DD;margin: 4px; font-size: 20px;" class="devicon-html5-plain" ></i>
-                          {% elif ((i|upper)[:10] == 'POSTGRESQL') %}
-                            <i style="color: #92dd06;margin: 4px; font-size: 20px;"class="devicon-postgresql-plain"></i>
-                          {% elif ((i|upper)[:4] == 'RUBY') %}
-                            <i style="color: #58b8f0;margin: 4px; font-size: 20px;" class="devicon-ruby-plain"></i>
-                          {% elif ((i|upper)[:4] == 'SASS') %}
-                            <i style="color: #2d6915;margin: 4px; font-size: 20px;" class="devicon-sass-original"></i>
-                          {% elif ((i|upper)[:5] == 'SWIFT') %}
-                            <i style="color: #d3a409;margin: 4px; font-size: 20px;" class="devicon-swift-plain"></i>
-                          {% endif %}
-                      {% endfor %}
-                    </td></tr>
-                    <tr><td colspan="2">
-                      {% if current_user.id == _user.id %}
-                          <div style="text-align: center; margin-top: 40px; margin-bottom: -40px;"><a class="ask_button" style="font-family: Aldrich,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: rgb(43, 148, 137); font-size: 13px; border-radius: 5px;" onmouseover="this.style.color = 'rgb(33,156,243)'" onmouseout="this.style.color = '#grey'" href="{{url_for('users.theme_select')}}">
-                            {% if current_user.theme == 'NULL' %}
-                              DARK MODE</a></div>
-                            {% else %}
-                              LIGHT MODE</a></div>
-                            {% endif %}
-                      {% endif %}
-                            
-                          <div>
-                            <div class="dropdown" style=" margin-top: 80px; float: center; text-align: center;">
-                            
-                              <button class="ask_button dropdown-toggle" type="button" id="dropdownMenuButton" data-dropup-auto="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                More
-                              </button>
-                            
-                            <div class="dropdown-menu" style="background: #ebf5fc; margin-left: -70px;" aria-labelledby="dropdownMenuButton">
-                              {% if form != "NULL" %}
-                                
-                                <button class="btn btn-light btn-sm" data-toggle="modal" style="font-size: 11px; width: 92%; background: #ebf5fc; color: rgb(43, 148, 137); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);" data-target="#modalLoginAvatar" >Update info</button>
-                                
-                              {% endif %}
-                              
-                              {% if current_user.username == "ADMIN01" %}
-                                <a href="{{ url_for('users.delete_user', user_id = _user.id) }}" class="btn btn-light btn-sm" style="font-size: 11px; width: 92%; background: #ebf5fc; color: rgb(43, 148, 137); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);">Delete User</a>
-                              {% endif %}
-                                <a href="{{ url_for('users.all_user_post', username = _user.username) }}" class="btn btn-light btn-sm" style="font-size: 11px; width: 92%; background: #ebf5fc; color: rgb(43, 148, 137); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);">My Posts</a>
-
-                                
-                          
-                                
-                                {% if form == "NULL" %}
-                                  <a href="{{url_for('users.follow_me',user_id = _user.id)}}" class="btn btn-light btn-sm" style="font-size: 11px; width: 92%; background: #ebf5fc; color: rgb(43, 148, 137); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);">{{ name_of_follow }}</a>
-                                  <a href="{{ url_for('users.chat_room', user_id = _user.id) }}" class="btn btn-light btn-sm" style="font-size: 11px; width: 92%; background: #ebf5fc; color: rgb(43, 148, 137); font-weight: 600;">Message</a>
-                                {% endif %}
-                              
-                            </div>
-                          </div>
-                        </td></tr>
-                        
-                      </div>
-                    </div>
-                  </table>
-            </div>
+  
+      <div class="profile-card js-profile-card">
+        <div class="profile-card__img">
+          <img src="{{ profile_picture }}" alt="profile card">
         </div>
+    
+        <div class="profile-card__cnt js-profile-cnt">
+          <div class="profile-card__name">{{_user.first_name}} {{_user.last_name}}</div>
+          <div class="profile-card__txt">{{_user.first_name}} is from <strong>{{_user.country}}</strong></div>
+          <div class="profile-card-loc">
+            <span class="profile-card-loc__icon">
+              <i class="ion-ios-location-outline"></i>
+            </span>
+    
+            <span class="profile-card-loc__txt">
+              {{_user.country}}
+
+            </span>
+          </div>
+          <div class="profile-card-loc">
+            <span class="profile-card-loc__icon" style="font-weight: lighter; font-size: 20px;">
+              @
+            </span>
+    
+            <span class="profile-card-loc__txt text-muted" style="font-weight: 400;">
+              {{_user.username}}
+
+            </span>
+          </div>
+          <div class="profile-card-loc">
+            <span class="profile-card-loc__icon">
+              <i class="ion-ios-email-outline"></i>
+            </span>
+    
+            <span class="profile-card-loc__txt text-muted" style="font-weight: 400;">
+              {{_user.email}}
+
+            </span>
+          </div>
+          
+    
+          <div class="profile-card-inf">
+            <div class="profile-card-inf__item">
+              <div class="profile-card-inf__title">{{ followers|length }}</div>
+              <a href="{{url_for('users.my_followers', user_id = _user.id)}}"><div class="profile-card-inf__txt">Followers</div></a>
+            </div>
+    
+            <div class="profile-card-inf__item">
+              <div class="profile-card-inf__title">{{ following|length }}</div>
+              <a href="{{url_for('users.my_following', user_id = _user.id)}}"><div class="profile-card-inf__txt">Following</div></a>
+            </div>
+    
+            <div class="profile-card-inf__item">
+              <div class="profile-card-inf__title">{{all_posts|length}}</div>
+              <div class="profile-card-inf__txt">Posts</div>
+            </div>
+    
+            <div class="profile-card-inf__item">
+              <div class="profile-card-inf__title">{{all_answers|length}}</div>
+              <div class="profile-card-inf__txt">Answers</div>
+            </div>
+          </div>
+    
+          <div class="profile-card-social">
+            
+          {% for i in MY_SKILLS_LIST[:8] %}
+            
+            {% if ((i|upper)[:6] == 'PYTHON') %}
+            <a class="profile-card-social__item devicon-python-plain facebook" style="color: white;" target="_blank">
+                
+            </a>
+            {% elif ((i|upper)[:10] == 'JAVASCRIPT') %}
+            <a class="profile-card-social__item devicon-javascript-plain twitter" style="color: white;" target="_blank">
+              
+            </a>
+            {% elif ((i|upper)[:4] == 'JAVA') %}
+            <a class="profile-card-social__item devicon-java-plain instagram" style="color: white;" target="_blank">
+              
+            </a>
+            {% elif ((i|upper)[:3] == 'CSS') %}
+            <a class="profile-card-social__item devicon-javascript-plain github" style="color: white;" target="_blank">
+              
+            </a>
+            {% elif ((i|upper)[:3] == 'C++') %}
+            <a class="profile-card-social__item devicon-cplusplus-plain behance" style="color: white;" target="_blank">
+              
+            </a>
+            {% elif ((i|upper)[:1] == 'C') %}
+            <a class="profile-card-social__item devicon-c-plain codepen" style="color: white;" target="_blank">
+              
+            </a>
+            {% elif ((i|upper)[:7] == 'ANDROID') %}
+            <a class="profile-card-social__item devicon-android-plain link" style="color: white;" target="_blank">
+              
+            </a>
+            {% elif ((i|upper)[:7] == 'ANGULAR') %}
+              <a class="profile-card-social__item devicon-angularjs-plain link1" style="color: white;" target="_blank">
+                
+              </a>
+            {% elif ((i|upper)[:4] == 'HTML') %}
+              <a class="profile-card-social__item devicon-html5-plain link2" style="color: white;" target="_blank">
+                
+              </a>
+            {% elif ((i|upper)[:10] == 'POSTGRESQL') %}
+            <a class="profile-card-social__item devicon-postgresql-plain link3" style="color: white;" target="_blank">
+              
+            </a>
+            {% elif ((i|upper)[:4] == 'RUBY') %}
+            <a class="profile-card-social__item devicon-ruby-plain link4" style="color: white;" target="_blank">
+              
+            </a>
+            {% elif ((i|upper)[:4] == 'SASS') %}
+            <a class="profile-card-social__item devicon-sass-plain link5" style="color: white;" target="_blank">
+              
+            </a>
+            {% elif ((i|upper)[:5] == 'SWIFT') %}
+            <a class="profile-card-social__item devicon-swift-plain link6" style="color: white;" target="_blank">
+              
+            </a>
+            {% endif %}
+          {% endfor %}
+    
+          </div>
+    
+          <div class="profile-card-ctr">
+            {% if current_user.username == _user.username or form == "NULL" %}
+            <a class="profile-card__button button--orange" href="{{url_for('users.theme_select')}}">Dark Mode</a>
+            {%else%}
+            <a class="profile-card__button button--blue" href="{{ url_for('users.chat_room', user_id = _user.id) }}">Message</a>
+            <a class="profile-card__button button--orange" href="{{ url_for('users.chat_room', user_id = _user.id) }}">{{ name_of_follow }}</a>
+            {%endif%}
+            
+          </div>
+          
+            
+            
+            
+            
+        </div>
+    
+        <div>
+          <div class="dropdown" style=" margin-top: 80px; float: center; text-align: center;">
+
+            
+          
+            <button style="font-size: larger; font-weight: bold;" class="btn btn-cyan dropdown-toggle" type="button" id="dropdownMenuButton" data-dropup-auto="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              More
+            </button>
+          
+          <div class="dropdown-menu" style="background: #ebf5fc; margin-left: -100px;" aria-labelledby="dropdownMenuButton">
+            {% if form != "NULL" %}
+              
+              <button class="btn btn-cyan btn-lg" data-toggle="modal" style="width: 96%; font-weight: 600; background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%); box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);" data-target="#modalLoginAvatar" >Update info</button>
+              
+            {% endif %}
+            
+            {% if current_user.username == "ADMIN01" %}
+              <a href="{{ url_for('users.delete_user', user_id = _user.id) }}" class="btn btn-danger tn-lg" style="width: 96%; background-image: linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);">Delete User</a>
+            {% endif %}
+              <a href="{{ url_for('users.all_user_post', username = _user.username) }}" class="btn btn-cyan btn-lg" style="width: 96%; background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);">My Posts</a>
+
+              
+        
+              
+              
+          </div>
+        </div>
+      
+        
+    
+      </div>
+
+
+      
+    
     </div>
+    
+    
+
+
+
     {% if form != "NULL" %}
           <!--Modal: update Form-->
           <div class="modal fade" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
