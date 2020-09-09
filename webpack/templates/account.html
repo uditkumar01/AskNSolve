@@ -662,7 +662,7 @@ a:hover{
           </div>
     
           <div class="profile-card-ctr">
-            {% if current_user.username == _user.username or form == "NULL" %}
+            {% if current_user.username == _user.username or form != "NULL" %}
             <a class="profile-card__button button--orange" href="{{url_for('users.theme_select')}}">Dark Mode</a>
             {%else%}
             <a class="profile-card__button button--blue" href="{{ url_for('users.chat_room', user_id = _user.id) }}">Message</a>
@@ -678,28 +678,40 @@ a:hover{
         </div>
     
         <div>
-          <div class="dropdown" style=" margin-top: 80px; float: center; text-align: center;">
+
+
+          
+
+
+          <div class="dropdown" style=" margin-top: 50px; float: center; text-align: center;">
 
             
           
-            <button style="font-size: larger; font-weight: bold;" class="btn btn-cyan dropdown-toggle" type="button" id="dropdownMenuButton" data-dropup-auto="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              More
+            <button class="btn btn-cyan btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" style="font-size: unset; font-weight: bold;" data-dropup-auto="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              More 
             </button>
           
-          <div class="dropdown-menu" style="background: #ebf5fc; margin-left: -100px;" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             {% if form != "NULL" %}
               
-              <button class="btn btn-cyan btn-lg" data-toggle="modal" style="width: 96%; font-weight: 600; background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%); box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);" data-target="#modalLoginAvatar" >Update info</button>
+              <button class="dropdown-item" data-toggle="modal" data-target="#modalLoginAvatar" >Update info</button>
+              <div class="dropdown-divider"></div>
+              <a href="{{ url_for('users.all_user_post', username = _user.username) }}" class="dropdown-item">My Posts</a>
+              <div class="dropdown-divider"></div>
+            {%else%}
+              <a href="{{ url_for('users.all_user_post', username = _user.username) }}" class="dropdown-item">{{_user.username}}'s Posts</a>
               
             {% endif %}
             
             {% if current_user.username == "ADMIN01" %}
-              <a href="{{ url_for('users.delete_user', user_id = _user.id) }}" class="btn btn-danger tn-lg" style="width: 96%; background-image: linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);">Delete User</a>
-            {% endif %}
-              <a href="{{ url_for('users.all_user_post', username = _user.username) }}" class="btn btn-cyan btn-lg" style="width: 96%; background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%); font-weight: 600; box-shadow: -5px -5px 15px rgba(255,255,255,0.8), 5px 5px 10px rgba(0,0,0,0.1);">My Posts</a>
-
+            <div class="dropdown-divider"></div>
+              <a href="{{ url_for('users.delete_user', user_id = _user.id) }}" class="dropdown-item">Delete User</a>
               
-        
+            {% endif %}
+              
+              
+              
+            
               
               
           </div>

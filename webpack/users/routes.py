@@ -124,7 +124,7 @@ def search():
     if request.form['search_keyword'] != None:
         search_me = request.form['search_keyword']
         searched_users,searched_posts = [],[]
-        if current_user.username == "ADMIN01" and search_me == "list-allusers":
+        if current_user.username == "ADMIN01" and search_me == "ALL":
             searched_users = User.query.all()
         else:
             search_me = '%'+ search_me +'%'
