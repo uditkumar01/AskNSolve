@@ -687,7 +687,7 @@ a:hover{
     
           <div class="profile-card-ctr">
             {% if current_user.username == _user.username or form != "NULL" %}
-            <a class="profile-card__button button--orange" href="{{url_for('users.theme_select')}}">Dark Mode</a>
+            <a class="profile-card__button button--orange" href="{{url_for('users.theme_select')}}">Light Mode</a>
             {%else%}
             <a class="profile-card__button button--blue" href="{{ url_for('users.chat_room', user_id = _user.id) }}">Message</a>
             <a class="profile-card__button button--orange" href="{{ url_for('users.chat_room', user_id = _user.id) }}">{{ name_of_follow }}</a>
