@@ -171,7 +171,10 @@ def account(user_id):
     _user = User.query.get_or_404(user_id)
     all_post = Post.query.order_by(Post.date_posted.desc()).filter_by(user_id = user_id).all()
     all_answers = Comment.query.order_by(Comment.timestamp.desc()).filter_by(commentor = _user.username).all()
-    MY_SKILLS_LIST = (_user.skills).split(',')
+    
+    
+    MY_SKILLS_LIST = (_user.skills).replace(' ','').split(',')
+    print(MY_SKILLS_LIST)
     print(all_post,all_answers)
     if current_user.id != _user.id:
         
@@ -215,7 +218,7 @@ def account(user_id):
             # form.email.data = current_user.email
         profile_image = url_for('static',filename = 'images/' + current_user.profile_pic)
 
-        MY_SKILLS_LIST = _user.skills.split(',')
+        MY_SKILLS_LIST = _user.skills.replace(' ','').split(',')
 
         if current_user.theme == 'NULL':
             return render_template('account.html',title = 'Your Account Info',followers=followers,name_of_follow = name_of_follow,following=following, profile_picture = profile_image, form = form, MY_SKILLS_LIST = MY_SKILLS_LIST, _user = current_user,all_posts = all_post, all_answers = all_answers)
