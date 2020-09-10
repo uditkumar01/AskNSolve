@@ -51,7 +51,7 @@
                     {% if current_user.is_authenticated %}
                     
                     <li class="nav-item menu-option">
-                        <a class="nav-link button-i active-i" style="color: lime; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = '#fff'" onmouseout="this.style.color = 'lime'" href="{{url_for('main.home')}}">Home</a>
+                        <a class="nav-link button-i" style="color: lime; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = '#fff'" onmouseout="this.style.color = 'lime'" href="{{url_for('main.home')}}">Home</a>
                     </li>
                     <li class="nav-item menu-option">
                     <a class="nav-link button-ii" style="color: grey; font-size: 15px; font-weight: 600;" onmouseover="this.style.color = 'orange'" onmouseout="this.style.color = 'grey'" href="{{url_for('posts.create_post')}}">Ask</a>
