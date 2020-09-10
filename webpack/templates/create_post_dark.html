@@ -21,27 +21,7 @@
 </div>
 <div id="loader" class="center"></div> 
     <div class = "__container">
-      {% with messages = get_flashed_messages(with_categories = true) %}
-            {% if messages %}
-                {% for category,message in messages%}
-                    <div>
-                        {% if category == "info" %}
-                            <div class = "alert alert-info" ><i class="fas fa-bell fl-fw icon_bell"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button></div>
-                        {% elif category == "success" %}
-                            <div class = "alert alert-success" ><i class="fas fa-check-circle fl-fw icon_tick"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button></div>
-                        {% elif category == "danger" %}
-                            <div class = "alert alert-danger" ><i class="fas fa-times-circle fl-fw icon_danger"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button></div>
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+      
         <!--Navbar -->
         <nav class="mb-1 navbar navbar-expand-lg navbar-dark" style="background: #131419;">
             <span class="my-brand" style="color: #fff; font-size: 20px; font-weight: 600; cursor: pointer; margin-right: 20px;">AskNSolve</span>
@@ -81,6 +61,27 @@
             </div>
         </nav>
       <!--/.Navbar -->
+      {% with messages = get_flashed_messages(with_categories = true) %}
+            {% if messages %}
+                {% for category,message in messages%}
+                    <div>
+                        {% if category == "info" %}
+                            <div class = "alert alert-info" ><i class="fas fa-bell fl-fw icon_bell"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button></div>
+                        {% elif category == "success" %}
+                            <div class = "alert alert-success" ><i class="fas fa-check-circle fl-fw icon_tick"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button></div>
+                        {% elif category == "danger" %}
+                            <div class = "alert alert-danger" ><i class="fas fa-times-circle fl-fw icon_danger"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button></div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
       <div class="_container" style="margin-top: 50px;">
         <div class="input-1">
           <div class="form-3" style="padding: 20px; margin-top: -100px; border-radius: 5px;">

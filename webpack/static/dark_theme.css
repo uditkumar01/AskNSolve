@@ -468,12 +468,12 @@ header,.cardbody{
 }
 
 .button-i:hover,.active-i{
-    border: 2px solid rgba(0,255,0,1);
+    border: 0px solid rgba(0,255,0,1);
     border-radius: 5px;
-    box-shadow:   0px 0px 5px rgba(0,255,0,0.5),
+    /* box-shadow:   0px 0px 5px rgba(0,255,0,0.5),
                    0px 0px 10px rgba(0,255,0,0.5),
                    0px 0px 15px rgba(0,255,0,0.5),
-                   inset 0px 0px 10px rgba(0,255,0,0.5);
+                   inset 0px 0px 10px rgba(0,255,0,0.5); */
     text-shadow: 0px 0px 10px rgba(0,255,0,1),
                  0px 0px 20px rgba(0,255,0,1);
 }
@@ -481,12 +481,12 @@ header,.cardbody{
     color: rgba(0,255,0,1);
 }
 .button-ii:hover,.active-ii{
-    border: 2px solid rgba(255,165,0,1);
+    border: 0px solid rgba(255,165,0,1);
     border-radius: 5px;
-    box-shadow:    0px 0px 5px rgba(255,165,0,0.5),
+    /* box-shadow:    0px 0px 5px rgba(255,165,0,0.5),
                    0px 0px 10px rgba(255,165,0,0.5),
                    0px 0px 15px rgba(255,165,0,0.5),
-                   inset 0px 0px 10px rgba(255,165,0,0.5);
+                   inset 0px 0px 10px rgba(255,165,0,0.5); */
     text-shadow: 0px 0px 10px rgba(255,165,0,1),
                  0px 0px 20px rgba(255,165,0,1);
 }
