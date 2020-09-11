@@ -9,6 +9,10 @@ from webpack.config import Config
 from flask_mail import Message
 import os
 
+def remove_profile_pic(pic):
+    profile_pic_path = os.path.join(current_app.root_path,'static/images', pic)
+    os.remove(profile_pic_path)
+
 def add_profile_pic(pic):
     name = secrets.token_hex(16)
     NAME,EXT = os.path.splitext(pic.filename)

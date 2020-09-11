@@ -4,7 +4,7 @@ from webpack import db,bcrypt
 from webpack.models import User, Post, Chat, Follow,Comment
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
-from webpack.users.utils import add_profile_pic, send_request_email, set_password_request
+from webpack.users.utils import add_profile_pic, send_request_email, set_password_request, remove_profile_pic
 
 users = Blueprint('users',__name__)
 
@@ -124,7 +124,7 @@ def search():
     if request.form['search_keyword'] != None:
         search_me = request.form['search_keyword']
         searched_users,searched_posts = [],[]
-        if current_user.username == "ADMIN01" and search_me == "ALL":
+        if current_user.username == "ADMIN01" and search_me.lower() == "all":
             searched_users = User.query.all()
         else:
             search_me = '%'+ search_me +'%'
@@ -188,21 +188,23 @@ def account(user_id):
         if form.validate_on_submit():
             
             if form.profile_pic.data:
+                if form.profile_pic.data != current_user.profile_pic and current_user.profile_pic != "default_profile_pic.jpg":
+                    remove_profile_pic(current_user.profile_pic)
                 pic_name = add_profile_pic(form.profile_pic.data)
                 current_user.profile_pic = pic_name
             # if form.username.data:
             #     current_user.username = form.username.data
             # if form.email.data:
             #     current_user.email = form.email.data
-            if form.country.data:
-                current_user.country = form.country.data
+            if form.country.data != "Choose Country":
+                # flash(f"{form.country.data}, {form.country.data != 'Choose Country'}")
+                current_user.country = form.country.data.title()
             if form.skills.data:
                 current_user.skills = form.skills.data
                 
             
             current_user.first_name = form.first_name.data.title()
             current_user.last_name = form.last_name.data.title()
-            current_user.country = form.country.data.title()
 
             db.session.commit()
             flash('Your account info is Updated !!!','success')

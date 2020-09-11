@@ -4,7 +4,8 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='my_style.css')}}">
     
     <link rel="stylesheet" href="{{ url_for('static',filename = 'MDB/css/mdb.css') }}">
-    
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/ionicon.min.css') }}">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     
 
 {% endblock files %}
@@ -131,7 +132,11 @@
                                         {% else %}
                                             <a href="{{ url_for('users.login') }}" style="font-size: 16px; margin-left: -1px; font-weight: 510; color: dimgray;">
                                         {% endif %}
-                                            {{ post.author.username }}</a></div>
+                                            {{ post.author.username }}
+                                            {%if post.author.username == "ADMIN01" or post.author.username == "uditkumar01" or post.author.username == "ItsMePro" or post.author.username == "Piyushkumar"%}
+                                            <img src="{{url_for('static',filename = 'images/admin_tick.png')}}" height="15px" width="15px"/>
+                                            {%endif%}
+                                        </a></div>
 
                                             <div class="text-right" style="width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -40px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #fff;">
                                                 {% if post.author.active == "active" %}
