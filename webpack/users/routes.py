@@ -186,7 +186,6 @@ def account(user_id):
     else:
         # flash(f'Updated {form.validate_on_submit()} {form.errors}','info')
         if form.validate_on_submit():
-            
             if form.profile_pic.data:
                 if form.profile_pic.data != current_user.profile_pic and current_user.profile_pic != "default_profile_pic.jpg":
                     remove_profile_pic(current_user.profile_pic)
