@@ -126,7 +126,7 @@
                                             <a href="{{ url_for('users.login',user_id = post.author.id) }}">
                                         {% endif %}
                                         <img src="{{ url_for('static',filename = 'images/'+post.author.profile_pic)}}" class="profile-pic-1" alt="Pic"></a>
-                                        <div style="width: 40%; padding-left: 2px; height: 28px; margin-left: 65px; margin-top: -45px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                        <div style="width: 43%; padding-left: 2px; height: 28px; margin-left: 65px; margin-top: -45px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                                         {% if current_user.is_authenticated %}
                                             <a href="{{ url_for('users.account',user_id = post.author.id) }}" style="font-size: 16px; margin-left: -1px; font-weight: 510; color: dimgray;">
                                         {% else %}
@@ -134,7 +134,7 @@
                                         {% endif %}
                                             {{ post.author.username }}
                                             {%if post.author.username == "ADMIN01" or post.author.username == "uditkumar01" or post.author.username == "ItsMePro" or post.author.username == "Piyushkumar"%}
-                                            <img src="{{url_for('static',filename = 'images/admin_tick.png')}}" height="15px" width="15px"/>
+                                                <img src="{{url_for('static',filename = 'images/admin_tick.png')}}" height="15px" width="15px"/>
                                             {%endif%}
                                         </a></div>
 
