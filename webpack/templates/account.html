@@ -1298,7 +1298,11 @@ body,html{
             </span>
     
             <span class="profile-card-loc__txt text-muted" style="font-weight: 400;">
-              {{_user.email}}
+              {% if _user.username == "ADMIN01" %}
+                adminaccount@asknsolve.ml
+              {% else %}
+                {{_user.email}}
+              {% endif %}
 
             </span>
           </div>
