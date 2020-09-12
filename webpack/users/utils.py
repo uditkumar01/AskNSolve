@@ -79,13 +79,16 @@ def send_post_delete_email(user,post):
     message.attach(part2)
 
     # Create secure connection with server and send email
-    context = ssl.create_default_context()
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-        server.login(Config.MAIL_USERNAME, Config.MAIL_PASSWORD)
-        server.sendmail(
-            Config.MAIL_USERNAME, user.email, message.as_string()
-        )
-    flash("Mail Sent!",'success')
+    try:
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+            server.login(Config.MAIL_USERNAME, Config.MAIL_PASSWORD)
+            server.sendmail(
+                Config.MAIL_USERNAME, user.email, message.as_string()
+            )
+        flash("Mail Sent!",'success')
+    except:
+        flash("Mail is not sent Sent! Please check your internet connection.",'success')
 
 def send_request_email(user):
 

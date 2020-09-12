@@ -123,7 +123,11 @@
                                         {% else %}
                                             <a href="{{ url_for('users.login') }}" style="font-size: 16px; margin-left: -1px; font-weight: 510; color: rgb(78, 78, 78);" onmouseover="this.style.color='#00ffff'" onmouseout="this.style.color='grey'">
                                         {% endif %}
-                                            {{ post.author.username }}</a></div>
+                                            {{ post.author.username }}
+                                            {%if post.author.username == "ADMIN01" or post.author.username == "uditkumar01" or post.author.username == "ItsMePro" or post.author.username == "Piyushkumar"%}
+                                                <img src="{{url_for('static',filename='images/admin_tick.png')}}" height="15px" width="15px"/>
+                                            {%endif%}
+                                        </a></div>
                                         
                                         <div class="text-right" style="color: rgb(78, 78, 78); width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: -23px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; cursor: pointer;" onmouseover="this.style.color = 'white'" onmouseout="this.style.color = 'rgb(78, 78, 78)'">{{ post.date_posted.strftime('%H:%M:%S') }} &nbsp;&nbsp;&nbsp;{{ post.date_posted.strftime('%d/%m/%Y') }}</div>
                                     </div>
