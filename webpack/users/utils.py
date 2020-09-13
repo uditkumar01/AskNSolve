@@ -8,6 +8,8 @@ from webpack import mail
 from webpack.config import Config
 from flask_mail import Message
 import os
+import oauth2 as oauth
+import oauth2.clients.smtp as smtplib
 
 def remove_profile_pic(pic):
     profile_pic_path = os.path.join(current_app.root_path,'static/images', pic)
