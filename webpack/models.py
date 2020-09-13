@@ -96,4 +96,3 @@ class Follow(db.Model):
 
     def __repr__(self):
         return f"Follow('{self.user_id}','{self.current_user_id}')"
-        

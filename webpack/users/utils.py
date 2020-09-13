@@ -8,8 +8,6 @@ from webpack import mail
 from webpack.config import Config
 from flask_mail import Message
 import os
-import oauth2 as oauth
-import oauth2.clients.smtp as smtplib
 
 def remove_profile_pic(pic):
     profile_pic_path = os.path.join(current_app.root_path,'static/images', pic)
@@ -81,16 +79,13 @@ def send_post_delete_email(user,post):
     message.attach(part2)
 
     # Create secure connection with server and send email
-    try:
-        context = ssl.create_default_context()
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-            server.login(Config.MAIL_USERNAME, Config.MAIL_PASSWORD)
-            server.sendmail(
-                Config.MAIL_USERNAME, user.email, message.as_string()
-            )
-        flash("Mail Sent!",'success')
-    except:
-        flash("Mail is not sent Sent! Please check your internet connection.",'success')
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+        server.login(Config.MAIL_USERNAME, Config.MAIL_PASSWORD)
+        server.sendmail(
+            Config.MAIL_USERNAME, user.email, message.as_string()
+        )
+    flash("Mail Sent!",'success')
 
 def send_request_email(user):
 

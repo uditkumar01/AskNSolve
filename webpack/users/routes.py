@@ -105,7 +105,7 @@ def register():
     form = Registration_Form()
     if form.validate_on_submit():
         hashed_pw = bcrypt.generate_password_hash("set_your_password").decode('utf-8')
-        user = User(first_name = form.first_name.data, last_name = form.last_name.data , country = form.country.data ,username = form.username.data, email = form.email.data, password = hashed_pw)
+        user = User(username = form.username.data, email = form.email.data, password = hashed_pw)
         if user.email!=None:
             set_password_request(user)
         else:
@@ -150,7 +150,6 @@ def delete_user(user_id):
         return redirect(url_for('users.login'))
     else:
         user = User.query.get_or_404(user_id)
-        flash(f"{user.username},{user.id}","info")
         db.session.delete(user)
         db.session.commit()
         return redirect(url_for('users.login'))
