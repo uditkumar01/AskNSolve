@@ -139,7 +139,7 @@ def send_request_email(user):
             )
         flash("Mail Sent!",'success')
     except:
-        flash("Mail is not sent Sent! Please check your internet connection.",'danger')
+        flash("Mail is not sent Sent! Please check your internet connection.",'info')
 
 def set_password_request(user):
 
