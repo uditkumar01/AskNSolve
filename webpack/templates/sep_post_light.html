@@ -171,7 +171,7 @@
 
                                 <div href="#" ><p class="" style="margin-left: 2px; margin-top: -35px; height: 30px; border: 2px solid transparent; font-size: 15px; color: #788e99;">
                                     
-                                    <div class="overlay" style="color: rgb(92, 92, 92); font-size: 17px; font-weight: 500; white-space: pre-wrap;">{{ post.content }}</div>
+                                    <div class="overlay" style="color: rgb(92, 92, 92); font-size: 17px; font-weight: 500; white-space: ;" id="prewrap">{{ post.content }}</div>
                                 </p></div>
                                 <div class="text-right text-muted" style="width: 25%; padding-left: 2px; float: right; font-size: 10px; margin-top: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #fff;">posted on {{ post.date_posted.strftime('%d %B %Y') }} at {{ post.date_posted.strftime('%H:%M:%S') }}</div>
                                 </div>
@@ -374,4 +374,5 @@
           $('.mdb-select').materialSelect();
           });
     </script>
+    
 {% endblock content %}
