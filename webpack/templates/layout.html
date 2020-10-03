@@ -406,5 +406,72 @@
               });
           }, 3000);
         </script>
+        <script>
+            $("textarea").keydown(function(e)
+            {
+                if (e.which == 9) //ASCII tab
+                {
+                    e.preventDefault();
+                    var start = this.selectionStart;
+                    var end = this.selectionEnd;
+                    var v = $(this).val();
+                    if (start == end)
+                    {
+                        $(this).val(v.slice(0, start) + "        " + v.slice(start));
+                        return;
+                    }
+    
+                    var selectedLines = [];
+                    var inSelection = false;
+                    var lineNumber = 0;
+                    for (var i = 0; i < v.length; i++)
+                    {
+                        if (i == start)
+                        {
+                            inSelection = true;
+                            selectedLines.push(lineNumber);
+                        }
+                        if (i >= end)
+                            inSelection = false;
+    
+                        if (v[i] == "\n")
+                        {
+                            lineNumber++;
+                            if (inSelection)
+                                selectedLines.push(lineNumber);
+                        }
+                    }
+                    var lines = v.split("\n");
+                    for (var i = 0; i < selectedLines.length; i++)
+                    {
+                        lines[selectedLines[i]] = "        " + lines[selectedLines[i]];
+                    }
+    
+                    $(this).val(lines.join("\n"));
+                }
+            });
+            $("textarea").keyup(function(e)
+            {
+                if (e.which == 13) // ASCII newline
+                {
+                    var start = this.selectionStart;
+                    var v = $(this).val();
+                    var thisLine = "";
+                    var indentation = 0;
+                    for (var i = start-2; i >= 0 && v[i] != "\n"; i--)
+                    {
+                        thisLine = v[i] + thisLine;
+                    }
+                    for (var i = 0; i < thisLine.length && thisLine[i] == " "; i++)
+                    {
+    
+                        indentation++;
+                    }
+                    $(this).val(v.slice(0, start) + " ".repeat(indentation) + v.slice(start));
+                }
+    
+            });
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     </body>
 </html>
