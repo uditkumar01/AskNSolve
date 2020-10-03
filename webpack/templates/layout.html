@@ -472,6 +472,14 @@
     
             });
         </script>
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+            function prewrap(){
+                var x = document.getElementById("my-textarea").value.replace(/\n/g, "<br />");
+                document.getElementById("my-textarea").innerHTML = x.replace(" ", "&nbsp;")
+
+            }
+        </script>
     </body>
 </html>
