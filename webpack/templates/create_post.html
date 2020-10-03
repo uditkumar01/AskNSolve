@@ -101,7 +101,7 @@
                   {% endif %}
                 </div>
                 <div class="post_content" style="margin: 10px; margin-top: 30px;">
-                  {{ form.content(class="form-control-1", id="my-textarea", rows="3", placeholder = "Explain your doubt ") }}
+                  {{ form.content(class="form-control-1", id="my-textarea",  onblur="prewrap()", rows="3", placeholder = "Explain your doubt ") }}
                   {% if form.content.errors %}
                     {%for error in form.content.errors%}
                       <p class="error_placeholder">{{ error }}</p>
