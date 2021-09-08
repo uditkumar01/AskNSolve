@@ -30,7 +30,7 @@ MarkupSafe==1.1.1
 mccabe==0.6.1
 npm==0.1.1
 optional-django==0.1.0
-Pillow==8.2.0
+Pillow==8.3.2
 pipenv==2020.6.2
 psycopg2==2.8.5
 pycparser==2.20
